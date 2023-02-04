@@ -18,7 +18,7 @@
 		20DBD9EB298ECD1800BF882B /* ManToManAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9EA298ECD1800BF882B /* ManToManAPI.swift */; };
 		20DBD9ED298ECD4B00BF882B /* RecordButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9EC298ECD4B00BF882B /* RecordButtonView.swift */; };
 		20DBD9EF298ECD6000BF882B /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9EE298ECD6000BF882B /* LanguageSelectionView.swift */; };
-		20DBD9F1298ECDA800BF882B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9F0298ECDA800BF882B /* Extensions.swift */; };
+		20DBD9F1298ECDA800BF882B /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9F0298ECDA800BF882B /* UIExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +34,7 @@
 		20DBD9EA298ECD1800BF882B /* ManToManAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManToManAPI.swift; sourceTree = "<group>"; };
 		20DBD9EC298ECD4B00BF882B /* RecordButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButtonView.swift; sourceTree = "<group>"; };
 		20DBD9EE298ECD6000BF882B /* LanguageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionView.swift; sourceTree = "<group>"; };
-		20DBD9F0298ECDA800BF882B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		20DBD9F0298ECDA800BF882B /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				20DBD9EA298ECD1800BF882B /* ManToManAPI.swift */,
-				20DBD9F0298ECDA800BF882B /* Extensions.swift */,
+				20DBD9F0298ECDA800BF882B /* UIExtensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -206,7 +206,7 @@
 				20DBD9E1298ECC3600BF882B /* RecentLog.xcdatamodeld in Sources */,
 				20DBD9D0298ECB0400BF882B /* MainView.swift in Sources */,
 				20DBD9CE298ECB0400BF882B /* ManToManApp.swift in Sources */,
-				20DBD9F1298ECDA800BF882B /* Extensions.swift in Sources */,
+				20DBD9F1298ECDA800BF882B /* UIExtensions.swift in Sources */,
 				20DBD9EB298ECD1800BF882B /* ManToManAPI.swift in Sources */,
 				20DBD9E6298ECCC400BF882B /* TranslatedModel.swift in Sources */,
 				20DBD9E8298ECCD800BF882B /* MainViewModel.swift in Sources */,

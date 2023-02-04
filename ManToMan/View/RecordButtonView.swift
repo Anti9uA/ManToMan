@@ -76,8 +76,6 @@ struct RecordButtonView: View {
                 )
             }
             
-            
-            
             Group{
                 VStack{
                     Spacer()

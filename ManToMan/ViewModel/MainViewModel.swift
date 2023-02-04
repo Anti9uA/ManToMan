@@ -2,7 +2,7 @@
 //  MainViewModel.swift
 //  Kyupago
 //
-//  Created by Kyubo Shim on 2023/01/05.
+//  Created by Kyubo Shim on 2023/01/27.
 //
 
 import Combine
