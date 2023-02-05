@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		203D3E55298F8F090050163B /* ConfrontButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D3E54298F8F090050163B /* ConfrontButtonView.swift */; };
 		20DBD9CE298ECB0400BF882B /* ManToManApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9CD298ECB0400BF882B /* ManToManApp.swift */; };
 		20DBD9D0298ECB0400BF882B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9CF298ECB0400BF882B /* MainView.swift */; };
 		20DBD9D2298ECB0600BF882B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20DBD9D1298ECB0600BF882B /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		203D3E54298F8F090050163B /* ConfrontButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfrontButtonView.swift; sourceTree = "<group>"; };
 		20DBD9CA298ECB0400BF882B /* ManToMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManToMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DBD9CD298ECB0400BF882B /* ManToManApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManToManApp.swift; sourceTree = "<group>"; };
 		20DBD9CF298ECB0400BF882B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				20DBD9CF298ECB0400BF882B /* MainView.swift */,
 				20DBD9EC298ECD4B00BF882B /* RecordButtonView.swift */,
 				20DBD9EE298ECD6000BF882B /* LanguageSelectionView.swift */,
+				203D3E54298F8F090050163B /* ConfrontButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				20DBD9F8298ED8A600BF882B /* TextExtension.swift in Sources */,
 				20DBD9CE298ECB0400BF882B /* ManToManApp.swift in Sources */,
 				20DBD9F1298ECDA800BF882B /* UIExtension.swift in Sources */,
+				203D3E55298F8F090050163B /* ConfrontButtonView.swift in Sources */,
 				20DBD9EB298ECD1800BF882B /* ManToManAPI.swift in Sources */,
 				20DBD9E6298ECCC400BF882B /* TranslatedModel.swift in Sources */,
 				20DBD9E8298ECCD800BF882B /* MainViewModel.swift in Sources */,

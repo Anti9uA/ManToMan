@@ -10,10 +10,10 @@ import Foundation
 import Speech
 
 class MainViewModel: ObservableObject {
-    @Published var kyuTranslated: TranslatedModel?
+    @Published var translated: TranslatedModel?
     @Published var text : String = ""
     
-    let kyupagoApi = ManToManAPI.instance
+    let manToManAPI = ManToManAPI.instance
     
     let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))!
     
@@ -30,10 +30,10 @@ class MainViewModel: ObservableObject {
     }
     
     private func addKyuSubscriber() {
-        kyupagoApi.$translated
+        manToManAPI.$translated
             .sink { [weak self] (receiveModel) in
                 DispatchQueue.main.async {
-                    self?.kyuTranslated = receiveModel
+                    self?.translated = receiveModel
                 }
             }
             .store(in: &cancellable)

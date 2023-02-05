@@ -60,7 +60,7 @@ struct MainView: View {
                             .foregroundColor(Color.white)
                         
                         
-                        if let translated = mv.kyuTranslated?.result {
+                        if let translated = mv.translated?.result {
                             Text(translated)
                                 .font(.system(size: 24, weight: .semibold))
                                 .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
@@ -149,11 +149,6 @@ struct MainView: View {
                                         Text(sen.sentence ?? "error")
                                             .font(.system(size: 24, weight: .semibold))
                                             .opacity(recentOpacity)
-                                            .onAppear {
-                                                withAnimation(.easeIn(duration: 0.9).delay(recentDelay)) {
-                                                    recentOpacity = 1.0
-                                                }
-                                            }
 
                                     })
                                     .frame(width: geo.size.width - 100)
@@ -177,6 +172,11 @@ struct MainView: View {
                             }
                         }
                         
+                    }
+                    .onAppear {
+                        withAnimation(.easeIn(duration: 0.9).delay(recentDelay)) {
+                            recentOpacity = 1.0
+                        }
                     }
                     
                     
