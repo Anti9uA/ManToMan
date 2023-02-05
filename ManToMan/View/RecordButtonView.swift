@@ -18,6 +18,8 @@ struct RecordButtonView: View {
     @State var delay2 = 0.3
     @State var delay3 = 0.8
     
+    @Binding var flipSpeaker: Bool
+    
     var startRecord: () -> Void
     var finishRecord: () -> Void
     
@@ -29,7 +31,7 @@ struct RecordButtonView: View {
             VStack{
                 Spacer()
                 Capsule()
-                    .fill(.gray)
+                    .fill(Color.customDarkGray)
                     .frame(width: fixedVar, height: currentHeight)
             }
             
@@ -38,7 +40,7 @@ struct RecordButtonView: View {
                 Spacer()
                 ZStack {
                     Circle()
-                        .fill(.gray)
+                        .fill(Color.customDarkGray)
                         .padding(5)
                 }
                 .frame(height: fixedVar, alignment: .center)
@@ -62,6 +64,7 @@ struct RecordButtonView: View {
                             withAnimation(.spring()){
                                 if currentHeight > 150 && gesture.translation.height < 0.0 {
                                     print("toggled!")
+                                    flipSpeaker.toggle()
                                     micTransitionToggle.toggle()
                                     overlayToggle.toggle()
                                     buttonOffset = -80
@@ -74,6 +77,9 @@ struct RecordButtonView: View {
                             }
                         })
                 )
+                .onTapGesture {
+                    overlayToggle.toggle()
+                }
             }
             
             Group{
@@ -109,7 +115,7 @@ struct RecordButtonView: View {
                     if overlayToggle {
                         ZStack{
                             Capsule()
-                                .fill(.blue.opacity(0.7))
+                                .fill(Color.mainBlue.opacity(0.9))
                                 .frame(height: currentHeight)
                             VStack{
                                 Image(systemName: "square.fill")
@@ -124,13 +130,20 @@ struct RecordButtonView: View {
                         }
                         .transition(.opacity.animation(.easeIn(duration: 0.3).delay(delay3)))
                         .onTapGesture {
-                            withAnimation(.easeIn(duration: 0.5)) {
-                                self.finishRecord()
-                                overlayToggle.toggle()
-                                micTransitionToggle.toggle()
+                            if micTransitionToggle{
+                                withAnimation(.easeIn(duration: 0.5)) {
+                                    self.finishRecord()
+                                    overlayToggle.toggle()
+                                    micTransitionToggle.toggle()
+                                }
+                                withAnimation(.easeIn(duration: 0.4).delay(0.3)) {
+                                    buttonOffset = 0
+                                }
                             }
-                            withAnimation(.easeIn(duration: 0.4).delay(0.3)) {
-                                buttonOffset = 0
+                            else {
+                                withAnimation(.easeIn) {
+                                    overlayToggle.toggle()
+                                }
                             }
                         }
                         .onAppear{ self.delay3 = 0.0 }
@@ -145,7 +158,7 @@ struct RecordButtonView: View {
 
 struct TestButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordButtonView(startRecord: {
+        RecordButtonView(flipSpeaker: .constant(true), startRecord: {
             print("voice record start")
         }, finishRecord: {
             print("voice record finished")

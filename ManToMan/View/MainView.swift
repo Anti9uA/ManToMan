@@ -21,6 +21,7 @@ struct MainView: View {
     @State var placeholderLine: CGFloat = 5
     @State var recentOpacity = 0.0
     @State var recentDelay = 0.5
+    @State var flipSpeaker = false
     
     var body: some View {
         GeometryReader { geo in
@@ -37,7 +38,7 @@ struct MainView: View {
                     
                     HStack{
                         Text("\(currentLang)로 번역")
-                            .font(.system(size: 20, weight: .heavy))
+                            .font(.customTitle())
                         
                         Button(action: {
                             self.isSheetPresented.toggle()
@@ -59,7 +60,6 @@ struct MainView: View {
                             .frame(width: geo.size.width - 40, height: 160)
                             .foregroundColor(Color.white)
                         
-                        
                         if let translated = mv.translated?.result {
                             Text(translated)
                                 .font(.system(size: 24, weight: .semibold))
@@ -71,15 +71,16 @@ struct MainView: View {
                                 .cornerRadius(30)
                         }
                         
-                         else {
+                        else {
                             Text("Please wait..")
-                                .font(.system(size: 24, weight: .semibold))
+                                .font(.korean())
                                 .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
                                 .frame(width: 350)
                                 .background(.white)
                                 .foregroundColor(Color("mainBlue"))
                                 .cornerRadius(30)
                         }
+                        
                     }
                     .padding(.bottom, 40)
                     
@@ -91,9 +92,9 @@ struct MainView: View {
                             .placeholder(when: mv.text.isEmpty) {
                                 VStack{
                                     Text("한글을 입력하세요.")
-                                        .foregroundColor(.gray)
+                                        .foregroundColor(Color.disabledBlack)
                                         .padding(.top, 25)
-
+                                    
                                     Rectangle()
                                         .fill(.blue)
                                         .cornerRadius(10)
@@ -104,7 +105,7 @@ struct MainView: View {
                                 }
                                 .frame(height: 50)
                             }
-                            .font(.system(size: 24, weight: .semibold))
+                            .font(.korean())
                             .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
                             .multilineTextAlignment(.center)
                             .submitLabel(.done)
@@ -130,7 +131,7 @@ struct MainView: View {
                                     mv.text = ""
                                 }, label: {
                                     Image(systemName: "x.circle.fill")
-                                        .foregroundColor(.gray)
+                                        .foregroundColor(Color.mainBlue)
                                 })
                             }
                             .padding(.horizontal, 20)
@@ -149,7 +150,7 @@ struct MainView: View {
                                         Text(sen.sentence ?? "error")
                                             .font(.system(size: 24, weight: .semibold))
                                             .opacity(recentOpacity)
-
+                                        
                                     })
                                     .frame(width: geo.size.width - 100)
                                     
@@ -162,7 +163,7 @@ struct MainView: View {
                                             }
                                         }, label: {
                                             Image(systemName: "x.circle.fill")
-                                                .foregroundColor(.red)
+                                                .foregroundColor(Color.mainRed)
                                         })
                                     }
                                     .padding(.horizontal, 20)
@@ -184,7 +185,8 @@ struct MainView: View {
                         
                         // MARK: 녹음 시작 버튼
                         
-                        RecordButtonView(startRecord: {
+                        RecordButtonView(flipSpeaker: $flipSpeaker,
+                                         startRecord: {
                             do {
                                 try mv.startRecording()
                             } catch {
@@ -193,7 +195,8 @@ struct MainView: View {
                         }, finishRecord: {
                             mv.audioEngine.stop()
                             mv.recognitionRequest?.endAudio()
-                        })
+                        }
+                        )
                         
                         // MARK: UI 반전 토글 버튼
                         
