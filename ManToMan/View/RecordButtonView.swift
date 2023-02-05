@@ -94,7 +94,7 @@ struct RecordButtonView: View {
                 VStack {
                     Spacer()
                     if micTransitionToggle {
-                        Image("MicLong")
+                        Image("longMic")
                             .resizable()
                             .frame(width: 44, height: 141)
                             .transition(.move(edge: .bottom))

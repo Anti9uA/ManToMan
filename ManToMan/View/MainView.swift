@@ -108,7 +108,7 @@ struct MainView: View {
                             .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
                             .multilineTextAlignment(.center)
                             .submitLabel(.done)
-                            .onChange(of: mv.text) { newValue in
+                            .onChange(of: mv.debouncedText) { newValue in
                                 ManToManAPI.instance.postData(text: newValue, selectedlang: currentLang)
                                 if let last = newValue.last, last == "\n" {
                                     mv.text.removeLast()
@@ -183,6 +183,7 @@ struct MainView: View {
                     ZStack(alignment: .center) {
                         
                         // MARK: 녹음 시작 버튼
+                        
                         RecordButtonView(startRecord: {
                             do {
                                 try mv.startRecording()
@@ -217,6 +218,7 @@ struct MainView: View {
                 .padding(.top)
                 
                 // MARK: 마이크 애니메이션 가리개
+                
                 VStack{
                     Spacer()
                     Image("roundBottom")

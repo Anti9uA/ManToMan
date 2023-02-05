@@ -12,6 +12,7 @@ import Speech
 class MainViewModel: ObservableObject {
     @Published var translated: TranslatedModel?
     @Published var text : String = ""
+    @Published var debouncedText: String = ""
     
     let manToManAPI = ManToManAPI.instance
     
@@ -27,6 +28,13 @@ class MainViewModel: ObservableObject {
     
     init() {
         addKyuSubscriber()
+        $text
+            .debounce(for: .seconds(0.1), scheduler: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] t in
+                self?.debouncedText = t
+            } )
+            .store(in: &cancellable)
+            
     }
     
     private func addKyuSubscriber() {
