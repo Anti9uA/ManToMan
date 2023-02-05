@@ -92,7 +92,7 @@ class MainViewModel: ObservableObject {
         audioEngine.prepare()
         try audioEngine.start()
         
-        self.text = "음성 인식중.. "
+        self.text = "음성 인식 중.."
     }
     
 }

@@ -45,7 +45,6 @@ struct RecordButtonView: View {
                 ZStack {
                     Circle()
                         .fill(Color.customDarkGray)
-                        .padding(5)
                 }
                 .frame(height: fixedVar, alignment: .center)
                 .offset(y: buttonOffset)
@@ -138,9 +137,10 @@ struct RecordButtonView: View {
                         }
                         .transition(.opacity.animation(.easeIn(duration: 0.3).delay(flipSpeaker ? delay3 : 0)))
                         .onTapGesture {
-                            if !text.isEmpty {
+                            if !text.isEmpty && text != "음성 인식 중.." {
                                 DataController().addRecent(sentence: text, context: managedObjContext)
                             }
+                        
                             if micTransitionToggle{
                                 withAnimation(.easeIn(duration: 0.5)) {
                                     self.finishRecord()
