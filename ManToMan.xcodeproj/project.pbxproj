@@ -26,6 +26,7 @@
 		B22EC650298FAC0D0034977E /* LINESeedJP_A_OTF_Bd.otf in Resources */ = {isa = PBXBuildFile; fileRef = B22EC64F298FAC0D0034977E /* LINESeedJP_A_OTF_Bd.otf */; };
 		B22EC652298FAC270034977E /* LINESeedSans_A_Bd.otf in Resources */ = {isa = PBXBuildFile; fileRef = B22EC651298FAC270034977E /* LINESeedSans_A_Bd.otf */; };
 		B22EC655298FAF230034977E /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22EC654298FAF230034977E /* UIExtension.swift */; };
+		B22EC657298FAFD00034977E /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22EC656298FAFD00034977E /* ColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		B22EC651298FAC270034977E /* LINESeedSans_A_Bd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LINESeedSans_A_Bd.otf; sourceTree = "<group>"; };
 		B22EC653298FAC380034977E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B22EC654298FAF230034977E /* UIExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
+		B22EC656298FAFD00034977E /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 			children = (
 				B22EC654298FAF230034977E /* UIExtension.swift */,
 				20DBD9F5298ED89800BF882B /* FontExtension.swift */,
+				B22EC656298FAFD00034977E /* ColorExtension.swift */,
 				20DBD9F7298ED8A600BF882B /* TextExtension.swift */,
 			);
 			path = Extensions;
@@ -249,6 +252,7 @@
 				20DBD9E4298ECC9200BF882B /* DataController.swift in Sources */,
 				20DBD9E1298ECC3600BF882B /* RecentLog.xcdatamodeld in Sources */,
 				20DBD9D0298ECB0400BF882B /* MainView.swift in Sources */,
+				B22EC657298FAFD00034977E /* ColorExtension.swift in Sources */,
 				20DBD9F8298ED8A600BF882B /* TextExtension.swift in Sources */,
 				20DBD9CE298ECB0400BF882B /* ManToManApp.swift in Sources */,
 				203D3E55298F8F090050163B /* ConfrontButtonView.swift in Sources */,
