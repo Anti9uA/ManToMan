@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import Speech
 
 struct MainView: View {
     @Environment(\.managedObjectContext) var managedObjContext
@@ -22,7 +23,7 @@ struct MainView: View {
     @State var recentOpacity = 0.0
     @State var recentDelay = 0.5
     @State var flipSpeaker = false
-    
+    @State var isEditing = false
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -60,75 +61,103 @@ struct MainView: View {
                             .frame(width: geo.size.width - 40, height: 160)
                             .foregroundColor(Color.white)
                         
-                        if let translated = mv.translated?.result {
-                            Text(translated)
-                                .font(.system(size: 24, weight: .semibold))
+                        if flipSpeaker {
+                            Text(mv.text.isEmpty ? "Please Wait.." : mv.text)
+                                .font(.english())
                                 .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
                                 .frame(width: geo.size.width - 72)
                                 .padding()
                                 .background(.white)
                                 .foregroundColor(Color("mainBlue"))
                                 .cornerRadius(30)
+                                .onChange(of: mv.debouncedText) { newValue in
+                                    ManToManAPI.instance.postData(text: newValue, selectedlang: flipSpeaker ? "한글" : currentLang)
+                                }
                         }
-                        
                         else {
-                            Text("Please wait..")
-                                .font(.korean())
-                                .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
-                                .frame(width: 350)
-                                .background(.white)
-                                .foregroundColor(Color("mainBlue"))
-                                .cornerRadius(30)
+                            if let translated = mv.translated?.result {
+                                Text(translated.isEmpty ? "Please Wait.. " : translated)
+                                    .font(.english())
+                                    .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
+                                    .frame(width: geo.size.width - 72)
+                                    .padding()
+                                    .background(.white)
+                                    .foregroundColor(Color("mainBlue"))
+                                    .cornerRadius(30)
+                            }
+                            
+                            else {
+                                Text("Please wait..")
+                                    .font(.korean())
+                                    .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
+                                    .frame(width: 350)
+                                    .background(.white)
+                                    .foregroundColor(Color("mainBlue"))
+                                    .cornerRadius(30)
+                            }
                         }
-                        
                     }
                     .padding(.bottom, 40)
                     
                     ZStack{
                         
                         // MARK: 한글 입력 텍스트 필드
-                        
-                        TextField("", text: $mv.text, axis: .vertical)
-                            .placeholder(when: mv.text.isEmpty) {
-                                VStack{
-                                    Text("한글을 입력하세요.")
-                                        .foregroundColor(Color.disabledBlack)
-                                        .padding(.top, 25)
-                                    
-                                    Rectangle()
-                                        .fill(.blue)
-                                        .cornerRadius(10)
-                                        .frame(width: placeholderLine, height: 5)
-                                        .padding(.bottom, 1)
-                                        .offset(y: -10)
-                                    Spacer()
-                                }
-                                .frame(height: 50)
+                        if flipSpeaker {
+                            if let translated = mv.translated?.result {
+                                Text(translated)
+                                    .font(.korean())
+                                    .frame(width: geo.size.width - 72)
+                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+                                    .frame(width: 290)
                             }
-                            .font(.korean())
-                            .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
-                            .multilineTextAlignment(.center)
-                            .submitLabel(.done)
-                            .onChange(of: mv.debouncedText) { newValue in
-                                ManToManAPI.instance.postData(text: newValue, selectedlang: currentLang)
-                                if let last = newValue.last, last == "\n" {
-                                    mv.text.removeLast()
-                                    DataController().addRecent(sentence: mv.text, context: managedObjContext)
+                        }
+                        else {
+                            TextField("", text: $mv.text, axis: .vertical)
+                                .placeholder(when: mv.text.isEmpty) {
+                                    VStack{
+                                        Text("한글을 입력하세요.")
+                                            .foregroundColor(Color.disabledBlack)
+                                            .padding(.top, 25)
+                                        
+                                        Rectangle()
+                                            .fill(.blue)
+                                            .cornerRadius(10)
+                                            .frame(width: placeholderLine, height: 5)
+                                            .padding(.bottom, 1)
+                                            .offset(y: -10)
+                                        Spacer()
+                                    }
+                                    .frame(height: 50)
                                 }
-                            }
-                            .onAppear {
-                                withAnimation(.easeInOut(duration: 0.25).delay(0.3)){
-                                    placeholderLine = 190
+                                .font(.korean())
+                                .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+                                .frame(width: 290)
+                                .multilineTextAlignment(.center)
+                                .submitLabel(.done)
+                                .onChange(of: mv.debouncedText) { newValue in
+                                    ManToManAPI.instance.postData(text: newValue, selectedlang: flipSpeaker ? "한글" : currentLang)
+                                    if let last = newValue.last, last == "\n" {
+                                        mv.text.removeLast()
+                                        if !mv.text.isEmpty {
+                                            DataController().addRecent(sentence: mv.text, context: managedObjContext)
+                                        }
+                                        hideKeyboard()
+                                    }
                                 }
-                            }
-                        
+                                .onAppear {
+                                    withAnimation(.easeInOut(duration: 0.25).delay(0.3)){
+                                        placeholderLine = 190
+                                    }
+                                }
+                        }
                         // MARK: 입력 일괄 삭제 버튼
                         
-                        if !mv.text.isEmpty{
+                        if !mv.text.isEmpty && !mv.audioEngine.isRunning  {
                             HStack {
                                 Spacer()
                                 Button(action: {
                                     mv.text = ""
+                                    flipSpeaker = false
                                 }, label: {
                                     Image(systemName: "x.circle.fill")
                                         .foregroundColor(Color.mainBlue)
@@ -141,38 +170,43 @@ struct MainView: View {
                     // MARK: 최근 기록 열람 메뉴
                     
                     ScrollView (.vertical){
-                        VStack{
-                            ForEach(recent, id: \.self){ sen in
-                                ZStack{
-                                    Button(action: {
-                                        mv.text = sen.sentence ?? "error"
-                                    }, label: {
-                                        Text(sen.sentence ?? "error")
-                                            .font(.system(size: 24, weight: .semibold))
-                                            .opacity(recentOpacity)
-                                        
-                                    })
-                                    .frame(width: geo.size.width - 100)
-                                    
-                                    HStack{
-                                        Spacer()
+                        ZStack{
+                            VStack{
+                                ForEach(recent, id: \.self){ sen in
+                                    ZStack{
                                         Button(action: {
-                                            withAnimation {
-                                                self.managedObjContext.delete(sen)
-                                                DataController().save(context: managedObjContext)
-                                            }
+                                            mv.text = sen.sentence ?? "error"
                                         }, label: {
-                                            Image(systemName: "x.circle.fill")
-                                                .foregroundColor(Color.mainRed)
+                                            Text(sen.sentence ?? "error")
+                                                .font(.customTitle())
+                                                .foregroundColor(.customDarkGray)
+                                                .opacity(recentOpacity)
+                                            
                                         })
+                                        .frame(width: geo.size.width - 100)
+                                        
+                                        HStack{
+                                            Spacer()
+                                            Button(action: {
+                                                withAnimation {
+                                                    self.managedObjContext.delete(sen)
+                                                    DataController().save(context: managedObjContext)
+                                                }
+                                            }, label: {
+                                                Image(systemName: "x.circle.fill")
+                                                    .foregroundColor(Color.mainRed)
+                                            })
+                                        }
+                                        .padding(.horizontal, 20)
                                     }
-                                    .padding(.horizontal, 20)
+                                    .padding(.bottom, 20)
+                                    
                                 }
-                                .padding(.bottom, 20)
-                                
+                            }
+                            if !mv.text.isEmpty || mv.text == "\n" {
+                                Color.background
                             }
                         }
-                        
                     }
                     .onAppear {
                         withAnimation(.easeIn(duration: 0.9).delay(recentDelay)) {
@@ -186,9 +220,9 @@ struct MainView: View {
                         // MARK: 녹음 시작 버튼
                         
                         RecordButtonView(flipSpeaker: $flipSpeaker,
-                                         startRecord: {
+                                         text: $mv.text, startRecord: {
                             do {
-                                try mv.startRecording()
+                                try mv.startRecording(selectedLang: flipSpeaker ? currentLang : "한글")
                             } catch {
                                 
                             }

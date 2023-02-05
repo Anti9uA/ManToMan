@@ -13,10 +13,11 @@ class MainViewModel: ObservableObject {
     @Published var translated: TranslatedModel?
     @Published var text : String = ""
     @Published var debouncedText: String = ""
+    @Published var langList: [String: String] = ["한글" : "ko-KR", "영어": "en-US", "일본어": "ja-JP", "중국어(간체)": "zh"]
     
     let manToManAPI = ManToManAPI.instance
     
-    let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))!
+    // let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))!
     
     var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     
@@ -47,7 +48,8 @@ class MainViewModel: ObservableObject {
             .store(in: &cancellable)
     }
     
-    func startRecording() throws {
+    func startRecording(selectedLang: String) throws {
+        let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: langList[selectedLang]!))!
         
         recognitionTask?.cancel()
         self.recognitionTask = nil
@@ -90,6 +92,7 @@ class MainViewModel: ObservableObject {
         audioEngine.prepare()
         try audioEngine.start()
         
-        self.text = ""
+        self.text = "음성 인식중.. "
     }
+    
 }

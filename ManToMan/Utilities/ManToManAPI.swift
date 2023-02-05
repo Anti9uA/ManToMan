@@ -14,7 +14,7 @@ class ManToManAPI {
     
     @Published var translated : TranslatedModel?
     @Published var initialText : String = ""
-    @Published var langList: [String: String] = ["영어": "en", "일본어": "ja", "중국어(간체)": "zh-cn"]
+    @Published var langList: [String: String] = ["한글" : "ko", "영어": "en", "일본어": "ja", "중국어(간체)": "zh-cn"]
     
     static let instance = ManToManAPI()
     

@@ -8,5 +8,5 @@
 import Foundation
 
 struct TranslatedModel: Codable {
-    var result: String = "a"
+    var result: String = ""
 }

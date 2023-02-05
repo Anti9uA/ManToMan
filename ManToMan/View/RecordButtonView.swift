@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct RecordButtonView: View {
+    @Environment(\.managedObjectContext) var managedObjContext
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var recent: FetchedResults<Recent>
+    
     @State var buttonOffset: CGFloat = 0.0
     // 전체 Zstack의 높이 - 패딩값
     @State var buttonheight : Double = 150
@@ -19,6 +22,7 @@ struct RecordButtonView: View {
     @State var delay3 = 0.8
     
     @Binding var flipSpeaker: Bool
+    @Binding var text: String
     
     var startRecord: () -> Void
     var finishRecord: () -> Void
@@ -64,7 +68,7 @@ struct RecordButtonView: View {
                             withAnimation(.spring()){
                                 if currentHeight > 150 && gesture.translation.height < 0.0 {
                                     print("toggled!")
-                                    flipSpeaker.toggle()
+                                    flipSpeaker = true
                                     micTransitionToggle.toggle()
                                     overlayToggle.toggle()
                                     buttonOffset = -80
@@ -78,7 +82,9 @@ struct RecordButtonView: View {
                         })
                 )
                 .onTapGesture {
+                    flipSpeaker = false
                     overlayToggle.toggle()
+                    self.startRecord()
                 }
             }
             
@@ -123,13 +129,18 @@ struct RecordButtonView: View {
                                     .frame(width: 32, height: 32)
                                     .foregroundColor(.white)
                                     .font(.headline)
-                                Text("STOP")
-                                    .font(.system(size: 20, weight: .bold))
-                                    .foregroundColor(.white)
+                                if flipSpeaker {
+                                    Text("STOP")
+                                        .font(.system(size: 20, weight: .bold))
+                                        .foregroundColor(.white)
+                                }
                             }
                         }
-                        .transition(.opacity.animation(.easeIn(duration: 0.3).delay(delay3)))
+                        .transition(.opacity.animation(.easeIn(duration: 0.3).delay(flipSpeaker ? delay3 : 0)))
                         .onTapGesture {
+                            if !text.isEmpty {
+                                DataController().addRecent(sentence: text, context: managedObjContext)
+                            }
                             if micTransitionToggle{
                                 withAnimation(.easeIn(duration: 0.5)) {
                                     self.finishRecord()
@@ -142,6 +153,7 @@ struct RecordButtonView: View {
                             }
                             else {
                                 withAnimation(.easeIn) {
+                                    self.finishRecord()
                                     overlayToggle.toggle()
                                 }
                             }
@@ -158,7 +170,7 @@ struct RecordButtonView: View {
 
 struct TestButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordButtonView(flipSpeaker: .constant(true), startRecord: {
+        RecordButtonView(flipSpeaker: .constant(true), text: .constant("asdf"), startRecord: {
             print("voice record start")
         }, finishRecord: {
             print("voice record finished")
