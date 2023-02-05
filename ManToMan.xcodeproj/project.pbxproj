@@ -19,9 +19,14 @@
 		20DBD9EB298ECD1800BF882B /* ManToManAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9EA298ECD1800BF882B /* ManToManAPI.swift */; };
 		20DBD9ED298ECD4B00BF882B /* RecordButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9EC298ECD4B00BF882B /* RecordButtonView.swift */; };
 		20DBD9EF298ECD6000BF882B /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9EE298ECD6000BF882B /* LanguageSelectionView.swift */; };
-		20DBD9F1298ECDA800BF882B /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9F0298ECDA800BF882B /* UIExtension.swift */; };
-		20DBD9F6298ED89800BF882B /* FontExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9F5298ED89800BF882B /* FontExtention.swift */; };
+		20DBD9F6298ED89800BF882B /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9F5298ED89800BF882B /* FontExtension.swift */; };
 		20DBD9F8298ED8A600BF882B /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9F7298ED8A600BF882B /* TextExtension.swift */; };
+		B22EC64C298FABCB0034977E /* LINESeedKR-Bd.otf in Resources */ = {isa = PBXBuildFile; fileRef = B22EC64A298FABCB0034977E /* LINESeedKR-Bd.otf */; };
+		B22EC64D298FABCB0034977E /* LINESeedKR-Rg.otf in Resources */ = {isa = PBXBuildFile; fileRef = B22EC64B298FABCB0034977E /* LINESeedKR-Rg.otf */; };
+		B22EC650298FAC0D0034977E /* LINESeedJP_A_OTF_Bd.otf in Resources */ = {isa = PBXBuildFile; fileRef = B22EC64F298FAC0D0034977E /* LINESeedJP_A_OTF_Bd.otf */; };
+		B22EC652298FAC270034977E /* LINESeedSans_A_Bd.otf in Resources */ = {isa = PBXBuildFile; fileRef = B22EC651298FAC270034977E /* LINESeedSans_A_Bd.otf */; };
+		B22EC655298FAF230034977E /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22EC654298FAF230034977E /* UIExtension.swift */; };
+		B22EC657298FAFD00034977E /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22EC656298FAFD00034977E /* ColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,9 +43,15 @@
 		20DBD9EA298ECD1800BF882B /* ManToManAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManToManAPI.swift; sourceTree = "<group>"; };
 		20DBD9EC298ECD4B00BF882B /* RecordButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButtonView.swift; sourceTree = "<group>"; };
 		20DBD9EE298ECD6000BF882B /* LanguageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionView.swift; sourceTree = "<group>"; };
-		20DBD9F0298ECDA800BF882B /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
-		20DBD9F5298ED89800BF882B /* FontExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtention.swift; sourceTree = "<group>"; };
+		20DBD9F5298ED89800BF882B /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 		20DBD9F7298ED8A600BF882B /* TextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExtension.swift; sourceTree = "<group>"; };
+		B22EC64A298FABCB0034977E /* LINESeedKR-Bd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LINESeedKR-Bd.otf"; sourceTree = "<group>"; };
+		B22EC64B298FABCB0034977E /* LINESeedKR-Rg.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LINESeedKR-Rg.otf"; sourceTree = "<group>"; };
+		B22EC64F298FAC0D0034977E /* LINESeedJP_A_OTF_Bd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LINESeedJP_A_OTF_Bd.otf; sourceTree = "<group>"; };
+		B22EC651298FAC270034977E /* LINESeedSans_A_Bd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LINESeedSans_A_Bd.otf; sourceTree = "<group>"; };
+		B22EC653298FAC380034977E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B22EC654298FAF230034977E /* UIExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
+		B22EC656298FAFD00034977E /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +84,8 @@
 		20DBD9CC298ECB0400BF882B /* ManToMan */ = {
 			isa = PBXGroup;
 			children = (
+				B22EC653298FAC380034977E /* Info.plist */,
+				B22EC64E298FABD30034977E /* Font */,
 				20DBD9F4298ED87900BF882B /* Extensions */,
 				20DBD9E9298ECCFE00BF882B /* Utilities */,
 				20DBD9DE298ECC1200BF882B /* App */,
@@ -141,11 +154,23 @@
 		20DBD9F4298ED87900BF882B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				20DBD9F0298ECDA800BF882B /* UIExtension.swift */,
-				20DBD9F5298ED89800BF882B /* FontExtention.swift */,
+				B22EC654298FAF230034977E /* UIExtension.swift */,
+				20DBD9F5298ED89800BF882B /* FontExtension.swift */,
+				B22EC656298FAFD00034977E /* ColorExtension.swift */,
 				20DBD9F7298ED8A600BF882B /* TextExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B22EC64E298FABD30034977E /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				B22EC651298FAC270034977E /* LINESeedSans_A_Bd.otf */,
+				B22EC64F298FAC0D0034977E /* LINESeedJP_A_OTF_Bd.otf */,
+				B22EC64A298FABCB0034977E /* LINESeedKR-Bd.otf */,
+				B22EC64B298FABCB0034977E /* LINESeedKR-Rg.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,7 +231,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B22EC64D298FABCB0034977E /* LINESeedKR-Rg.otf in Resources */,
+				B22EC652298FAC270034977E /* LINESeedSans_A_Bd.otf in Resources */,
+				B22EC64C298FABCB0034977E /* LINESeedKR-Bd.otf in Resources */,
 				20DBD9D5298ECB0600BF882B /* Preview Assets.xcassets in Resources */,
+				B22EC650298FAC0D0034977E /* LINESeedJP_A_OTF_Bd.otf in Resources */,
 				20DBD9D2298ECB0600BF882B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,18 +248,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				20DBD9EF298ECD6000BF882B /* LanguageSelectionView.swift in Sources */,
+				B22EC655298FAF230034977E /* UIExtension.swift in Sources */,
 				20DBD9E4298ECC9200BF882B /* DataController.swift in Sources */,
 				20DBD9E1298ECC3600BF882B /* RecentLog.xcdatamodeld in Sources */,
 				20DBD9D0298ECB0400BF882B /* MainView.swift in Sources */,
+				B22EC657298FAFD00034977E /* ColorExtension.swift in Sources */,
 				20DBD9F8298ED8A600BF882B /* TextExtension.swift in Sources */,
 				20DBD9CE298ECB0400BF882B /* ManToManApp.swift in Sources */,
-				20DBD9F1298ECDA800BF882B /* UIExtension.swift in Sources */,
 				203D3E55298F8F090050163B /* ConfrontButtonView.swift in Sources */,
 				20DBD9EB298ECD1800BF882B /* ManToManAPI.swift in Sources */,
 				20DBD9E6298ECCC400BF882B /* TranslatedModel.swift in Sources */,
 				20DBD9E8298ECCD800BF882B /* MainViewModel.swift in Sources */,
 				20DBD9ED298ECD4B00BF882B /* RecordButtonView.swift in Sources */,
-				20DBD9F6298ED89800BF882B /* FontExtention.swift in Sources */,
+				20DBD9F6298ED89800BF882B /* FontExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +392,7 @@
 				DEVELOPMENT_TEAM = Y6P5ZFWBM8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ManToMan/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 번역을 위해 마이크 사용을 허가해주세요.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "음성 번역을 위해 권한을 허가해주세요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -394,6 +425,7 @@
 				DEVELOPMENT_TEAM = Y6P5ZFWBM8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ManToMan/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 번역을 위해 마이크 사용을 허가해주세요.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "음성 번역을 위해 권한을 허가해주세요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
