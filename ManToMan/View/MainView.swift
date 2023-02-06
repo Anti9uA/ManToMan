@@ -216,21 +216,21 @@ struct MainView: View {
                     
                     
                     ZStack(alignment: .center) {
-                        
                         // MARK: 녹음 시작 버튼
-                        
-                        RecordButtonView(flipSpeaker: $flipSpeaker,
-                                         text: $mv.text, startRecord: {
-                            do {
-                                try mv.startRecording(selectedLang: flipSpeaker ? currentLang : "한글")
-                            } catch {
-                                
+                            RecordButtonView(flipSpeaker: $flipSpeaker,
+                                             text: $mv.text, startRecord: {
+                                do {
+                                    try mv.startRecording(selectedLang: flipSpeaker ? currentLang : "한글")
+                                } catch {
+                                    
+                                }
+                            }, finishRecord: {
+                                mv.audioEngine.stop()
+                                mv.recognitionRequest?.endAudio()
                             }
-                        }, finishRecord: {
-                            mv.audioEngine.stop()
-                            mv.recognitionRequest?.endAudio()
-                        }
-                        )
+                            )
+                            .frame(height: 250)
+
                         
                         // MARK: UI 반전 토글 버튼
                         
@@ -250,7 +250,7 @@ struct MainView: View {
                         }
                     }
                     .frame(height: 180)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 50)
                 }
                 .padding(.top)
                 
@@ -260,8 +260,7 @@ struct MainView: View {
                     Spacer()
                     Image("roundBottom")
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 88, height: 66)
+                        .frame(width: 60, height: 60)
                 }
                 .ignoresSafeArea()
                 

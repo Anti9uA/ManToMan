@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		203D3E55298F8F090050163B /* ConfrontButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D3E54298F8F090050163B /* ConfrontButtonView.swift */; };
+		203D3E582990201D0050163B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 203D3E572990201D0050163B /* Lottie */; };
+		203D3E5B2990204A0050163B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D3E5A2990204A0050163B /* LottieView.swift */; };
+		203D3E5F2990F2CA0050163B /* speaking.json in Resources */ = {isa = PBXBuildFile; fileRef = 203D3E5E2990F2CA0050163B /* speaking.json */; };
 		20DBD9CE298ECB0400BF882B /* ManToManApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9CD298ECB0400BF882B /* ManToManApp.swift */; };
 		20DBD9D0298ECB0400BF882B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9CF298ECB0400BF882B /* MainView.swift */; };
 		20DBD9D2298ECB0600BF882B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20DBD9D1298ECB0600BF882B /* Assets.xcassets */; };
@@ -30,6 +33,8 @@
 
 /* Begin PBXFileReference section */
 		203D3E54298F8F090050163B /* ConfrontButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfrontButtonView.swift; sourceTree = "<group>"; };
+		203D3E5A2990204A0050163B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		203D3E5E2990F2CA0050163B /* speaking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = speaking.json; sourceTree = "<group>"; };
 		20DBD9CA298ECB0400BF882B /* ManToMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManToMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DBD9CD298ECB0400BF882B /* ManToManApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManToManApp.swift; sourceTree = "<group>"; };
 		20DBD9CF298ECB0400BF882B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -57,12 +62,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				203D3E582990201D0050163B /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		203D3E592990203A0050163B /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				203D3E5E2990F2CA0050163B /* speaking.json */,
+				203D3E5A2990204A0050163B /* LottieView.swift */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
 		20DBD9C1298ECB0400BF882B = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +97,7 @@
 		20DBD9CC298ECB0400BF882B /* ManToMan */ = {
 			isa = PBXGroup;
 			children = (
+				203D3E592990203A0050163B /* Lottie */,
 				B22EC653298FAC380034977E /* Info.plist */,
 				B22EC64E298FABD30034977E /* Font */,
 				20DBD9F4298ED87900BF882B /* Extensions */,
@@ -186,6 +202,9 @@
 			dependencies = (
 			);
 			name = ManToMan;
+			packageProductDependencies = (
+				203D3E572990201D0050163B /* Lottie */,
+			);
 			productName = ManToMan;
 			productReference = 20DBD9CA298ECB0400BF882B /* ManToMan.app */;
 			productType = "com.apple.product-type.application";
@@ -214,6 +233,9 @@
 				Base,
 			);
 			mainGroup = 20DBD9C1298ECB0400BF882B;
+			packageReferences = (
+				203D3E562990201D0050163B /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = 20DBD9CB298ECB0400BF882B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,6 +255,7 @@
 				B22EC64C298FABCB0034977E /* LINESeedKR-Bd.otf in Resources */,
 				20DBD9D5298ECB0600BF882B /* Preview Assets.xcassets in Resources */,
 				B22EC650298FAC0D0034977E /* LINESeedJP_A_OTF_Bd.otf in Resources */,
+				203D3E5F2990F2CA0050163B /* speaking.json in Resources */,
 				20DBD9D2298ECB0600BF882B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,6 +278,7 @@
 				20DBD9EB298ECD1800BF882B /* ManToManAPI.swift in Sources */,
 				20DBD9E6298ECCC400BF882B /* TranslatedModel.swift in Sources */,
 				20DBD9E8298ECCD800BF882B /* MainViewModel.swift in Sources */,
+				203D3E5B2990204A0050163B /* LottieView.swift in Sources */,
 				20DBD9ED298ECD4B00BF882B /* RecordButtonView.swift in Sources */,
 				20DBD9F6298ED89800BF882B /* FontExtension.swift in Sources */,
 			);
@@ -465,6 +489,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		203D3E562990201D0050163B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		203D3E572990201D0050163B /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 203D3E562990201D0050163B /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		20DBD9DF298ECC3600BF882B /* RecentLog.xcdatamodeld */ = {

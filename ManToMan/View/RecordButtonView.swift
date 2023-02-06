@@ -118,6 +118,8 @@ struct RecordButtonView: View {
                 VStack {
                     Spacer()
                     if overlayToggle {
+                        LottieView(filename: "speaking")
+                            .frame(width: 50, height: 50)
                         ZStack{
                             Capsule()
                                 .fill(Color.mainBlue.opacity(0.9))
