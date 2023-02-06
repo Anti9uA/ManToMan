@@ -229,7 +229,7 @@ struct MainView: View {
                                 mv.recognitionRequest?.endAudio()
                             }
                             )
-                            .frame(height: 250)
+                            .frame(height: 300)     // 하단 가리개가 가릴시 높이 미세 조정
 
                         
                         // MARK: UI 반전 토글 버튼
@@ -242,15 +242,18 @@ struct MainView: View {
                                     self.isConfrontToggled.toggle()
                                     
                                 }, label: {
-                                    Image("confront")
+                                    Image(isConfrontToggled ? "meSpeaks" : "youSpeaks")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 67, height: 67)
                                 })
                             }
-                            .padding(.trailing, 30)
+                            .padding(.trailing, 40)
                             .padding(.bottom, 10)
                         }
                     }
                     .frame(height: 180)
-                    .padding(.bottom, 50)
+                    .padding(.bottom, 80)   // 가리개 깨질시 미세 조정
                 }
                 .padding(.top)
                 
@@ -260,7 +263,7 @@ struct MainView: View {
                     Spacer()
                     Image("roundBottom")
                         .resizable()
-                        .frame(width: 60, height: 60)
+                        .frame(width: 63, height: 66)
                 }
                 .ignoresSafeArea()
                 
