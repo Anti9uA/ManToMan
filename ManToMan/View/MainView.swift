@@ -213,6 +213,11 @@ struct MainView: View {
                             recentOpacity = 1.0
                         }
                     }
+                    .overlay(
+                        Image("gradientBox")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 50), alignment: .bottom)
                     
                     
                     ZStack(alignment: .center) {
@@ -229,7 +234,7 @@ struct MainView: View {
                                 mv.recognitionRequest?.endAudio()
                             }
                             )
-                            .frame(height: 300)     // 하단 가리개가 가릴시 높이 미세 조정
+                            .frame(height: 230)     // 하단 가리개가 가릴시 높이 미세 조정
 
                         
                         // MARK: UI 반전 토글 버튼
@@ -252,8 +257,8 @@ struct MainView: View {
                             .padding(.bottom, 10)
                         }
                     }
-                    .frame(height: 180)
-                    .padding(.bottom, 80)   // 가리개 깨질시 미세 조정
+                    .frame(height: 130)
+                    .padding(.bottom, 70)   // 가리개 깨질시 미세 조정
                 }
                 .padding(.top)
                 
