@@ -139,7 +139,7 @@ struct RecordButtonView: View {
                         }
                         .transition(.opacity.animation(.easeIn(duration: 0.3).delay(flipSpeaker ? delay3 : 0)))
                         .onTapGesture {
-                            if !text.isEmpty && text != "음성 인식 중.." {
+                            if !text.isEmpty && text != "음성 인식 중.." && !flipSpeaker {
                                 DataController().addRecent(sentence: text, context: managedObjContext)
                             }
                         

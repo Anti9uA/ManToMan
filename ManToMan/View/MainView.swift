@@ -111,11 +111,12 @@ struct MainView: View {
                                     .frame(width: 290)
                             }
                         }
+                        
                         else {
                             TextField("", text: $mv.text, axis: .vertical)
                                 .placeholder(when: mv.text.isEmpty) {
                                     VStack{
-                                        Text("한글을 입력하세요.")
+                                        Text("한국어를 입력하세요.")
                                             .foregroundColor(Color.disabledBlack)
                                             .padding(.top, 25)
                                         
@@ -130,7 +131,7 @@ struct MainView: View {
                                     .frame(height: 50)
                                 }
                                 .font(.korean())
-                                .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+                                .padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
                                 .frame(width: 290)
                                 .multilineTextAlignment(.center)
                                 .submitLabel(.done)
@@ -178,6 +179,7 @@ struct MainView: View {
                                             mv.text = sen.sentence ?? "error"
                                         }, label: {
                                             Text(sen.sentence ?? "error")
+                                                .lineLimit(1)
                                                 .font(.customTitle())
                                                 .foregroundColor(.customDarkGray)
                                                 .opacity(recentOpacity)
@@ -194,7 +196,8 @@ struct MainView: View {
                                                 }
                                             }, label: {
                                                 Image(systemName: "x.circle.fill")
-                                                    .foregroundColor(Color.mainRed)
+                                                    .foregroundColor(Color.customDarkGray)
+                                                    .opacity(recentOpacity)
                                             })
                                         }
                                         .padding(.horizontal, 20)
