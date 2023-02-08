@@ -14,6 +14,9 @@ class MainViewModel: ObservableObject {
     @Published var text : String = ""
     @Published var debouncedText: String = ""
     @Published var langList: [String: String] = ["한글" : "ko-KR", "영어": "en-US", "일본어": "ja-JP", "중국어(간체)": "zh"]
+    @Published var idle: [String: String] = ["영어" : "Please wait.. ", "일본어" : "待ってください。", "중국어(간체)" : "请等着"]
+    @Published var pleaseSpeak: [String: String] = ["영어" : "Please speak..", "일본어" : "話してください。", "중국어(간체)" : "请说"]
+    @Published var pleaseWait: [String: String] = ["영어" : "Partner speaking..", "일본어" : "相手が言っています。", "중국어(간체)" : "对方正在说话。"]
     
     let manToManAPI = ManToManAPI.instance
     
@@ -48,7 +51,7 @@ class MainViewModel: ObservableObject {
             .store(in: &cancellable)
     }
     
-    func startRecording(selectedLang: String) throws {
+    func startRecording(selectedLang: String, flipSpeaker: Bool) throws {
         let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: langList[selectedLang]!))!
         
         recognitionTask?.cancel()
@@ -92,7 +95,12 @@ class MainViewModel: ObservableObject {
         audioEngine.prepare()
         try audioEngine.start()
         
-        self.text = "음성 인식 중.."
+        if flipSpeaker{
+            self.text = ""
+        }
+        else {
+            self.text = "듣는중.."
+        }
     }
     
 }

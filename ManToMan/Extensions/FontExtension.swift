@@ -30,11 +30,6 @@ extension Font {
     }
     
     static func english() -> Font {
-        return Font.custom("LINESeedSansApp-Bold", size: 24)
-    }
-    
-    static func japanChina() -> Font {
         return Font.custom("LINESeedJPApp_OTF-Bold", size: 24)
     }
-    
 }

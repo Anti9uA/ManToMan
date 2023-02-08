@@ -67,10 +67,10 @@ struct RecordButtonView: View {
                             withAnimation(.spring()){
                                 if currentHeight > 150 && gesture.translation.height < 0.0 {
                                     print("toggled!")
+                                    buttonOffset = -80
                                     flipSpeaker = true
                                     micTransitionToggle.toggle()
                                     overlayToggle.toggle()
-                                    buttonOffset = -80
                                     self.startRecord()
                                     
                                 }
@@ -122,7 +122,7 @@ struct RecordButtonView: View {
                             .frame(width: 60, height: 30)
                         ZStack{
                             Capsule()
-                                .fill(Color.mainBlue.opacity(0.9))
+                                .fill(Color.mainBlue)
                                 .frame(height: currentHeight)
                             VStack{
                                 Image(systemName: "square.fill")
@@ -139,8 +139,12 @@ struct RecordButtonView: View {
                         }
                         .transition(.opacity.animation(.easeIn(duration: 0.3).delay(flipSpeaker ? delay3 : 0)))
                         .onTapGesture {
-                            if !text.isEmpty && text != "음성 인식 중.." && !flipSpeaker {
+                            if !text.isEmpty && text != "듣는중.." && !flipSpeaker {
                                 DataController().addRecent(sentence: text, context: managedObjContext)
+                            }
+                            else {
+                                text = ""
+                                flipSpeaker = false
                             }
                         
                             if micTransitionToggle{

@@ -12,11 +12,11 @@ import Speech
 struct MainView: View {
     @Environment(\.managedObjectContext) var managedObjContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var recent: FetchedResults<Recent>
-    
+    @AppStorage("selectedLang") var currentLang: String = "영어"
     @StateObject var mv = MainViewModel()
     @State var isSheetPresented: Bool = false
     @State var langList: [String] = ["영어", "일본어", "중국어(간체)"]
-    @State var currentLang: String = "영어"
+    // @State var currentLang: String = "영어"
     @State var isConfrontToggled = false
     @State var isRecordButtonToggled = false
     @State var placeholderLine: CGFloat = 5
@@ -50,6 +50,9 @@ struct MainView: View {
                         .sheet(isPresented: $isSheetPresented) {
                             LanguageSelectionView(langList: $langList, currentLang: $currentLang, isSheetPresented: $isSheetPresented)
                                 .presentationDetents([.medium, .large])
+                                .onDisappear{
+                                    ManToManAPI.instance.postData(text: mv.debouncedText, selectedlang: flipSpeaker ? "한글" : currentLang)
+                                }
                         }
                     }
                     
@@ -62,37 +65,39 @@ struct MainView: View {
                             .foregroundColor(Color.white)
                         
                         if flipSpeaker {
-                            Text(mv.text.isEmpty ? "Please Wait.." : mv.text)
+                            Text(mv.text.isEmpty ? mv.pleaseSpeak[currentLang]! : mv.text)
                                 .font(.english())
                                 .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
                                 .frame(width: geo.size.width - 72)
                                 .padding()
                                 .background(.white)
-                                .foregroundColor(Color("mainBlue"))
+                                .foregroundColor(Color.mainBlue)
                                 .cornerRadius(30)
+                                .multilineTextAlignment(.center)
                                 .onChange(of: mv.debouncedText) { newValue in
                                     ManToManAPI.instance.postData(text: newValue, selectedlang: flipSpeaker ? "한글" : currentLang)
                                 }
                         }
                         else {
                             if let translated = mv.translated?.result {
-                                Text(translated.isEmpty ? "Please Wait.. " : translated)
+                                Text(translated.isEmpty ? mv.idle[currentLang]! : translated)
                                     .font(.english())
                                     .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
                                     .frame(width: geo.size.width - 72)
                                     .padding()
                                     .background(.white)
-                                    .foregroundColor(Color("mainBlue"))
+                                    .foregroundColor(translated.isEmpty ? Color.disabledBlue : Color.mainBlue)
                                     .cornerRadius(30)
+                                    .multilineTextAlignment(.center)
                             }
                             
                             else {
-                                Text("Please wait..")
+                                Text(mv.idle[currentLang]!)
                                     .font(.korean())
                                     .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
                                     .frame(width: 350)
                                     .background(.white)
-                                    .foregroundColor(Color("mainBlue"))
+                                    .foregroundColor(Color.mainBlue)
                                     .cornerRadius(30)
                             }
                         }
@@ -104,7 +109,14 @@ struct MainView: View {
                         // MARK: 한글 입력 텍스트 필드
                         if flipSpeaker {
                             if let translated = mv.translated?.result {
-                                Text(translated)
+                                Text(translated.isEmpty ? mv.pleaseWait[currentLang]! : translated)
+                                    .font(.korean())
+                                    .frame(width: geo.size.width - 72)
+                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+                                    .frame(width: 290)
+                            }
+                            else {
+                                Text(mv.pleaseWait[currentLang]!)
                                     .font(.korean())
                                     .frame(width: geo.size.width - 72)
                                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
@@ -164,7 +176,8 @@ struct MainView: View {
                                         .foregroundColor(Color.mainBlue)
                                 })
                             }
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, 25)
+                            .padding(.bottom, 15)
                         }
                     }
                     
@@ -200,11 +213,15 @@ struct MainView: View {
                                                     .opacity(recentOpacity)
                                             })
                                         }
-                                        .padding(.horizontal, 20)
+                                        .padding(.horizontal, 25)
                                     }
                                     .padding(.bottom, 20)
                                     
                                 }
+                                Rectangle()
+                                    .fill(Color.background)
+                                    .frame(height: 10)
+                                    .padding(.top, 20)
                             }
                             if !mv.text.isEmpty || mv.text == "\n" {
                                 Color.background
@@ -228,7 +245,7 @@ struct MainView: View {
                             RecordButtonView(flipSpeaker: $flipSpeaker,
                                              text: $mv.text, startRecord: {
                                 do {
-                                    try mv.startRecording(selectedLang: flipSpeaker ? currentLang : "한글")
+                                    try mv.startRecording(selectedLang: flipSpeaker ? currentLang : "한글", flipSpeaker: flipSpeaker)
                                 } catch {
                                     
                                 }
