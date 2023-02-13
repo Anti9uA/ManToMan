@@ -19,7 +19,7 @@
 		20DBD9D5298ECB0600BF882B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20DBD9D4298ECB0600BF882B /* Preview Assets.xcassets */; };
 		20DBD9E1298ECC3600BF882B /* RecentLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9DF298ECC3600BF882B /* RecentLog.xcdatamodeld */; };
 		20DBD9E4298ECC9200BF882B /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9E3298ECC9200BF882B /* DataController.swift */; };
-		20DBD9E6298ECCC400BF882B /* TranslatedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9E5298ECCC400BF882B /* TranslatedModel.swift */; };
+		20DBD9E6298ECCC400BF882B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9E5298ECCC400BF882B /* Model.swift */; };
 		20DBD9E8298ECCD800BF882B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9E7298ECCD800BF882B /* MainViewModel.swift */; };
 		20DBD9EB298ECD1800BF882B /* ManToManAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9EA298ECD1800BF882B /* ManToManAPI.swift */; };
 		20DBD9ED298ECD4B00BF882B /* RecordButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9EC298ECD4B00BF882B /* RecordButtonView.swift */; };
@@ -46,7 +46,7 @@
 		20DBD9D4298ECB0600BF882B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		20DBD9E0298ECC3600BF882B /* RecentLog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecentLog.xcdatamodel; sourceTree = "<group>"; };
 		20DBD9E3298ECC9200BF882B /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		20DBD9E5298ECCC400BF882B /* TranslatedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedModel.swift; sourceTree = "<group>"; };
+		20DBD9E5298ECCC400BF882B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		20DBD9E7298ECCD800BF882B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		20DBD9EA298ECD1800BF882B /* ManToManAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManToManAPI.swift; sourceTree = "<group>"; };
 		20DBD9EC298ECD4B00BF882B /* RecordButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButtonView.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 			children = (
 				20DBD9DF298ECC3600BF882B /* RecentLog.xcdatamodeld */,
 				20DBD9E3298ECC9200BF882B /* DataController.swift */,
-				20DBD9E5298ECCC400BF882B /* TranslatedModel.swift */,
+				20DBD9E5298ECCC400BF882B /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -284,7 +284,7 @@
 				20DBD9CE298ECB0400BF882B /* ManToManApp.swift in Sources */,
 				203D3E55298F8F090050163B /* ConfrontButtonView.swift in Sources */,
 				20DBD9EB298ECD1800BF882B /* ManToManAPI.swift in Sources */,
-				20DBD9E6298ECCC400BF882B /* TranslatedModel.swift in Sources */,
+				20DBD9E6298ECCC400BF882B /* Model.swift in Sources */,
 				20DBD9E8298ECCD800BF882B /* MainViewModel.swift in Sources */,
 				203D3E5B2990204A0050163B /* LottieView.swift in Sources */,
 				20DBD9ED298ECD4B00BF882B /* RecordButtonView.swift in Sources */,

@@ -13,10 +13,12 @@ class MainViewModel: ObservableObject {
     @Published var translated: TranslatedModel?
     @Published var text : String = ""
     @Published var debouncedText: String = ""
-    @Published var langList: [String: String] = ["한글" : "ko-KR", "영어": "en-US", "일본어": "ja-JP", "중국어(간체)": "zh"]
-    @Published var idle: [String: String] = ["영어" : "Please wait.. ", "일본어" : "待ってください。", "중국어(간체)" : "请等着"]
-    @Published var pleaseSpeak: [String: String] = ["영어" : "Please speak..", "일본어" : "話してください。", "중국어(간체)" : "请说"]
-    @Published var pleaseWait: [String: String] = ["영어" : "Partner speaking..", "일본어" : "相手が言っています。", "중국어(간체)" : "对方正在说话。"]
+    @Published var defaultString = DefaultStringModel()
+    @Published var langModel = LanguageModel()
+//    @Published var langList: [String: String] = ["한글" : "ko-KR", "영어": "en-US", "일본어": "ja-JP", "중국어(간체)": "zh"]
+//    @Published var idle: [String: String] = ["영어" : "Please wait.. ", "일본어" : "待ってください。", "중국어(간체)" : "请等着"]
+//    @Published var pleaseSpeak: [String: String] = ["영어" : "Please speak..", "일본어" : "話してください。", "중국어(간체)" : "请说"]
+//    @Published var pleaseWait: [String: String] = ["영어" : "Partner speaking..", "일본어" : "相手が言っています。", "중국어(간체)" : "对方正在说话。"]
     
     let manToManAPI = ManToManAPI.instance
     
@@ -52,7 +54,7 @@ class MainViewModel: ObservableObject {
     }
     
     func startRecording(selectedLang: String, flipSpeaker: Bool) throws {
-        let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: langList[selectedLang]!))!
+        let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: langModel.langList[selectedLang]!))!
         
         recognitionTask?.cancel()
         self.recognitionTask = nil

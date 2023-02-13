@@ -24,7 +24,6 @@ struct MainView: View {
     @State var recentOpacity = 0.0
     @State var recentDelay = 0.5
     @State var flipSpeaker = false
-    @State var isEditing = false
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -68,7 +67,7 @@ struct MainView: View {
                             .foregroundColor(Color.white)
                         
                         if flipSpeaker {
-                            Text(mv.text.isEmpty ? mv.pleaseSpeak[currentLang]! : mv.text)
+                            Text(mv.text.isEmpty ? mv.defaultString.pleaseSpeak[currentLang]! : mv.text)
                                 .font(.english())
                                 .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
                                 .frame(width: geo.size.width - 72)
@@ -83,7 +82,7 @@ struct MainView: View {
                         }
                         else {
                             if let translated = mv.translated?.result {
-                                Text(translated.isEmpty ? mv.idle[currentLang]! : translated)
+                                Text(translated.isEmpty ? mv.defaultString.idle[currentLang]! : translated)
                                     .font(.english())
                                     .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
                                     .frame(width: geo.size.width - 72)
@@ -95,7 +94,7 @@ struct MainView: View {
                             }
                             
                             else {
-                                Text(mv.idle[currentLang]!)
+                                Text(mv.defaultString.idle[currentLang]!)
                                     .font(.korean())
                                     .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
                                     .frame(width: 350)
@@ -110,21 +109,29 @@ struct MainView: View {
                     ZStack{
                         
                         // MARK: 한글 입력 텍스트 필드
+//                        if flipSpeaker {
+//                            if let translated = mv.translated?.result {
+//                                Text(translated.isEmpty ? "상대방이 말하고 있어요." : translated)
+//                                    .font(.korean())
+//                                    .frame(width: geo.size.width - 72)
+//                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+//                                    .frame(width: 290)
+//                            }
+//                            else {
+//                                Text("상대방이 말하고 있어요.")
+//                                    .font(.korean())
+//                                    .frame(width: geo.size.width - 72)
+//                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+//                                    .frame(width: 290)
+//                            }
+//                        }
                         if flipSpeaker {
-                            if let translated = mv.translated?.result {
-                                Text(translated.isEmpty ? "상대방이 말하고 있어요." : translated)
-                                    .font(.korean())
-                                    .frame(width: geo.size.width - 72)
-                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
-                                    .frame(width: 290)
-                            }
-                            else {
-                                Text("상대방이 말하고 있어요.")
-                                    .font(.korean())
-                                    .frame(width: geo.size.width - 72)
-                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
-                                    .frame(width: 290)
-                            }
+                            let translated = mv.translated?.result ?? "상대방이 말하고 있어요."
+                            Text(translated.isEmpty ? "상대방이 말하고 있어요." : translated)
+                                .font(.korean())
+                                .frame(width: geo.size.width - 72)
+                                .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+                                .frame(width: 290)
                         }
                         
                         else {
