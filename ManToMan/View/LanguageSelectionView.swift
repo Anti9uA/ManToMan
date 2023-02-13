@@ -46,6 +46,7 @@ struct LanguageSelectionView: View {
                             Text(lang)
                                 .padding(.vertical, 18)
                                 .font(.system(size: 20, weight: .semibold))
+                                .foregroundColor(lang == currentLang ? Color.mainBlue : Color.black)
                         })
                         
                         Spacer()

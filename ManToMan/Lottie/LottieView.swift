@@ -14,6 +14,7 @@ struct LottieView: UIViewRepresentable {
     
     typealias UIViewType = UIView
     var filename: String
+    var lastTime: Float
     
     
     //1. Context -> UIViewRepresentableContext<LottieView>로 수정
@@ -26,7 +27,7 @@ struct LottieView: UIViewRepresentable {
         animationView.animation = LottieAnimation.named(filename)
         //애니메이션 크기가 적절하게 조정될 수 있도록
         animationView.contentMode = .scaleAspectFit
-        animationView.loopMode = .repeat(.infinity)
+        animationView.loopMode = .repeat(lastTime)
         //애니메이션 재생
         animationView.play()
         

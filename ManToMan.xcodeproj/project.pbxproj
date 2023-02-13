@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20162835299A2CA800D0A5E5 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20162834299A2CA800D0A5E5 /* LaunchScreenView.swift */; };
+		20162837299A2CEF00D0A5E5 /* launchScreen.json in Resources */ = {isa = PBXBuildFile; fileRef = 20162836299A2CEF00D0A5E5 /* launchScreen.json */; };
 		203D3E55298F8F090050163B /* ConfrontButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D3E54298F8F090050163B /* ConfrontButtonView.swift */; };
 		203D3E582990201D0050163B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 203D3E572990201D0050163B /* Lottie */; };
 		203D3E5B2990204A0050163B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D3E5A2990204A0050163B /* LottieView.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20162834299A2CA800D0A5E5 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
+		20162836299A2CEF00D0A5E5 /* launchScreen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = launchScreen.json; sourceTree = "<group>"; };
 		203D3E54298F8F090050163B /* ConfrontButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfrontButtonView.swift; sourceTree = "<group>"; };
 		203D3E5A2990204A0050163B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		203D3E5E2990F2CA0050163B /* speaking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = speaking.json; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 		203D3E592990203A0050163B /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				20162836299A2CEF00D0A5E5 /* launchScreen.json */,
 				203D3E5E2990F2CA0050163B /* speaking.json */,
 				203D3E5A2990204A0050163B /* LottieView.swift */,
 			);
@@ -127,6 +132,7 @@
 				20DBD9EC298ECD4B00BF882B /* RecordButtonView.swift */,
 				20DBD9EE298ECD6000BF882B /* LanguageSelectionView.swift */,
 				203D3E54298F8F090050163B /* ConfrontButtonView.swift */,
+				20162834299A2CA800D0A5E5 /* LaunchScreenView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -256,6 +262,7 @@
 				20DBD9D5298ECB0600BF882B /* Preview Assets.xcassets in Resources */,
 				B22EC650298FAC0D0034977E /* LINESeedJP_A_OTF_Bd.otf in Resources */,
 				203D3E5F2990F2CA0050163B /* speaking.json in Resources */,
+				20162837299A2CEF00D0A5E5 /* launchScreen.json in Resources */,
 				20DBD9D2298ECB0600BF882B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +279,7 @@
 				20DBD9E4298ECC9200BF882B /* DataController.swift in Sources */,
 				20DBD9E1298ECC3600BF882B /* RecentLog.xcdatamodeld in Sources */,
 				20DBD9D0298ECB0400BF882B /* MainView.swift in Sources */,
+				20162835299A2CA800D0A5E5 /* LaunchScreenView.swift in Sources */,
 				B22EC657298FAFD00034977E /* ColorExtension.swift in Sources */,
 				20DBD9CE298ECB0400BF882B /* ManToManApp.swift in Sources */,
 				203D3E55298F8F090050163B /* ConfrontButtonView.swift in Sources */,
@@ -407,7 +415,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"ManToMan/Preview Content\"";
 				DEVELOPMENT_TEAM = Y6P5ZFWBM8;
 				ENABLE_PREVIEWS = YES;
@@ -445,7 +453,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"ManToMan/Preview Content\"";
 				DEVELOPMENT_TEAM = Y6P5ZFWBM8;
 				ENABLE_PREVIEWS = YES;

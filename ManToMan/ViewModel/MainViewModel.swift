@@ -95,12 +95,7 @@ class MainViewModel: ObservableObject {
         audioEngine.prepare()
         try audioEngine.start()
         
-        if flipSpeaker{
-            self.text = ""
-        }
-        else {
-            self.text = "듣는중.."
-        }
+        self.text = ""
     }
     
 }

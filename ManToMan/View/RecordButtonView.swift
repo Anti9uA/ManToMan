@@ -23,6 +23,7 @@ struct RecordButtonView: View {
     
     @Binding var flipSpeaker: Bool
     @Binding var text: String
+    @Binding var isFirst: Bool
     
     var startRecord: () -> Void
     var finishRecord: () -> Void
@@ -51,6 +52,7 @@ struct RecordButtonView: View {
                 .gesture(
                     DragGesture()
                         .onChanged({ gesture in
+                            isFirst = false
                             withAnimation(.spring()) {
                                 if gesture.translation.height < 0.0{
                                     if currentHeight >= fixedVar && currentHeight < 150{
@@ -118,7 +120,7 @@ struct RecordButtonView: View {
                 VStack {
                     Spacer()
                     if overlayToggle {
-                        LottieView(filename: "speaking")
+                        LottieView(filename: "speaking", lastTime: .infinity)
                             .frame(width: 60, height: 30)
                         ZStack{
                             Capsule()
@@ -142,9 +144,12 @@ struct RecordButtonView: View {
                             if !text.isEmpty && text != "듣는중.." && !flipSpeaker {
                                 DataController().addRecent(sentence: text, context: managedObjContext)
                             }
-                            else {
+                            else if text.isEmpty{
                                 text = ""
                                 flipSpeaker = false
+                            }
+                            else {
+                                text = ""
                             }
                         
                             if micTransitionToggle{
@@ -176,7 +181,7 @@ struct RecordButtonView: View {
 
 struct TestButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordButtonView(flipSpeaker: .constant(true), text: .constant("asdf"), startRecord: {
+        RecordButtonView(flipSpeaker: .constant(true), text: .constant("asdf"), isFirst: .constant(true), startRecord: {
             print("voice record start")
         }, finishRecord: {
             print("voice record finished")

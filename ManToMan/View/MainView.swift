@@ -13,6 +13,7 @@ struct MainView: View {
     @Environment(\.managedObjectContext) var managedObjContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var recent: FetchedResults<Recent>
     @AppStorage("selectedLang") var currentLang: String = "영어"
+    @AppStorage("OnBoarding") var isFirst: Bool = true
     @StateObject var mv = MainViewModel()
     @State var isSheetPresented: Bool = false
     @State var langList: [String] = ["영어", "일본어", "중국어(간체)"]
@@ -36,16 +37,18 @@ struct MainView: View {
                 VStack (alignment: .center){
                     
                     // MARK: 언어 변경 메뉴
-                    
-                    HStack{
-                        Text("\(currentLang)로 번역")
-                            .font(.customTitle())
                         
                         Button(action: {
                             self.isSheetPresented.toggle()
                         }, label: {
-                            Image(systemName: "chevron.down")
-                                .fontWeight(.bold)
+                            HStack {
+                                Text("\(currentLang)로 번역")
+                                    .font(.customTitle())
+                                    .foregroundColor(.black)
+                                
+                                Image(systemName: "chevron.down")
+                                    .fontWeight(.bold)
+                            }
                         })
                         .sheet(isPresented: $isSheetPresented) {
                             LanguageSelectionView(langList: $langList, currentLang: $currentLang, isSheetPresented: $isSheetPresented)
@@ -54,7 +57,7 @@ struct MainView: View {
                                     ManToManAPI.instance.postData(text: mv.debouncedText, selectedlang: flipSpeaker ? "한글" : currentLang)
                                 }
                         }
-                    }
+                    
                     
                     // MARK: 번역 결과 창
                     
@@ -109,14 +112,14 @@ struct MainView: View {
                         // MARK: 한글 입력 텍스트 필드
                         if flipSpeaker {
                             if let translated = mv.translated?.result {
-                                Text(translated.isEmpty ? mv.pleaseWait[currentLang]! : translated)
+                                Text(translated.isEmpty ? "상대방이 말하고 있어요." : translated)
                                     .font(.korean())
                                     .frame(width: geo.size.width - 72)
                                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
                                     .frame(width: 290)
                             }
                             else {
-                                Text(mv.pleaseWait[currentLang]!)
+                                Text("상대방이 말하고 있어요.")
                                     .font(.korean())
                                     .frame(width: geo.size.width - 72)
                                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
@@ -223,7 +226,7 @@ struct MainView: View {
                                     .frame(height: 10)
                                     .padding(.top, 20)
                             }
-                            if !mv.text.isEmpty || mv.text == "\n" {
+                            if !mv.text.isEmpty || mv.text == "\n" || flipSpeaker{
                                 Color.background
                             }
                         }
@@ -238,12 +241,26 @@ struct MainView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(height: 50), alignment: .bottom)
-                    
+                    if isFirst {
+                        Text("마이크를 당겨 상대방 대화도 번역해보세요!")
+                            .font(.customCaption())
+                            .foregroundColor(.mainBlue)
+                            .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                            .background(Color.white)
+                            .cornerRadius(30)
+                            .offset(y: 70)
+                            .opacity(recentOpacity)
+                            .onAppear {
+                                withAnimation(.easeIn(duration: 0.9).delay(recentDelay)) {
+                                    recentOpacity = 1.0
+                                }
+                            }
+                        
+                    }
                     
                     ZStack(alignment: .center) {
                         // MARK: 녹음 시작 버튼
-                            RecordButtonView(flipSpeaker: $flipSpeaker,
-                                             text: $mv.text, startRecord: {
+                        RecordButtonView(flipSpeaker: $flipSpeaker, text: $mv.text, isFirst: $isFirst, startRecord: {
                                 do {
                                     try mv.startRecording(selectedLang: flipSpeaker ? currentLang : "한글", flipSpeaker: flipSpeaker)
                                 } catch {
@@ -291,7 +308,6 @@ struct MainView: View {
                         .frame(width: 63, height: 66)
                 }
                 .ignoresSafeArea()
-                
             }
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
