@@ -23,8 +23,8 @@ struct LanguageSelectionView: View {
                         
                         Spacer()
                         
-                        Text("이 언어로 번역")
-                            .font(.system(size: 20, weight: .semibold))
+                        Text("상대방은 어떤 언어를 사용하나요?")
+                            .font(.customTitle())
                             .padding(EdgeInsets(top: 40, leading: 0, bottom: 18, trailing: 0))
                         
                         Spacer()
@@ -45,7 +45,7 @@ struct LanguageSelectionView: View {
                         }, label: {
                             Text(lang)
                                 .padding(.vertical, 18)
-                                .font(.system(size: 20, weight: .semibold))
+                                .font(.customeBody())
                                 .foregroundColor(lang == currentLang ? Color.mainBlue : Color.black)
                         })
                         

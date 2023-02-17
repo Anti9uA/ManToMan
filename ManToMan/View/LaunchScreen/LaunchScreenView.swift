@@ -9,7 +9,11 @@ import SwiftUI
 
 struct LaunchScreenView: View {
     var body: some View {
-        LottieView(filename: "launchScreen", lastTime: 1)
+        ZStack{
+            Color.background
+                .ignoresSafeArea()
+            LottieView(filename: "launchScreen", lastTime: 0.5)
+        }
     }
 }
 

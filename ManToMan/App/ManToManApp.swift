@@ -9,23 +9,30 @@ import SwiftUI
 
 @main
 struct ManToManApp: App {
+    @AppStorage("Onboarding") var isFirst: Bool = true
     @StateObject private var dataController = DataController()
-    @State var isFirst: Bool = true
+    @State var isStart: Bool = true
+    
     var body: some Scene {
         WindowGroup {
-            if isFirst {
+            if isStart {
                 LaunchScreenView()
                     .onAppear{
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                            self.isFirst.toggle()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            self.isStart.toggle()
                         }
                     }
             }
             else {
-                MainView()
-                    .environment(\.managedObjectContext,
-                                  dataController.container.viewContext)
-                    .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
+                if isFirst {
+                    OnboardingView(isFirst: $isFirst)
+                }
+                else {
+                    MainView()
+                        .environment(\.managedObjectContext,
+                                      dataController.container.viewContext)
+                        .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
+                }
             }
         }
     }

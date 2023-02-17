@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		20162835299A2CA800D0A5E5 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20162834299A2CA800D0A5E5 /* LaunchScreenView.swift */; };
-		20162837299A2CEF00D0A5E5 /* launchScreen.json in Resources */ = {isa = PBXBuildFile; fileRef = 20162836299A2CEF00D0A5E5 /* launchScreen.json */; };
-		203D3E55298F8F090050163B /* ConfrontButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D3E54298F8F090050163B /* ConfrontButtonView.swift */; };
+		2016283D299DF9E800D0A5E5 /* launchScreen.json in Resources */ = {isa = PBXBuildFile; fileRef = 2016283C299DF9E800D0A5E5 /* launchScreen.json */; };
+		20162840299DFC7300D0A5E5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2016283F299DFC7300D0A5E5 /* OnboardingView.swift */; };
+		20162844299DFCBB00D0A5E5 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20162843299DFCBB00D0A5E5 /* OnboardingPageView.swift */; };
+		20162846299DFCF000D0A5E5 /* OnboardingPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20162845299DFCF000D0A5E5 /* OnboardingPageModel.swift */; };
+		2016284B299E118B00D0A5E5 /* hand.json in Resources */ = {isa = PBXBuildFile; fileRef = 2016284A299E118B00D0A5E5 /* hand.json */; };
 		203D3E582990201D0050163B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 203D3E572990201D0050163B /* Lottie */; };
 		203D3E5B2990204A0050163B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D3E5A2990204A0050163B /* LottieView.swift */; };
 		203D3E5F2990F2CA0050163B /* speaking.json in Resources */ = {isa = PBXBuildFile; fileRef = 203D3E5E2990F2CA0050163B /* speaking.json */; };
@@ -19,7 +22,7 @@
 		20DBD9D5298ECB0600BF882B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20DBD9D4298ECB0600BF882B /* Preview Assets.xcassets */; };
 		20DBD9E1298ECC3600BF882B /* RecentLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9DF298ECC3600BF882B /* RecentLog.xcdatamodeld */; };
 		20DBD9E4298ECC9200BF882B /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9E3298ECC9200BF882B /* DataController.swift */; };
-		20DBD9E6298ECCC400BF882B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9E5298ECCC400BF882B /* Model.swift */; };
+		20DBD9E6298ECCC400BF882B /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9E5298ECCC400BF882B /* MainModel.swift */; };
 		20DBD9E8298ECCD800BF882B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9E7298ECCD800BF882B /* MainViewModel.swift */; };
 		20DBD9EB298ECD1800BF882B /* ManToManAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9EA298ECD1800BF882B /* ManToManAPI.swift */; };
 		20DBD9ED298ECD4B00BF882B /* RecordButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9EC298ECD4B00BF882B /* RecordButtonView.swift */; };
@@ -35,8 +38,11 @@
 
 /* Begin PBXFileReference section */
 		20162834299A2CA800D0A5E5 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
-		20162836299A2CEF00D0A5E5 /* launchScreen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = launchScreen.json; sourceTree = "<group>"; };
-		203D3E54298F8F090050163B /* ConfrontButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfrontButtonView.swift; sourceTree = "<group>"; };
+		2016283C299DF9E800D0A5E5 /* launchScreen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = launchScreen.json; sourceTree = "<group>"; };
+		2016283F299DFC7300D0A5E5 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		20162843299DFCBB00D0A5E5 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
+		20162845299DFCF000D0A5E5 /* OnboardingPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageModel.swift; sourceTree = "<group>"; };
+		2016284A299E118B00D0A5E5 /* hand.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hand.json; sourceTree = "<group>"; };
 		203D3E5A2990204A0050163B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		203D3E5E2990F2CA0050163B /* speaking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = speaking.json; sourceTree = "<group>"; };
 		20DBD9CA298ECB0400BF882B /* ManToMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManToMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,7 +52,7 @@
 		20DBD9D4298ECB0600BF882B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		20DBD9E0298ECC3600BF882B /* RecentLog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecentLog.xcdatamodel; sourceTree = "<group>"; };
 		20DBD9E3298ECC9200BF882B /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		20DBD9E5298ECCC400BF882B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		20DBD9E5298ECCC400BF882B /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		20DBD9E7298ECCD800BF882B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		20DBD9EA298ECD1800BF882B /* ManToManAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManToManAPI.swift; sourceTree = "<group>"; };
 		20DBD9EC298ECD4B00BF882B /* RecordButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButtonView.swift; sourceTree = "<group>"; };
@@ -73,10 +79,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2016283E299DFC5000D0A5E5 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				2016283F299DFC7300D0A5E5 /* OnboardingView.swift */,
+				20162843299DFCBB00D0A5E5 /* OnboardingPageView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		20162841299DFC7C00D0A5E5 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				20DBD9CF298ECB0400BF882B /* MainView.swift */,
+				20DBD9EC298ECD4B00BF882B /* RecordButtonView.swift */,
+				20DBD9EE298ECD6000BF882B /* LanguageSelectionView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		20162842299DFC8C00D0A5E5 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				20162834299A2CA800D0A5E5 /* LaunchScreenView.swift */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
 		203D3E592990203A0050163B /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
-				20162836299A2CEF00D0A5E5 /* launchScreen.json */,
+				2016284A299E118B00D0A5E5 /* hand.json */,
+				2016283C299DF9E800D0A5E5 /* launchScreen.json */,
 				203D3E5E2990F2CA0050163B /* speaking.json */,
 				203D3E5A2990204A0050163B /* LottieView.swift */,
 			);
@@ -128,11 +162,9 @@
 		20DBD9DB298ECB0E00BF882B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				20DBD9CF298ECB0400BF882B /* MainView.swift */,
-				20DBD9EC298ECD4B00BF882B /* RecordButtonView.swift */,
-				20DBD9EE298ECD6000BF882B /* LanguageSelectionView.swift */,
-				203D3E54298F8F090050163B /* ConfrontButtonView.swift */,
-				20162834299A2CA800D0A5E5 /* LaunchScreenView.swift */,
+				20162841299DFC7C00D0A5E5 /* Main */,
+				20162842299DFC8C00D0A5E5 /* LaunchScreen */,
+				2016283E299DFC5000D0A5E5 /* Onboarding */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -150,7 +182,8 @@
 			children = (
 				20DBD9DF298ECC3600BF882B /* RecentLog.xcdatamodeld */,
 				20DBD9E3298ECC9200BF882B /* DataController.swift */,
-				20DBD9E5298ECCC400BF882B /* Model.swift */,
+				20DBD9E5298ECCC400BF882B /* MainModel.swift */,
+				20162845299DFCF000D0A5E5 /* OnboardingPageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -237,6 +270,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 20DBD9C1298ECB0400BF882B;
 			packageReferences = (
@@ -256,13 +290,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2016284B299E118B00D0A5E5 /* hand.json in Resources */,
 				B22EC64D298FABCB0034977E /* LINESeedKR-Rg.otf in Resources */,
 				B22EC652298FAC270034977E /* LINESeedSans_A_Bd.otf in Resources */,
+				2016283D299DF9E800D0A5E5 /* launchScreen.json in Resources */,
 				B22EC64C298FABCB0034977E /* LINESeedKR-Bd.otf in Resources */,
 				20DBD9D5298ECB0600BF882B /* Preview Assets.xcassets in Resources */,
 				B22EC650298FAC0D0034977E /* LINESeedJP_A_OTF_Bd.otf in Resources */,
 				203D3E5F2990F2CA0050163B /* speaking.json in Resources */,
-				20162837299A2CEF00D0A5E5 /* launchScreen.json in Resources */,
 				20DBD9D2298ECB0600BF882B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,13 +317,15 @@
 				20162835299A2CA800D0A5E5 /* LaunchScreenView.swift in Sources */,
 				B22EC657298FAFD00034977E /* ColorExtension.swift in Sources */,
 				20DBD9CE298ECB0400BF882B /* ManToManApp.swift in Sources */,
-				203D3E55298F8F090050163B /* ConfrontButtonView.swift in Sources */,
+				20162844299DFCBB00D0A5E5 /* OnboardingPageView.swift in Sources */,
 				20DBD9EB298ECD1800BF882B /* ManToManAPI.swift in Sources */,
-				20DBD9E6298ECCC400BF882B /* Model.swift in Sources */,
+				20DBD9E6298ECCC400BF882B /* MainModel.swift in Sources */,
 				20DBD9E8298ECCD800BF882B /* MainViewModel.swift in Sources */,
 				203D3E5B2990204A0050163B /* LottieView.swift in Sources */,
+				20162840299DFC7300D0A5E5 /* OnboardingView.swift in Sources */,
 				20DBD9ED298ECD4B00BF882B /* RecordButtonView.swift in Sources */,
 				20DBD9F6298ED89800BF882B /* FontExtension.swift in Sources */,
+				20162846299DFCF000D0A5E5 /* OnboardingPageModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +386,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "맨투맨";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -402,6 +440,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "맨투맨";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -415,13 +454,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"ManToMan/Preview Content\"";
 				DEVELOPMENT_TEAM = Y6P5ZFWBM8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ManToMan/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ManToMan;
+				INFOPLIST_KEY_CFBundleDisplayName = "맨투맨";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 번역을 위해 마이크 사용을 허가해주세요.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "음성 번역을 위해 권한을 허가해주세요.";
@@ -453,13 +492,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"ManToMan/Preview Content\"";
 				DEVELOPMENT_TEAM = Y6P5ZFWBM8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ManToMan/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ManToMan;
+				INFOPLIST_KEY_CFBundleDisplayName = "맨투맨";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 번역을 위해 마이크 사용을 허가해주세요.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "음성 번역을 위해 권한을 허가해주세요.";

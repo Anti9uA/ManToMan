@@ -24,7 +24,7 @@ struct DefaultStringModel {
     }
 }
 
-struct LanguageModel {
+struct LangListModel {
     var langList: [String: String]
     
     init() {

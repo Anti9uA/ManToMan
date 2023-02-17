@@ -13,7 +13,7 @@ struct MainView: View {
     @Environment(\.managedObjectContext) var managedObjContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var recent: FetchedResults<Recent>
     @AppStorage("selectedLang") var currentLang: String = "영어"
-    @AppStorage("OnBoarding") var isFirst: Bool = true
+    @AppStorage("mikeInstruction") var isFirst: Bool = true
     @StateObject var mv = MainViewModel()
     @State var isSheetPresented: Bool = false
     @State var langList: [String] = ["영어", "일본어", "중국어(간체)"]
@@ -41,7 +41,7 @@ struct MainView: View {
                             self.isSheetPresented.toggle()
                         }, label: {
                             HStack {
-                                Text("\(currentLang)로 번역")
+                                Text("\(currentLang)")
                                     .font(.customTitle())
                                     .foregroundColor(.black)
                                 
@@ -125,6 +125,7 @@ struct MainView: View {
 //                                    .frame(width: 290)
 //                            }
 //                        }
+                        
                         if flipSpeaker {
                             let translated = mv.translated?.result ?? "상대방이 말하고 있어요."
                             Text(translated.isEmpty ? "상대방이 말하고 있어요." : translated)

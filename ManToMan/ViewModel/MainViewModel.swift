@@ -14,7 +14,7 @@ class MainViewModel: ObservableObject {
     @Published var text : String = ""
     @Published var debouncedText: String = ""
     @Published var defaultString = DefaultStringModel()
-    @Published var langModel = LanguageModel()
+    @Published var langModel = LangListModel()
 //    @Published var langList: [String: String] = ["한글" : "ko-KR", "영어": "en-US", "일본어": "ja-JP", "중국어(간체)": "zh"]
 //    @Published var idle: [String: String] = ["영어" : "Please wait.. ", "일본어" : "待ってください。", "중국어(간체)" : "请等着"]
 //    @Published var pleaseSpeak: [String: String] = ["영어" : "Please speak..", "일본어" : "話してください。", "중국어(간체)" : "请说"]

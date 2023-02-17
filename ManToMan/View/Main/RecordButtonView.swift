@@ -20,6 +20,7 @@ struct RecordButtonView: View {
     @State var delay1 = 0.1
     @State var delay2 = 0.3
     @State var delay3 = 0.8
+    @State private var isAnimationPlaying = true
     
     @Binding var flipSpeaker: Bool
     @Binding var text: String
