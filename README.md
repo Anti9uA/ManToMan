@@ -79,34 +79,29 @@
 ## 핵심 기능
 ### 실시간 번역
 - 텍스트 디바운싱을 통해 문장을 치는 동안 실시간으로 쿼리를 날려 번역결과를 보여줍니다.
-<div align="center">
 <img src="https://user-images.githubusercontent.com/52993882/219642288-7d4838af-3888-4332-aeb3-d023d44476f9.gif" width="200"    height="450"/>
  </div>
 
 ### 최근 기록 저장
 - UT 결과, 여행 중에는 자주 번역하는 문장이 정해져 있다는 것에서 영감을 얻어 최근 기록을 빠르게 불러와야하는 필요성을 느꼈습니다.
 - 맨투맨은 최근 기록을 메인창에 구현했고, 빠르게 최근기록을 불러올수 있습니다.
-<div align="center">
 <img src="https://user-images.githubusercontent.com/52993882/219642270-3e91f4e3-e596-4443-a7cd-6147ff76019c.gif" width="200"    height="450"/>
  </div>
 
 ### 다중 언어 지원
 - 영어 뿐만 아니라 일본어, 중국어를 지원하고 있고 추후 스페인어, 불어 등 지원 언어를 늘려나갈 계획입니다.
-<div align="center">
 <img src="https://user-images.githubusercontent.com/52993882/219645631-f6c50d63-1577-4024-b23b-f4f71b11ea4a.gif" width="200"    height="450"/>
  </div>
 
 ### 음성 인식
 &ensp;&ensp;**사용자 음성인식**
 - 앱 사용자의 음성인식을 통해 번역결과를 보여줍니다.
-<div align="center">
 <img src="https://user-images.githubusercontent.com/52993882/219646153-56c13e70-dbfe-44b1-80ca-6428ce9e8b61.gif" width="200"    height="450"/>
  </div>
 
 &ensp;&ensp;**상대방 음성인식**
 - 마이크를 건네주는 메타포를 사용해 상대방 언어에 따른 음성인식 또한 지원합니다.
 - 상대방 언어의 인식된 문장을 한글로 실시간으로 보여줍니다.
-<div align="center">
 <img src="https://user-images.githubusercontent.com/52993882/219642283-cb5c9808-1382-43ce-8d94-0eee56d98c21.gif" width="200" height="450"/>
 </div>
 
