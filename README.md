@@ -22,7 +22,9 @@
     - [최근 기록 저장](#최근-기록-저장)
     - [다중 언어 지원](#다중-언어-지원)
     - [음성 인식](#음성-인식)
+  - [UX 설계](#ux-설계)
   - [느낀점](#느낀점)
+  - [Contacts](#contacts)
 
 
 ## 소개
@@ -105,7 +107,12 @@
 <img src="https://user-images.githubusercontent.com/52993882/219642283-cb5c9808-1382-43ce-8d94-0eee56d98c21.gif" width="200" height="450"/>
 </div>
 
+<br>
 
+## UX 설계
+[👉 자세히보기](https://www.notion.so/IR-8b772337c60048d9be529b2e379d60ed)
+
+<br>
 
 ## 느낀점
 일본 여행중 겪었던 작은 불편함이 이렇게 제품출시까지 이루어진걸 보고 정말 뿌듯했습니다.
@@ -114,3 +121,10 @@
 또한 앞으로 내가 생각한 아이디어나 문제점들이 실제로 솔루션으로 이어질수 있는걸 눈으로 확인했고, 자신감을 가질 수 있었습니다.  
 
 '우리의 문제점 해결' 라는 사명감을 가지면서 공부라는 생각이 들지 않으면서 제 자신을 프로젝트 안에 몰입시켜나갈수 있었던 프로젝트였습니다. 마지막으로 함께했던 팀원 [@Anna](https://github.com/Eunbi-Cho)에게 정말 수고했고 감사하다는 말을 전하고 싶습니다.
+
+<br>
+ 
+## Contacts
+- [✨Official Instagram](https://instagram.com/mantoman_translator?igshid=YmMyMTA2M2Y=) 
+- Anti9uA: didlaak6000@naver.com
+- Anna: moomb70@gmail.com

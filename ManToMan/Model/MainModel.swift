@@ -31,3 +31,8 @@ struct LangListModel {
         self.langList = ["한글" : "ko-KR", "영어": "en-US", "일본어": "ja-JP", "중국어(간체)": "zh"]
     }
 }
+
+struct Endpoint: Codable {
+    let endPoint: String
+}
+

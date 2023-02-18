@@ -25,7 +25,15 @@ class ManToManAPI {
     }
     
     func postData(text: String, selectedlang: String) {
-        let endpoint = "https://port-0-kyupago-server-1luhct24lctgq9gx.gksl2.cloudtype.app/translate"
+        guard
+            let propertiesData = loadJson(filename: "properties"),
+            let clientData = try? JSONDecoder().decode(Endpoint.self, from: propertiesData)
+        else {
+            return
+        }
+
+        let endpoint = clientData.endPoint
+        
         let body = ["source": "ko", "target": langList[selectedlang], "text": text]
 
         guard let url = URL(string: endpoint) else { return }
@@ -62,6 +70,23 @@ class ManToManAPI {
                   throw URLError(.badServerResponse)
               }
         return output.data
+    }
+    
+    func loadJson(filename: String) -> Data? {
+        let extensionType = "json"
+        
+        guard let fileLocation = Bundle.main.url(forResource: filename, withExtension: extensionType)
+        else {
+            return nil
+        }
+        
+        do {
+            let data = try Data(contentsOf: fileLocation)
+            return data
+        }
+        catch {
+            return nil
+        }
     }
 }
 

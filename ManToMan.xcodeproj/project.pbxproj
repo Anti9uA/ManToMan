@@ -13,6 +13,7 @@
 		20162844299DFCBB00D0A5E5 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20162843299DFCBB00D0A5E5 /* OnboardingPageView.swift */; };
 		20162846299DFCF000D0A5E5 /* OnboardingPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20162845299DFCF000D0A5E5 /* OnboardingPageModel.swift */; };
 		2016284B299E118B00D0A5E5 /* hand.json in Resources */ = {isa = PBXBuildFile; fileRef = 2016284A299E118B00D0A5E5 /* hand.json */; };
+		2016284E299FBC7500D0A5E5 /* properties.json in Resources */ = {isa = PBXBuildFile; fileRef = 2016284D299FBC7500D0A5E5 /* properties.json */; };
 		203D3E582990201D0050163B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 203D3E572990201D0050163B /* Lottie */; };
 		203D3E5B2990204A0050163B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D3E5A2990204A0050163B /* LottieView.swift */; };
 		203D3E5F2990F2CA0050163B /* speaking.json in Resources */ = {isa = PBXBuildFile; fileRef = 203D3E5E2990F2CA0050163B /* speaking.json */; };
@@ -43,6 +44,7 @@
 		20162843299DFCBB00D0A5E5 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		20162845299DFCF000D0A5E5 /* OnboardingPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageModel.swift; sourceTree = "<group>"; };
 		2016284A299E118B00D0A5E5 /* hand.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hand.json; sourceTree = "<group>"; };
+		2016284D299FBC7500D0A5E5 /* properties.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = properties.json; sourceTree = "<group>"; };
 		203D3E5A2990204A0050163B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		203D3E5E2990F2CA0050163B /* speaking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = speaking.json; sourceTree = "<group>"; };
 		20DBD9CA298ECB0400BF882B /* ManToMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManToMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +108,14 @@
 			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
+		2016284C299FBC5C00D0A5E5 /* Properties */ = {
+			isa = PBXGroup;
+			children = (
+				2016284D299FBC7500D0A5E5 /* properties.json */,
+			);
+			path = Properties;
+			sourceTree = "<group>";
+		};
 		203D3E592990203A0050163B /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +146,7 @@
 		20DBD9CC298ECB0400BF882B /* ManToMan */ = {
 			isa = PBXGroup;
 			children = (
+				2016284C299FBC5C00D0A5E5 /* Properties */,
 				203D3E592990203A0050163B /* Lottie */,
 				B22EC653298FAC380034977E /* Info.plist */,
 				B22EC64E298FABD30034977E /* Font */,
@@ -298,6 +309,7 @@
 				20DBD9D5298ECB0600BF882B /* Preview Assets.xcassets in Resources */,
 				B22EC650298FAC0D0034977E /* LINESeedJP_A_OTF_Bd.otf in Resources */,
 				203D3E5F2990F2CA0050163B /* speaking.json in Resources */,
+				2016284E299FBC7500D0A5E5 /* properties.json in Resources */,
 				20DBD9D2298ECB0600BF882B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,6 @@
 ### macOS ###
 # General
+ManToMan/Properties/
 .DS_Store
 .AppleDouble
 .LSOverride
