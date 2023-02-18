@@ -60,6 +60,7 @@
 
 **라이브러리**
  - [Combine](https://developer.apple.com/documentation/combine)
+ - [CoreData](https://developer.apple.com/documentation/coredata)
  - [Speech](https://developer.apple.com/documentation/speech)
  - [pyGoogleTrans](https://github.com/ssut/py-googletrans)
  - [lottie-ios](https://github.com/airbnb/lottie-ios)
