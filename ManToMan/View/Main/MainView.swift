@@ -300,6 +300,7 @@ struct MainView: View {
                             }
                             .padding(.trailing, 40)
                             .padding(.bottom, 10)
+                            
                         }
                     }
                     .frame(height: 130)
@@ -309,11 +310,18 @@ struct MainView: View {
                 
                 // MARK: 마이크 애니메이션 가리개
                 
-                VStack{
+                VStack {
                     Spacer()
-                    Image("roundBottom")
-                        .resizable()
-                        .frame(width: 63, height: 66)
+                    if UIDevice.current.userInterfaceIdiom == .phone &&
+                        (UIScreen.main.bounds.size.height == 568 || UIScreen.main.bounds.size.width == 568) {
+                        Image("roundBottom")
+                            .resizable()
+                            .frame(width: 63, height: 66)
+                    } else {
+                        Image("roundBottom")
+                            .resizable()
+                            .frame(width: 45, height: 26)
+                    }
                 }
                 .ignoresSafeArea()
             }
