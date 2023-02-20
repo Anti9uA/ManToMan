@@ -111,7 +111,7 @@
 <br>
 
 ## UX 설계
-[👉 자세히보기](https://www.notion.so/IR-8b772337c60048d9be529b2e379d60ed)
+[👉 자세히보기](https://abstracted-dolomite-d13.notion.site/IR-8b772337c60048d9be529b2e379d60ed)
 
 <br>
 
