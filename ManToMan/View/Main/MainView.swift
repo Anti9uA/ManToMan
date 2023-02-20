@@ -36,26 +36,26 @@ struct MainView: View {
                 VStack (alignment: .center){
                     
                     // MARK: 언어 변경 메뉴
-                        
-                        Button(action: {
-                            self.isSheetPresented.toggle()
-                        }, label: {
-                            HStack {
-                                Text("\(currentLang)")
-                                    .font(.customTitle())
-                                    .foregroundColor(.black)
-                                
-                                Image(systemName: "chevron.down")
-                                    .fontWeight(.bold)
-                            }
-                        })
-                        .sheet(isPresented: $isSheetPresented) {
-                            LanguageSelectionView(langList: $langList, currentLang: $currentLang, isSheetPresented: $isSheetPresented)
-                                .presentationDetents([.medium, .large])
-                                .onDisappear{
-                                    ManToManAPI.instance.postData(text: mv.debouncedText, selectedlang: flipSpeaker ? "한글" : currentLang)
-                                }
+                    
+                    Button(action: {
+                        self.isSheetPresented.toggle()
+                    }, label: {
+                        HStack {
+                            Text("\(currentLang)")
+                                .font(.customTitle())
+                                .foregroundColor(.black)
+                            
+                            Image(systemName: "chevron.down")
+                                .fontWeight(.bold)
                         }
+                    })
+                    .sheet(isPresented: $isSheetPresented) {
+                        LanguageSelectionView(langList: $langList, currentLang: $currentLang, isSheetPresented: $isSheetPresented)
+                            .presentationDetents([.medium, .large])
+                            .onDisappear{
+                                ManToManAPI.instance.postData(text: mv.debouncedText, selectedlang: flipSpeaker ? "한글" : currentLang)
+                            }
+                    }
                     
                     
                     // MARK: 번역 결과 창
@@ -109,22 +109,22 @@ struct MainView: View {
                     ZStack{
                         
                         // MARK: 한글 입력 텍스트 필드
-//                        if flipSpeaker {
-//                            if let translated = mv.translated?.result {
-//                                Text(translated.isEmpty ? "상대방이 말하고 있어요." : translated)
-//                                    .font(.korean())
-//                                    .frame(width: geo.size.width - 72)
-//                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
-//                                    .frame(width: 290)
-//                            }
-//                            else {
-//                                Text("상대방이 말하고 있어요.")
-//                                    .font(.korean())
-//                                    .frame(width: geo.size.width - 72)
-//                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
-//                                    .frame(width: 290)
-//                            }
-//                        }
+                        //                        if flipSpeaker {
+                        //                            if let translated = mv.translated?.result {
+                        //                                Text(translated.isEmpty ? "상대방이 말하고 있어요." : translated)
+                        //                                    .font(.korean())
+                        //                                    .frame(width: geo.size.width - 72)
+                        //                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+                        //                                    .frame(width: 290)
+                        //                            }
+                        //                            else {
+                        //                                Text("상대방이 말하고 있어요.")
+                        //                                    .font(.korean())
+                        //                                    .frame(width: geo.size.width - 72)
+                        //                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+                        //                                    .frame(width: 290)
+                        //                            }
+                        //                        }
                         
                         if flipSpeaker {
                             let translated = mv.translated?.result ?? "상대방이 말하고 있어요."
@@ -269,18 +269,18 @@ struct MainView: View {
                     ZStack(alignment: .center) {
                         // MARK: 녹음 시작 버튼
                         RecordButtonView(flipSpeaker: $flipSpeaker, text: $mv.text, isFirst: $isFirst, startRecord: {
-                                do {
-                                    try mv.startRecording(selectedLang: flipSpeaker ? currentLang : "한글", flipSpeaker: flipSpeaker)
-                                } catch {
-                                    
-                                }
-                            }, finishRecord: {
-                                mv.audioEngine.stop()
-                                mv.recognitionRequest?.endAudio()
+                            do {
+                                try mv.startRecording(selectedLang: flipSpeaker ? currentLang : "한글", flipSpeaker: flipSpeaker)
+                            } catch {
+                                
                             }
-                            )
-                            .frame(height: 230)     // 하단 가리개가 가릴시 높이 미세 조정
-
+                        }, finishRecord: {
+                            mv.audioEngine.stop()
+                            mv.recognitionRequest?.endAudio()
+                        }
+                        )
+                        .frame(height: 230)     // 하단 가리개가 가릴시 높이 미세 조정
+                        
                         
                         // MARK: UI 반전 토글 버튼
                         
@@ -312,16 +312,10 @@ struct MainView: View {
                 
                 VStack {
                     Spacer()
-                    if UIDevice.current.userInterfaceIdiom == .phone &&
-                        (UIScreen.main.bounds.size.height == 568 || UIScreen.main.bounds.size.width == 568) {
-                        Image("roundBottom")
-                            .resizable()
-                            .frame(width: 63, height: 66)
-                    } else {
-                        Image("roundBottom")
-                            .resizable()
-                            .frame(width: 45, height: 26)
-                    }
+                    Image("roundBottom")
+                        .resizable()
+                        .frame(width: mv.shouldUseCustomFrame() ? 45 : 63, height: mv.shouldUseCustomFrame() ? 26 : 66)
+                    
                 }
                 .ignoresSafeArea()
             }
@@ -329,6 +323,7 @@ struct MainView: View {
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
+
 
 
 struct MainView_Previews: PreviewProvider {

@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 import Speech
+import SwiftUI
 
 class MainViewModel: ObservableObject {
     @Published var translated: TranslatedModel?
@@ -100,4 +101,20 @@ class MainViewModel: ObservableObject {
         self.text = ""
     }
     
+    func shouldUseCustomFrame() -> Bool {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let horizontalSizeClass = windowScene.windows.first?.rootViewController?.traitCollection.horizontalSizeClass else {
+            return false
+        }
+        
+        if horizontalSizeClass == .compact {
+            if UIScreen.main.bounds.height == 568 { // iPhone SE
+                return true
+            } else if UIScreen.main.bounds.height == 667 { // iPod 7
+                return true
+            }
+        }
+        
+        return false
+    }
 }
