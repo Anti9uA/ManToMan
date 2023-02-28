@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    @State private var pageIndex = 0
-    @Binding var isFirst: Bool
-    private let pages: [OnboardingPage] = OnboardingPage.samplePages
+    @StateObject var viewModel: OnboardingViewModel
     private let dotAppearance = UIPageControl.appearance()
     
     var body: some View {
@@ -18,25 +16,25 @@ struct OnboardingView: View {
             Color.background
                 .ignoresSafeArea()
             VStack{
-                TabView(selection: $pageIndex) {
-                    ForEach(pages) { page in
+                TabView(selection: $viewModel.pageIndex) {
+                    ForEach(viewModel.pages) { page in
                         VStack {
                             Spacer()
-                            OnboardingPageView(onboardingPage: page, pageIndex: $pageIndex)
+                            OnboardingPageView(onboardingPage: page, pageIndex: $viewModel.pageIndex)
                             Spacer()
                         }
                         .tag(page.tag)
                     }
                 }
-                .animation(.easeInOut, value: pageIndex)// 2
+                .animation(.easeInOut, value: viewModel.pageIndex)// 2
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .overlay(
-                    PageControl(pageIndex: pageIndex, pageCount: pages.count)
+                    PageControl(pageIndex: viewModel.pageIndex, pageCount: viewModel.pages.count)
                         .padding(.top, 36)
                     , alignment: .top
                 )
                 Button(action: {
-                    self.isFirst = false
+                    viewModel.isFirst = false
                 }, label: {
                     ZStack{
                         Rectangle()
@@ -53,14 +51,6 @@ struct OnboardingView: View {
                 })
             }
         }
-    }
-    
-    func incrementPage() {
-        pageIndex += 1
-    }
-    
-    func goToZero() {
-        pageIndex = 0
     }
 }
 

@@ -46,8 +46,3 @@ struct OnboardingPageView: View {
     }
 }
 
-//struct OnboardingPageView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        OnboardingPageView()
-//    }
-//}

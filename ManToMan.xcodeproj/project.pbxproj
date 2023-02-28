@@ -17,6 +17,7 @@
 		203D3E582990201D0050163B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 203D3E572990201D0050163B /* Lottie */; };
 		203D3E5B2990204A0050163B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D3E5A2990204A0050163B /* LottieView.swift */; };
 		203D3E5F2990F2CA0050163B /* speaking.json in Resources */ = {isa = PBXBuildFile; fileRef = 203D3E5E2990F2CA0050163B /* speaking.json */; };
+		20421FBA29AE841C00310030 /* OnboadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20421FB929AE841C00310030 /* OnboadingViewModel.swift */; };
 		20DBD9CE298ECB0400BF882B /* ManToManApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9CD298ECB0400BF882B /* ManToManApp.swift */; };
 		20DBD9D0298ECB0400BF882B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9CF298ECB0400BF882B /* MainView.swift */; };
 		20DBD9D2298ECB0600BF882B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20DBD9D1298ECB0600BF882B /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		2016284D299FBC7500D0A5E5 /* properties.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = properties.json; sourceTree = "<group>"; };
 		203D3E5A2990204A0050163B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		203D3E5E2990F2CA0050163B /* speaking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = speaking.json; sourceTree = "<group>"; };
+		20421FB929AE841C00310030 /* OnboadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboadingViewModel.swift; sourceTree = "<group>"; };
 		20DBD9CA298ECB0400BF882B /* ManToMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManToMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DBD9CD298ECB0400BF882B /* ManToManApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManToManApp.swift; sourceTree = "<group>"; };
 		20DBD9CF298ECB0400BF882B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				20DBD9E7298ECCD800BF882B /* MainViewModel.swift */,
+				20421FB929AE841C00310030 /* OnboadingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				20DBD9EB298ECD1800BF882B /* ManToManAPI.swift in Sources */,
 				20DBD9E6298ECCC400BF882B /* MainModel.swift in Sources */,
 				20DBD9E8298ECCD800BF882B /* MainViewModel.swift in Sources */,
+				20421FBA29AE841C00310030 /* OnboadingViewModel.swift in Sources */,
 				203D3E5B2990204A0050163B /* LottieView.swift in Sources */,
 				20162840299DFC7300D0A5E5 /* OnboardingView.swift in Sources */,
 				20DBD9ED298ECD4B00BF882B /* RecordButtonView.swift in Sources */,
@@ -466,7 +470,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ManToMan/Preview Content\"";
 				DEVELOPMENT_TEAM = Y6P5ZFWBM8;
 				ENABLE_PREVIEWS = YES;
@@ -486,7 +490,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Kyubo.ManToMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -504,7 +508,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ManToMan/Preview Content\"";
 				DEVELOPMENT_TEAM = Y6P5ZFWBM8;
 				ENABLE_PREVIEWS = YES;
@@ -524,7 +528,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Kyubo.ManToMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

@@ -43,4 +43,6 @@ extension View {
     }
 }
 
-
+enum SpeechRecognitionError: Error {
+    case microphonePermissionDenied
+}
