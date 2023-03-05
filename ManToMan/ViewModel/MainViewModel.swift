@@ -16,10 +16,10 @@ class MainViewModel: ObservableObject {
     @Published var debouncedText: String = ""
     @Published var defaultString = DefaultStringModel()
     @Published var langModel = LangListModel()
-//    @Published var langList: [String: String] = ["한글" : "ko-KR", "영어": "en-US", "일본어": "ja-JP", "중국어(간체)": "zh"]
-//    @Published var idle: [String: String] = ["영어" : "Please wait.. ", "일본어" : "待ってください。", "중국어(간체)" : "请等着"]
-//    @Published var pleaseSpeak: [String: String] = ["영어" : "Please speak..", "일본어" : "話してください。", "중국어(간체)" : "请说"]
-//    @Published var pleaseWait: [String: String] = ["영어" : "Partner speaking..", "일본어" : "相手が言っています。", "중국어(간체)" : "对方正在说话。"]
+    //    @Published var langList: [String: String] = ["한글" : "ko-KR", "영어": "en-US", "일본어": "ja-JP", "중국어(간체)": "zh"]
+    //    @Published var idle: [String: String] = ["영어" : "Please wait.. ", "일본어" : "待ってください。", "중국어(간체)" : "请等着"]
+    //    @Published var pleaseSpeak: [String: String] = ["영어" : "Please speak..", "일본어" : "話してください。", "중국어(간체)" : "请说"]
+    //    @Published var pleaseWait: [String: String] = ["영어" : "Partner speaking..", "일본어" : "相手が言っています。", "중국어(간체)" : "对方正在说话。"]
     
     let manToManAPI = ManToManAPI.instance
     
@@ -41,7 +41,7 @@ class MainViewModel: ObservableObject {
                 self?.debouncedText = t
             } )
             .store(in: &cancellable)
-            
+        
     }
     
     private func addKyuSubscriber() {
@@ -53,70 +53,99 @@ class MainViewModel: ObservableObject {
             }
             .store(in: &cancellable)
     }
-
     
-    func startRecording(selectedLang: String, flipSpeaker: Bool) throws {
+    
+    func startRecording(selectedLang: String, flipSpeaker: Bool) {
         let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: langModel.langList[selectedLang]!))!
-        
-        
+            
         recognitionTask?.cancel()
         self.recognitionTask = nil
         
-        let audioSession = AVAudioSession.sharedInstance()
-        try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
-        try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-        let inputNode = audioEngine.inputNode
-        
-        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        guard let recognitionRequest = recognitionRequest else { fatalError("SFSpeechAudioBufferRecognitionRequest 객체 생성 오류") }
-        recognitionRequest.shouldReportPartialResults = true
-        
-        if #available(iOS 13, *) {
-            recognitionRequest.requiresOnDeviceRecognition = false
+        guard speechRecognizer.isAvailable else {
+                print("Speech Recognition is not available")
+                return
         }
         
-        recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
-            var isFinal = false
-            
-            if let result = result {
-                self.text = result.bestTranscription.formattedString
-                isFinal = result.isFinal
-                print("Text \(result.bestTranscription.formattedString)")
+        do {
+            let audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+            let inputNode = audioEngine.inputNode
+                
+            recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+            guard let recognitionRequest = recognitionRequest else { fatalError("SFSpeechAudioBufferRecognitionRequest 객체 생성 오류") }
+            recognitionRequest.shouldReportPartialResults = true
+                
+            if #available(iOS 13, *) {
+                recognitionRequest.requiresOnDeviceRecognition = false
             }
-            
-            if error != nil || isFinal {
-                self.audioEngine.stop()
-                inputNode.removeTap(onBus: 0)
-                self.recognitionRequest = nil
-                self.recognitionTask = nil
+                
+            recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
+                var isFinal = false
+                    
+                if let result = result {
+                    self.text = result.bestTranscription.formattedString
+                    isFinal = result.isFinal
+                    print("Text \(result.bestTranscription.formattedString)")
+                }
+                    
+                if error != nil || isFinal {
+                    self.audioEngine.stop()
+                    inputNode.removeTap(onBus: 0)
+                    self.recognitionRequest = nil
+                    self.recognitionTask = nil
+                }
+            }
+                
+            let recordingFormat = inputNode.outputFormat(forBus: 0)
+            inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
+                self.recognitionRequest?.append(buffer)
+            }
+                
+            audioEngine.prepare()
+            try audioEngine.start()
+                
+            self.text = ""
+        } catch {
+            print("Error starting recording: \(error.localizedDescription)")
+        }
+    }
+    
+    func requestSpeechAuthorization(completion: @escaping (Bool) -> Void) {
+        
+        // Request Authorization
+        SFSpeechRecognizer.requestAuthorization { authStatus in
+            DispatchQueue.main.async {
+                switch authStatus {
+                    case .authorized:
+                        completion(true)
+                    case .denied:
+                        completion(false)
+                    case .restricted:
+                        completion(false)
+                    case .notDetermined:
+                        completion(false)
+                    @unknown default:
+                        completion(false)
+                }
             }
         }
-        
-        let recordingFormat = inputNode.outputFormat(forBus: 0)
-        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
-            self.recognitionRequest?.append(buffer)
-        }
-        
-        audioEngine.prepare()
-        try audioEngine.start()
-        
-        self.text = ""
     }
     
     func shouldUseCustomFrame() -> Bool {
-            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                  let horizontalSizeClass = windowScene.windows.first?.rootViewController?.traitCollection.horizontalSizeClass else {
-                return false
-            }
-            
-            if horizontalSizeClass == .compact {
-                if UIScreen.main.bounds.height == 568 { // iPhone SE
-                    return true
-                } else if UIScreen.main.bounds.height == 667 { // iPod 7
-                    return true
-                }
-            }
-            
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let horizontalSizeClass = windowScene.windows.first?.rootViewController?.traitCollection.horizontalSizeClass else {
             return false
         }
+        
+        if horizontalSizeClass == .compact {
+            if UIScreen.main.bounds.height == 568 { // iPhone SE
+                return true
+            } else if UIScreen.main.bounds.height == 667 { // iPod 7
+                return true
+            }
+        }
+        
+        return false
+    }
 }

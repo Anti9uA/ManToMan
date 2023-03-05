@@ -25,6 +25,7 @@ struct RecordButtonView: View {
     @Binding var flipSpeaker: Bool
     @Binding var text: String
     @Binding var isFirst: Bool
+    @Binding var isSpeechAuth: Bool
     
     var startRecord: () -> Void
     var finishRecord: () -> Void
@@ -69,13 +70,20 @@ struct RecordButtonView: View {
                         .onEnded({ gesture in
                             withAnimation(.spring()){
                                 if currentHeight > 150 && gesture.translation.height < 0.0 {
-                                    print("toggled!")
-                                    buttonOffset = -80
-                                    flipSpeaker = true
-                                    micTransitionToggle.toggle()
-                                    overlayToggle.toggle()
                                     self.startRecord()
-                                    
+                                    if isSpeechAuth{
+                                        print("toggled!")
+                                        buttonOffset = -80
+                                        flipSpeaker = true
+                                        micTransitionToggle.toggle()
+                                        overlayToggle.toggle()
+                                    }
+                                    else {
+                                        self.finishRecord()
+                                        buttonOffset = 0
+                                        micTransitionToggle = false
+                                        overlayToggle = false
+                                    }
                                 }
                                 else {
                                     buttonOffset = 0
@@ -84,9 +92,15 @@ struct RecordButtonView: View {
                         })
                 )
                 .onTapGesture {
-                    flipSpeaker = false
-                    overlayToggle.toggle()
                     self.startRecord()
+                    if isSpeechAuth {
+                        flipSpeaker = false
+                        overlayToggle.toggle()
+                    }
+                    else {
+                        self.finishRecord()
+                        overlayToggle = false
+                    }
                 }
             }
             
@@ -182,7 +196,7 @@ struct RecordButtonView: View {
 
 struct TestButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordButtonView(flipSpeaker: .constant(true), text: .constant("asdf"), isFirst: .constant(true), startRecord: {
+        RecordButtonView(flipSpeaker: .constant(true), text: .constant("asdf"), isFirst: .constant(true), isSpeechAuth: .constant(true), startRecord: {
             print("voice record start")
         }, finishRecord: {
             print("voice record finished")

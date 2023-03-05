@@ -24,6 +24,8 @@ struct MainView: View {
     @State var recentOpacity = 0.0
     @State var recentDelay = 0.5
     @State var flipSpeaker = false
+    @State var isSpeechAuth = false
+    
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -268,17 +270,46 @@ struct MainView: View {
                     
                     ZStack(alignment: .center) {
                         // MARK: 녹음 시작 버튼
-                        RecordButtonView(flipSpeaker: $flipSpeaker, text: $mv.text, isFirst: $isFirst, startRecord: {
-                            do {
-                                try mv.startRecording(selectedLang: flipSpeaker ? currentLang : "한글", flipSpeaker: flipSpeaker)
-                            } catch {
-                                
+                        RecordButtonView(flipSpeaker: $flipSpeaker, text: $mv.text, isFirst: $isFirst, isSpeechAuth: $isSpeechAuth, startRecord: {
+                            mv.requestSpeechAuthorization { success in
+                                if success {
+                                    self.isSpeechAuth = true
+                                    mv.startRecording(selectedLang: flipSpeaker ? currentLang : "한글", flipSpeaker: flipSpeaker)
+                                } else {
+                                    let alert = UIAlertController(title: "Speech Recognition Authorization Denied", message: "Please enable speech recognition authorization in settings to use this feature", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                                    alert.addAction(UIAlertAction(title: "Settings", style: .default) { _ in
+                                        if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                                            UIApplication.shared.open(settingsUrl)
+                                        }
+                                    })
+                                    UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: nil)
+                                }
                             }
                         }, finishRecord: {
                             mv.audioEngine.stop()
                             mv.recognitionRequest?.endAudio()
-                        }
-                        )
+                        })
+
+//                        RecordButtonView(flipSpeaker: $flipSpeaker, text: $mv.text, isFirst: $isFirst, startRecord: {
+//                            mv.requestSpeechAuthorization { success in
+//                                if success {
+//                                    mv.startRecording(selectedLang: flipSpeaker ? currentLang : "한글", flipSpeaker: flipSpeaker)
+//                                } else {
+//                                    print("access denied")
+//                                }
+//                            }
+//
+////                            do {
+////                                try mv.startRecording(selectedLang: flipSpeaker ? currentLang : "한글", flipSpeaker: flipSpeaker)
+////                            } catch {
+////
+////                            }
+//                        }, finishRecord: {
+//                            mv.audioEngine.stop()
+//                            mv.recognitionRequest?.endAudio()
+//                        }
+//                        )
                         .frame(height: 230)     // 하단 가리개가 가릴시 높이 미세 조정
                         
                         
