@@ -57,13 +57,13 @@ class MainViewModel: ObservableObject {
     
     func startRecording(selectedLang: String, flipSpeaker: Bool) {
         let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: langModel.langList[selectedLang]!))!
-            
+        
         recognitionTask?.cancel()
         self.recognitionTask = nil
         
         guard speechRecognizer.isAvailable else {
-                print("Speech Recognition is not available")
-                return
+            print("Speech Recognition is not available")
+            return
         }
         
         do {
@@ -71,24 +71,24 @@ class MainViewModel: ObservableObject {
             try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
             let inputNode = audioEngine.inputNode
-                
+            
             recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
             guard let recognitionRequest = recognitionRequest else { fatalError("SFSpeechAudioBufferRecognitionRequest 객체 생성 오류") }
             recognitionRequest.shouldReportPartialResults = true
-                
+            
             if #available(iOS 13, *) {
                 recognitionRequest.requiresOnDeviceRecognition = false
             }
-                
+            
             recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
                 var isFinal = false
-                    
+                
                 if let result = result {
                     self.text = result.bestTranscription.formattedString
                     isFinal = result.isFinal
                     print("Text \(result.bestTranscription.formattedString)")
                 }
-                    
+                
                 if error != nil || isFinal {
                     self.audioEngine.stop()
                     inputNode.removeTap(onBus: 0)
@@ -96,15 +96,15 @@ class MainViewModel: ObservableObject {
                     self.recognitionTask = nil
                 }
             }
-                
+            
             let recordingFormat = inputNode.outputFormat(forBus: 0)
             inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
                 self.recognitionRequest?.append(buffer)
             }
-                
+            
             audioEngine.prepare()
             try audioEngine.start()
-                
+            
             self.text = ""
         } catch {
             print("Error starting recording: \(error.localizedDescription)")
@@ -146,7 +146,7 @@ class MainViewModel: ObservableObject {
             }
         }
     }
-
+    
     
     func shouldUseCustomFrame() -> Bool {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,

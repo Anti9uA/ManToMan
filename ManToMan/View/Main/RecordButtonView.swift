@@ -165,7 +165,7 @@ struct RecordButtonView: View {
                             else {
                                 text = ""
                             }
-                        
+                            
                             if micTransitionToggle{
                                 withAnimation(.easeIn(duration: 0.5)) {
                                     self.finishRecord()
