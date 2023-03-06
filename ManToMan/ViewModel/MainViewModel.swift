@@ -112,7 +112,6 @@ class MainViewModel: ObservableObject {
     }
     
     func requestSpeechAuthorization(completion: @escaping (Bool) -> Void) {
-        
         // Request Authorization
         SFSpeechRecognizer.requestAuthorization { authStatus in
             DispatchQueue.main.async {
@@ -131,6 +130,23 @@ class MainViewModel: ObservableObject {
             }
         }
     }
+    
+    func presentAuthorizationDeniedAlert(title: String, message: String) {
+        DispatchQueue.main.async {
+            guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
+                return
+            }
+            if let window = scene.windows.first(where: { $0.isKeyWindow }) {
+                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "취소", style: .cancel))
+                alert.addAction(UIAlertAction(title: "설정으로 이동", style: .default) { _ in
+                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                })
+                window.rootViewController?.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+
     
     func shouldUseCustomFrame() -> Bool {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,

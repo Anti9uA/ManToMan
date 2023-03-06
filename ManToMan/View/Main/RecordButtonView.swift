@@ -79,6 +79,7 @@ struct RecordButtonView: View {
                                         overlayToggle.toggle()
                                     }
                                     else {
+                                        flipSpeaker = false
                                         buttonOffset = 0
                                         micTransitionToggle = false
                                         overlayToggle = false

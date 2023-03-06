@@ -276,34 +276,13 @@ struct MainView: View {
                                     isSpeechAuth = true
                                     mv.startRecording(selectedLang: flipSpeaker ? currentLang : "한글", flipSpeaker: flipSpeaker)
                                 } else {
-                                    presentAuthorizationDeniedAlert(title: "Microphone Authorization Denied", message: "Please enable microphone authorization in settings to use this feature")
+                                    mv.presentAuthorizationDeniedAlert(title: "마이크 권한 허용이 필요합니다.", message: "음성인식 기능 사용을 위해 설정으로 이동해 마이크 권한을 허용해주세요.")
                                 }
                             }
                         }, finishRecord: {
                             mv.audioEngine.stop()
                             mv.recognitionRequest?.endAudio()
                         })
-
-
-//                        RecordButtonView(flipSpeaker: $flipSpeaker, text: $mv.text, isFirst: $isFirst, startRecord: {
-//                            mv.requestSpeechAuthorization { success in
-//                                if success {
-//                                    mv.startRecording(selectedLang: flipSpeaker ? currentLang : "한글", flipSpeaker: flipSpeaker)
-//                                } else {
-//                                    print("access denied")
-//                                }
-//                            }
-//
-////                            do {
-////                                try mv.startRecording(selectedLang: flipSpeaker ? currentLang : "한글", flipSpeaker: flipSpeaker)
-////                            } catch {
-////
-////                            }
-//                        }, finishRecord: {
-//                            mv.audioEngine.stop()
-//                            mv.recognitionRequest?.endAudio()
-//                        }
-//                        )
                         .frame(height: 230)     // 하단 가리개가 가릴시 높이 미세 조정
                         
                         
@@ -346,17 +325,6 @@ struct MainView: View {
             }
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
-    }
-    
-    func presentAuthorizationDeniedAlert(title: String, message: String) {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            alert.addAction(UIAlertAction(title: "Settings", style: .default) { _ in
-                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-            })
-            UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: nil)
-        }
     }
 }
 
