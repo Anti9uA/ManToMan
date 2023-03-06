@@ -70,16 +70,15 @@ struct RecordButtonView: View {
                         .onEnded({ gesture in
                             withAnimation(.spring()){
                                 if currentHeight > 150 && gesture.translation.height < 0.0 {
+                                    flipSpeaker = true
                                     self.startRecord()
                                     if isSpeechAuth{
                                         print("toggled!")
                                         buttonOffset = -80
-                                        flipSpeaker = true
                                         micTransitionToggle.toggle()
                                         overlayToggle.toggle()
                                     }
                                     else {
-                                        self.finishRecord()
                                         buttonOffset = 0
                                         micTransitionToggle = false
                                         overlayToggle = false
@@ -92,13 +91,12 @@ struct RecordButtonView: View {
                         })
                 )
                 .onTapGesture {
+                    flipSpeaker = false
                     self.startRecord()
                     if isSpeechAuth {
-                        flipSpeaker = false
                         overlayToggle.toggle()
                     }
                     else {
-                        self.finishRecord()
                         overlayToggle = false
                     }
                 }

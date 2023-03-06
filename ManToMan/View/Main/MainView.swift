@@ -271,25 +271,19 @@ struct MainView: View {
                     ZStack(alignment: .center) {
                         // MARK: 녹음 시작 버튼
                         RecordButtonView(flipSpeaker: $flipSpeaker, text: $mv.text, isFirst: $isFirst, isSpeechAuth: $isSpeechAuth, startRecord: {
-                            mv.requestSpeechAuthorization { success in
+                            AVAudioSession.sharedInstance().requestRecordPermission { success in
                                 if success {
-                                    self.isSpeechAuth = true
+                                    isSpeechAuth = true
                                     mv.startRecording(selectedLang: flipSpeaker ? currentLang : "한글", flipSpeaker: flipSpeaker)
                                 } else {
-                                    let alert = UIAlertController(title: "Speech Recognition Authorization Denied", message: "Please enable speech recognition authorization in settings to use this feature", preferredStyle: .alert)
-                                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-                                    alert.addAction(UIAlertAction(title: "Settings", style: .default) { _ in
-                                        if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
-                                            UIApplication.shared.open(settingsUrl)
-                                        }
-                                    })
-                                    UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: nil)
+                                    presentAuthorizationDeniedAlert(title: "Microphone Authorization Denied", message: "Please enable microphone authorization in settings to use this feature")
                                 }
                             }
                         }, finishRecord: {
                             mv.audioEngine.stop()
                             mv.recognitionRequest?.endAudio()
                         })
+
 
 //                        RecordButtonView(flipSpeaker: $flipSpeaker, text: $mv.text, isFirst: $isFirst, startRecord: {
 //                            mv.requestSpeechAuthorization { success in
@@ -352,6 +346,17 @@ struct MainView: View {
             }
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
+    }
+    
+    func presentAuthorizationDeniedAlert(title: String, message: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: "Settings", style: .default) { _ in
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+            })
+            UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: nil)
+        }
     }
 }
 
