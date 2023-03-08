@@ -17,7 +17,6 @@ struct MainView: View {
     @StateObject var mv = MainViewModel()
     @State var isSheetPresented: Bool = false
     @State var langList: [String] = ["영어", "일본어", "중국어(간체)"]
-    // @State var currentLang: String = "영어"
     @State var isConfrontToggled = false
     @State var isRecordButtonToggled = false
     @State var placeholderLine: CGFloat = 5
@@ -101,7 +100,7 @@ struct MainView: View {
                                     .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
                                     .frame(width: 350)
                                     .background(.white)
-                                    .foregroundColor(Color.mainBlue)
+                                    .foregroundColor(Color.disabledBlue)
                                     .cornerRadius(30)
                             }
                         }
@@ -110,24 +109,7 @@ struct MainView: View {
                     
                     ZStack{
                         
-                        // MARK: 한글 입력 텍스트 필드
-                        //                        if flipSpeaker {
-                        //                            if let translated = mv.translated?.result {
-                        //                                Text(translated.isEmpty ? "상대방이 말하고 있어요." : translated)
-                        //                                    .font(.korean())
-                        //                                    .frame(width: geo.size.width - 72)
-                        //                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
-                        //                                    .frame(width: 290)
-                        //                            }
-                        //                            else {
-                        //                                Text("상대방이 말하고 있어요.")
-                        //                                    .font(.korean())
-                        //                                    .frame(width: geo.size.width - 72)
-                        //                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
-                        //                                    .frame(width: 290)
-                        //                            }
-                        //                        }
-                        
+                        // MARK: 한글 입력 텍스트 필드                        
                         if flipSpeaker {
                             let translated = mv.translated?.result ?? "상대방이 말하고 있어요."
                             Text(translated.isEmpty ? "상대방이 말하고 있어요." : translated)

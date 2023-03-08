@@ -92,6 +92,7 @@ struct RecordButtonView: View {
                         })
                 )
                 .onTapGesture {
+                    isFirst = false
                     flipSpeaker = false
                     self.startRecord()
                     if isSpeechAuth {
