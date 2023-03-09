@@ -153,7 +153,7 @@ struct MainView: View {
                             case .mikeOwned:
                                 Text(mv.text.isEmpty ? "말해주세요." : mv.text)
                                     .font(.korean())
-                                    .frame(width: geo.size.width - 72)
+                                    .frame(width: geo.size.width - 90)
                                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
                                     .foregroundColor(mv.text.isEmpty ? .disabledBlack : .black)
                                     .multilineTextAlignment(.center)
@@ -166,8 +166,9 @@ struct MainView: View {
                                 Text(translated.isEmpty ? "상대방이 말하고 있어요." : translated)
                                     .font(.korean())
                                     .foregroundColor(translated.isEmpty || mv.translated?.result == nil ? .disabledBlack : .black)
-                                    .frame(width: geo.size.width - 72)
-                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+                                    .frame(width: geo.size.width - 90)
+                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 15, trailing: 20))
+                                    .multilineTextAlignment(.center)
                                 
                         }
                         
@@ -177,9 +178,12 @@ struct MainView: View {
                             HStack {
                                 Spacer()
                                 Button(action: {
-                                    mv.text = ""
-                                    // flipSpeaker = false
-                                    mv.mainViewState = .idle
+                                    DispatchQueue.main.async {
+                                        mv.text = ""
+                                        mv.translated?.result = ""
+                                        // flipSpeaker = false
+                                        mv.mainViewState = .idle
+                                    }
                                 }, label: {
                                     Image(systemName: "x.circle.fill")
                                         .foregroundColor(Color.mainBlue)
@@ -245,8 +249,8 @@ struct MainView: View {
                     .overlay(
                         Image("gradientBox")
                             .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 50), alignment: .bottom)
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: geo.size.width, height: 50), alignment: .bottom)
                     if isFirst {
                         Text("마이크를 당겨 상대방 대화도 번역해보세요!")
                             .font(.customCaption())

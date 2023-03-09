@@ -69,24 +69,39 @@ struct RecordButtonView: View {
                             }
                         })
                         .onEnded({ gesture in
-                            AVAudioSession.sharedInstance().requestRecordPermission { success in
-                                withAnimation(.spring()){
-                                    if success {
-                                        if currentHeight > 150 && gesture.translation.height < 0.0 {
-                                            mainViewState = .mikePassed
-                                            self.startRecord()
-                                            print("toggled!")
-                                            buttonOffset = -80
-                                            micTransitionToggle.toggle()
-                                            overlayToggle.toggle()
-                                        }
-                                        else {
-                                            buttonOffset = 0
-                                        }
-                                    }
-                                    else {
-                                        buttonOffset = 0
-                                        rv.presentAuthorizationDeniedAlert(title: "마이크 권한 허용이 필요합니다.", message: "음성인식 기능 사용을 위해 설정으로 이동해 마이크 권한을 허용해주세요.")
+                            SFSpeechRecognizer.requestAuthorization { authStatus in
+                                DispatchQueue.main.async {
+                                    switch authStatus {
+                                        case .authorized:
+                                            AVAudioSession.sharedInstance().requestRecordPermission { success in
+                                                withAnimation(.spring()) {
+                                                    if success {
+                                                        if currentHeight > 150 && gesture.translation.height < 0.0 {
+                                                            mainViewState = .mikePassed
+                                                            self.startRecord()
+                                                            print("toggled!")
+                                                            buttonOffset = -80
+                                                            micTransitionToggle.toggle()
+                                                            overlayToggle.toggle()
+                                                        } else {
+                                                            buttonOffset = 0
+                                                        }
+                                                    } else {
+                                                        buttonOffset = 0
+                                                        rv.presentAuthorizationDeniedAlert(title: "마이크 권한 허용이 필요합니다.", message: "음성인식 기능 사용을 위해 설정으로 이동해 마이크 권한을 허용해주세요.")
+                                                    }
+                                                }
+                                            }
+                                        case .denied, .restricted, .notDetermined:
+                                            withAnimation(.spring()) {
+                                                buttonOffset = 0
+                                                rv.presentAuthorizationDeniedAlert(title: "음성인식 권한 허용이 필요합니다.", message: "음성인식 기능 사용을 위해 설정으로 이동해 음성인식 권한을 허용해주세요.")
+                                            }
+                                        @unknown default:
+                                            withAnimation(.spring()) {
+                                                buttonOffset = 0
+                                                rv.presentAuthorizationDeniedAlert(title: "음성인식 권한 허용이 필요합니다!", message: "원활한 앱 사용을 위해 음성인식 권한을 허용해주세요.")
+                                            }
                                     }
                                 }
                             }
@@ -95,17 +110,32 @@ struct RecordButtonView: View {
                 )
                 .onTapGesture {
                     isFirst = false
-                    AVAudioSession.sharedInstance().requestRecordPermission { success in
-                        if success {
-                            mainViewState = .mikeOwned
-                            self.startRecord()
-                            overlayToggle.toggle()
-                        }
-                        else {
-                            rv.presentAuthorizationDeniedAlert(title: "마이크 권한 허용이 필요합니다.", message: "음성인식 기능 사용을 위해 설정으로 이동해 마이크 권한을 허용해주세요.")
+                    SFSpeechRecognizer.requestAuthorization { authStatus in
+                        DispatchQueue.main.async {
+                            switch authStatus {
+                                case .authorized:
+                                    AVAudioSession.sharedInstance().requestRecordPermission { success in
+                                        withAnimation(.spring()) {
+                                            if success {
+                                                mainViewState = .mikeOwned
+                                                self.startRecord()
+                                                overlayToggle.toggle()
+                                            } else {
+                                                rv.presentAuthorizationDeniedAlert(title: "마이크 권한 허용이 필요합니다.", message: "음성인식 기능 사용을 위해 설정으로 이동해 마이크 권한을 허용해주세요.")
+                                            }
+                                        }
+                                    }
+                                case .denied, .restricted, .notDetermined:
+                                    withAnimation(.spring()) {
+                                        rv.presentAuthorizationDeniedAlert(title: "음성인식 권한 허용이 필요합니다.", message: "음성인식 기능 사용을 위해 설정으로 이동해 음성인식 권한을 허용해주세요.")
+                                    }
+                                @unknown default:
+                                    withAnimation(.spring()) {
+                                        rv.presentAuthorizationDeniedAlert(title: "음성인식 권한 허용이 필요합니다!", message: "원활한 앱 사용을 위해 음성인식 권한을 허용해주세요.")
+                                    }
+                            }
                         }
                     }
-                    
                 }
             }
             
