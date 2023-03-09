@@ -22,7 +22,6 @@ struct MainView: View {
     @State var placeholderLine: CGFloat = 5
     @State var recentOpacity = 0.0
     @State var recentDelay = 0.5
-    @State var flipSpeaker = false
     @State var isSpeechAuth = false
     
     var body: some View {
@@ -54,7 +53,7 @@ struct MainView: View {
                         LanguageSelectionView(langList: $langList, currentLang: $currentLang, isSheetPresented: $isSheetPresented)
                             .presentationDetents([.medium, .large])
                             .onDisappear{
-                                ManToManAPI.instance.postData(text: mv.debouncedText, selectedlang: flipSpeaker ? "한글" : currentLang)
+                                ManToManAPI.instance.postData(text: mv.debouncedText, selectedlang: mv.mainViewState == .mikePassed ? "한글" : currentLang)
                             }
                     }
                     
@@ -102,7 +101,7 @@ struct MainView: View {
                                     .cornerRadius(30)
                                     .multilineTextAlignment(.center)
                                     .onChange(of: mv.debouncedText) { newValue in
-                                        ManToManAPI.instance.postData(text: newValue, selectedlang: flipSpeaker ? "한글" : currentLang)
+                                        ManToManAPI.instance.postData(text: newValue, selectedlang: mv.mainViewState == .mikePassed ? "한글" : currentLang)
                                     }
                         }
     
@@ -137,7 +136,7 @@ struct MainView: View {
                                     .multilineTextAlignment(.center)
                                     .submitLabel(.done)
                                     .onChange(of: mv.debouncedText) { newValue in
-                                        ManToManAPI.instance.postData(text: newValue, selectedlang: flipSpeaker ? "한글" : currentLang)
+                                        ManToManAPI.instance.postData(text: newValue, selectedlang: mv.mainViewState == .mikePassed ? "한글" : currentLang)
                                         if let last = newValue.last, last == "\n" {
                                             mv.text.removeLast()
                                             if !mv.text.isEmpty {
@@ -159,7 +158,7 @@ struct MainView: View {
                                     .foregroundColor(mv.text.isEmpty ? .disabledBlack : .black)
                                     .multilineTextAlignment(.center)
                                     .onChange(of: mv.debouncedText) { newValue in
-                                        ManToManAPI.instance.postData(text: newValue, selectedlang: flipSpeaker ? "한글" : currentLang)
+                                        ManToManAPI.instance.postData(text: newValue, selectedlang: mv.mainViewState == .mikePassed ? "한글" : currentLang)
                                     }
                                 
                             case .mikePassed:
