@@ -155,7 +155,7 @@ struct MainView: View {
                                 Text(mv.text.isEmpty ? "말해주세요." : mv.text)
                                     .font(.korean())
                                     .frame(width: geo.size.width - 72)
-                                    .padding()
+                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
                                     .foregroundColor(mv.text.isEmpty ? .disabledBlack : .black)
                                     .multilineTextAlignment(.center)
                                     .onChange(of: mv.debouncedText) { newValue in
@@ -169,7 +169,6 @@ struct MainView: View {
                                     .foregroundColor(translated.isEmpty || mv.translated?.result == nil ? .disabledBlack : .black)
                                     .frame(width: geo.size.width - 72)
                                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
-                                    .frame(width: 290)
                                 
                         }
                         
@@ -234,7 +233,7 @@ struct MainView: View {
                                     .frame(height: 10)
                                     .padding(.top, 20)
                             }
-                            if !mv.text.isEmpty || mv.text == "\n" || mv.mainViewState == .mikePassed{
+                            if !mv.text.isEmpty || mv.text == "\n" || mv.mainViewState != .idle {
                                 Color.background
                             }
                         }
