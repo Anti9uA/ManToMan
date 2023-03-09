@@ -67,97 +67,112 @@ struct MainView: View {
                             .frame(width: geo.size.width - 40, height: 160)
                             .foregroundColor(Color.white)
                         
-                        if flipSpeaker {
-                            Text(mv.text.isEmpty ? mv.defaultString.pleaseSpeak[currentLang]! : mv.text)
-                                .font(.english())
-                                .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
-                                .frame(width: geo.size.width - 72)
-                                .padding()
-                                .background(.white)
-                                .foregroundColor(Color.mainBlue)
-                                .cornerRadius(30)
-                                .multilineTextAlignment(.center)
-                                .onChange(of: mv.debouncedText) { newValue in
-                                    ManToManAPI.instance.postData(text: newValue, selectedlang: flipSpeaker ? "한글" : currentLang)
+                        switch mv.mainViewState {
+                            case .idle, .mikeOwned:
+                                if let translated = mv.translated?.result {
+                                    Text(translated.isEmpty ? mv.defaultString.idle[currentLang]! : translated)
+                                        .font(.english())
+                                        .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
+                                        .frame(width: geo.size.width - 72)
+                                        .padding()
+                                        .background(.white)
+                                        .foregroundColor(translated.isEmpty ? Color.disabledBlue : Color.mainBlue)
+                                        .cornerRadius(30)
+                                        .multilineTextAlignment(.center)
                                 }
-                        }
-                        else {
-                            if let translated = mv.translated?.result {
-                                Text(translated.isEmpty ? mv.defaultString.idle[currentLang]! : translated)
+                                
+                                else {
+                                    Text(mv.defaultString.idle[currentLang]!)
+                                        .font(.korean())
+                                        .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
+                                        .frame(width: 350)
+                                        .background(.white)
+                                        .foregroundColor(Color.disabledBlue)
+                                        .cornerRadius(30)
+                                }
+                                
+                            case .mikePassed:
+                                Text(mv.text.isEmpty ? mv.defaultString.pleaseSpeak[currentLang]! : mv.text)
                                     .font(.english())
                                     .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
                                     .frame(width: geo.size.width - 72)
                                     .padding()
                                     .background(.white)
-                                    .foregroundColor(translated.isEmpty ? Color.disabledBlue : Color.mainBlue)
+                                    .foregroundColor(Color.mainBlue)
                                     .cornerRadius(30)
                                     .multilineTextAlignment(.center)
-                            }
-                            
-                            else {
-                                Text(mv.defaultString.idle[currentLang]!)
-                                    .font(.korean())
-                                    .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
-                                    .frame(width: 350)
-                                    .background(.white)
-                                    .foregroundColor(Color.disabledBlue)
-                                    .cornerRadius(30)
-                            }
+                                    .onChange(of: mv.debouncedText) { newValue in
+                                        ManToManAPI.instance.postData(text: newValue, selectedlang: flipSpeaker ? "한글" : currentLang)
+                                    }
                         }
+    
                     }
                     .padding(.bottom, 40)
                     
                     ZStack{
                         
-                        // MARK: 한글 입력 텍스트 필드                        
-                        if flipSpeaker {
-                            let translated = mv.translated?.result ?? "상대방이 말하고 있어요."
-                            Text(translated.isEmpty ? "상대방이 말하고 있어요." : translated)
-                                .font(.korean())
-                                .frame(width: geo.size.width - 72)
-                                .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
-                                .frame(width: 290)
+                        // MARK: 한글 입력 텍스트 필드
+                        switch mv.mainViewState {
+                            case .idle:
+                                TextField("", text: $mv.text, axis: .vertical)
+                                    .placeholder(when: mv.text.isEmpty) {
+                                        VStack{
+                                            Text("한국어를 입력하세요.")
+                                                .foregroundColor(Color.disabledBlack)
+                                                .padding(.top, 25)
+                                            
+                                            Rectangle()
+                                                .fill(.blue)
+                                                .cornerRadius(10)
+                                                .frame(width: placeholderLine, height: 5)
+                                                .padding(.bottom, 1)
+                                                .offset(y: -10)
+                                            Spacer()
+                                        }
+                                        .frame(height: 50)
+                                    }
+                                    .font(.korean())
+                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
+                                    .frame(width: 290)
+                                    .multilineTextAlignment(.center)
+                                    .submitLabel(.done)
+                                    .onChange(of: mv.debouncedText) { newValue in
+                                        ManToManAPI.instance.postData(text: newValue, selectedlang: flipSpeaker ? "한글" : currentLang)
+                                        if let last = newValue.last, last == "\n" {
+                                            mv.text.removeLast()
+                                            if !mv.text.isEmpty {
+                                                DataController().addRecent(sentence: mv.text, context: managedObjContext)
+                                            }
+                                            hideKeyboard()
+                                        }
+                                    }
+                                    .onAppear {
+                                        withAnimation(.easeInOut(duration: 0.25).delay(0.3)){
+                                            placeholderLine = 190
+                                        }
+                                    }
+                            case .mikeOwned:
+                                Text(mv.text.isEmpty ? "말해주세요." : mv.text)
+                                    .font(.korean())
+                                    .frame(width: geo.size.width - 72)
+                                    .padding()
+                                    .foregroundColor(mv.text.isEmpty ? .disabledBlack : .black)
+                                    .multilineTextAlignment(.center)
+                                    .onChange(of: mv.debouncedText) { newValue in
+                                        ManToManAPI.instance.postData(text: newValue, selectedlang: flipSpeaker ? "한글" : currentLang)
+                                    }
+                                
+                            case .mikePassed:
+                                let translated = mv.translated?.result ?? "상대방이 말하고 있어요."
+                                Text(translated.isEmpty ? "상대방이 말하고 있어요." : translated)
+                                    .font(.korean())
+                                    .foregroundColor(translated.isEmpty || mv.translated?.result == nil ? .disabledBlack : .black)
+                                    .frame(width: geo.size.width - 72)
+                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+                                    .frame(width: 290)
+                                
                         }
                         
-                        else {
-                            TextField("", text: $mv.text, axis: .vertical)
-                                .placeholder(when: mv.text.isEmpty) {
-                                    VStack{
-                                        Text("한국어를 입력하세요.")
-                                            .foregroundColor(Color.disabledBlack)
-                                            .padding(.top, 25)
-                                        
-                                        Rectangle()
-                                            .fill(.blue)
-                                            .cornerRadius(10)
-                                            .frame(width: placeholderLine, height: 5)
-                                            .padding(.bottom, 1)
-                                            .offset(y: -10)
-                                        Spacer()
-                                    }
-                                    .frame(height: 50)
-                                }
-                                .font(.korean())
-                                .padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
-                                .frame(width: 290)
-                                .multilineTextAlignment(.center)
-                                .submitLabel(.done)
-                                .onChange(of: mv.debouncedText) { newValue in
-                                    ManToManAPI.instance.postData(text: newValue, selectedlang: flipSpeaker ? "한글" : currentLang)
-                                    if let last = newValue.last, last == "\n" {
-                                        mv.text.removeLast()
-                                        if !mv.text.isEmpty {
-                                            DataController().addRecent(sentence: mv.text, context: managedObjContext)
-                                        }
-                                        hideKeyboard()
-                                    }
-                                }
-                                .onAppear {
-                                    withAnimation(.easeInOut(duration: 0.25).delay(0.3)){
-                                        placeholderLine = 190
-                                    }
-                                }
-                        }
                         // MARK: 입력 일괄 삭제 버튼
                         
                         if !mv.text.isEmpty && !mv.audioEngine.isRunning  {
@@ -165,7 +180,8 @@ struct MainView: View {
                                 Spacer()
                                 Button(action: {
                                     mv.text = ""
-                                    flipSpeaker = false
+                                    // flipSpeaker = false
+                                    mv.mainViewState = .idle
                                 }, label: {
                                     Image(systemName: "x.circle.fill")
                                         .foregroundColor(Color.mainBlue)
@@ -218,7 +234,7 @@ struct MainView: View {
                                     .frame(height: 10)
                                     .padding(.top, 20)
                             }
-                            if !mv.text.isEmpty || mv.text == "\n" || flipSpeaker{
+                            if !mv.text.isEmpty || mv.text == "\n" || mv.mainViewState == .mikePassed{
                                 Color.background
                             }
                         }
@@ -252,15 +268,8 @@ struct MainView: View {
                     
                     ZStack(alignment: .center) {
                         // MARK: 녹음 시작 버튼
-                        RecordButtonView(flipSpeaker: $flipSpeaker, text: $mv.text, isFirst: $isFirst, isSpeechAuth: $isSpeechAuth, startRecord: {
-                            AVAudioSession.sharedInstance().requestRecordPermission { success in
-                                if success {
-                                    isSpeechAuth = true
-                                    mv.startRecording(selectedLang: flipSpeaker ? currentLang : "한글", flipSpeaker: flipSpeaker)
-                                } else {
-                                    mv.presentAuthorizationDeniedAlert(title: "마이크 권한 허용이 필요합니다.", message: "음성인식 기능 사용을 위해 설정으로 이동해 마이크 권한을 허용해주세요.")
-                                }
-                            }
+                        RecordButtonView(mainViewState: $mv.mainViewState, text: $mv.text, isFirst: $isFirst, isSpeechAuth: $isSpeechAuth, startRecord: {
+                            mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? currentLang : "한글")
                         }, finishRecord: {
                             mv.audioEngine.stop()
                             mv.recognitionRequest?.endAudio()

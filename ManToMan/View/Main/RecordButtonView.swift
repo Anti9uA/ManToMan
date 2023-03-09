@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import Speech
 
 struct RecordButtonView: View {
     @Environment(\.managedObjectContext) var managedObjContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var recent: FetchedResults<Recent>
-    
+    @StateObject var rv = RecordViewModel()
     @State var buttonOffset: CGFloat = 0.0
     // 전체 Zstack의 높이 - 패딩값
     @State var buttonheight : Double = 150
@@ -22,7 +23,7 @@ struct RecordButtonView: View {
     @State var delay3 = 0.8
     @State private var isAnimationPlaying = true
     
-    @Binding var flipSpeaker: Bool
+    @Binding var mainViewState: MainViewState
     @Binding var text: String
     @Binding var isFirst: Bool
     @Binding var isSpeechAuth: Bool
@@ -68,39 +69,43 @@ struct RecordButtonView: View {
                             }
                         })
                         .onEnded({ gesture in
-                            withAnimation(.spring()){
-                                if currentHeight > 150 && gesture.translation.height < 0.0 {
-                                    flipSpeaker = true
-                                    self.startRecord()
-                                    if isSpeechAuth{
-                                        print("toggled!")
-                                        buttonOffset = -80
-                                        micTransitionToggle.toggle()
-                                        overlayToggle.toggle()
+                            AVAudioSession.sharedInstance().requestRecordPermission { success in
+                                withAnimation(.spring()){
+                                    if success {
+                                        if currentHeight > 150 && gesture.translation.height < 0.0 {
+                                            mainViewState = .mikePassed
+                                            self.startRecord()
+                                            print("toggled!")
+                                            buttonOffset = -80
+                                            micTransitionToggle.toggle()
+                                            overlayToggle.toggle()
+                                        }
+                                        else {
+                                            buttonOffset = 0
+                                        }
                                     }
                                     else {
-                                        flipSpeaker = false
                                         buttonOffset = 0
-                                        micTransitionToggle = false
-                                        overlayToggle = false
+                                        rv.presentAuthorizationDeniedAlert(title: "마이크 권한 허용이 필요합니다.", message: "음성인식 기능 사용을 위해 설정으로 이동해 마이크 권한을 허용해주세요.")
                                     }
                                 }
-                                else {
-                                    buttonOffset = 0
-                                }
                             }
+                            
                         })
                 )
                 .onTapGesture {
                     isFirst = false
-                    flipSpeaker = false
-                    self.startRecord()
-                    if isSpeechAuth {
-                        overlayToggle.toggle()
+                    AVAudioSession.sharedInstance().requestRecordPermission { success in
+                        if success {
+                            mainViewState = .mikeOwned
+                            self.startRecord()
+                            overlayToggle.toggle()
+                        }
+                        else {
+                            rv.presentAuthorizationDeniedAlert(title: "마이크 권한 허용이 필요합니다.", message: "음성인식 기능 사용을 위해 설정으로 이동해 마이크 권한을 허용해주세요.")
+                        }
                     }
-                    else {
-                        overlayToggle = false
-                    }
+                    
                 }
             }
             
@@ -147,21 +152,21 @@ struct RecordButtonView: View {
                                     .frame(width: 32, height: 32)
                                     .foregroundColor(.white)
                                     .font(.headline)
-                                if flipSpeaker {
+                                if mainViewState == .mikePassed {
                                     Text("STOP")
                                         .font(.system(size: 20, weight: .bold))
                                         .foregroundColor(.white)
                                 }
                             }
                         }
-                        .transition(.opacity.animation(.easeIn(duration: 0.3).delay(flipSpeaker ? delay3 : 0)))
+                        .transition(.opacity.animation(.easeIn(duration: 0.3).delay(mainViewState == .mikePassed ? delay3 : 0)))
                         .onTapGesture {
-                            if !text.isEmpty && text != "듣는중.." && !flipSpeaker {
+                            if !text.isEmpty && text != "듣는중.." && mainViewState != .mikePassed {
                                 DataController().addRecent(sentence: text, context: managedObjContext)
                             }
                             else if text.isEmpty{
                                 text = ""
-                                flipSpeaker = false
+                                mainViewState = .idle
                             }
                             else {
                                 text = ""
@@ -196,7 +201,7 @@ struct RecordButtonView: View {
 
 struct TestButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordButtonView(flipSpeaker: .constant(true), text: .constant("asdf"), isFirst: .constant(true), isSpeechAuth: .constant(true), startRecord: {
+        RecordButtonView(mainViewState: .constant(.idle), text: .constant("asdf"), isFirst: .constant(true), isSpeechAuth: .constant(true), startRecord: {
             print("voice record start")
         }, finishRecord: {
             print("voice record finished")

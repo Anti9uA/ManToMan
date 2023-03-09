@@ -12,10 +12,11 @@ import SwiftUI
 
 class MainViewModel: ObservableObject {
     @Published var translated: TranslatedModel?
-    @Published var text : String = ""
-    @Published var debouncedText: String = ""
     @Published var defaultString = DefaultStringModel()
     @Published var langModel = LangListModel()
+    @Published var mainViewState: MainViewState = .idle
+    @Published var text : String = ""
+    @Published var debouncedText: String = ""
     
     let manToManAPI = ManToManAPI.instance
     
@@ -41,7 +42,7 @@ class MainViewModel: ObservableObject {
     private func addKyuSubscriber() {
         manToManAPI.$translated
             .sink { [weak self] (receiveModel) in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [weak self] in
                     self?.translated = receiveModel
                 }
             }
@@ -49,7 +50,7 @@ class MainViewModel: ObservableObject {
     }
     
     
-    func startRecording(selectedLang: String, flipSpeaker: Bool) {
+    func startRecording(selectedLang: String) {
         let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: langModel.langList[selectedLang]!))!
         
         recognitionTask?.cancel()
@@ -124,23 +125,6 @@ class MainViewModel: ObservableObject {
             }
         }
     }
-    
-    func presentAuthorizationDeniedAlert(title: String, message: String) {
-        DispatchQueue.main.async {
-            guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
-                return
-            }
-            if let window = scene.windows.first(where: { $0.isKeyWindow }) {
-                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "취소", style: .cancel))
-                alert.addAction(UIAlertAction(title: "설정으로 이동", style: .default) { _ in
-                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-                })
-                window.rootViewController?.present(alert, animated: true, completion: nil)
-            }
-        }
-    }
-    
     
     func shouldUseCustomFrame() -> Bool {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,

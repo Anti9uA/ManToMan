@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum MainViewState {
+    case idle
+    case mikeOwned
+    case mikePassed
+}
+
 struct TranslatedModel: Codable {
     var result: String = ""
 }
