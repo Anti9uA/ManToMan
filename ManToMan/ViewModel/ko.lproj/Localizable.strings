@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  ManToMan
+
+  Created by Kyubo Shim on 2023/03/20.
+  
+*/
+
+"onboarding_description_0" = "상대방과 마주보며 대화해보세요.";
+"onboarding_description_1" = "최근 기록에서 빠르게 불러올 수 있어요.";
+"onboarding_description_2" = "마이크를 건네 대답도 번역해보세요.";
+
+"onboardingImage0" = "KROnboarding0";
+"onboardingImage1" = "KROnboarding1";
+"onboardingImage2" = "KROnboarding2";
+
+"langlist_0" = "영어";
+"langlist_1" = "일본어";
+"langlist_2" = "중국어(간체)";
+
+"상대방이 말하고 있어요." = "Partner speaking.";
+"partner_speaking" = "상대방이 말하고 있어요.";
+
+"말해주세요." = "Please Speak.";
+"user_speaking" = "말해주세요.";
+
+"시작하기" = "시작하기";

@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  ManToMan
+
+  Created by Kyubo Shim on 2023/03/20.
+  
+*/
+
+"onboarding_description_0" = "相手と向かい合って話すことができます。";
+"onboarding_description_1" = "最近の履歴からすぐに取り出せます。";
+"onboarding_description_2" = "マイクを渡して返事も翻訳できます。";
+
+"langlist_0" = "英語";
+"langlist_1" = "韓国語";
+"langlist_2" = "中国語";
+"시작하기" = "スタート";
+
+"한국어를 입력하세요." = "日本語のテキストを入力してください";
+
+"상대방이 말하고 있어요." = "Partner speaking.";
+"partner_speaking" = "相手が言っています。";
+
+"말해주세요." = "Please Speak.";
+"user_speaking" = "話してください。";
+
+"상대방은 어떤 언어를 사용하나요?" = "相手はどんな言語を使いますか？";
+
+"마이크를 당겨 상대방 대화도 번역해보세요!" = "マイクを引いて相手の会話も翻訳してみてください！";

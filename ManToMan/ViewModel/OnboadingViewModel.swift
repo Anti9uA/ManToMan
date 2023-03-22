@@ -11,7 +11,7 @@ import SwiftUI
 class OnboardingViewModel: ObservableObject {
     @Published var pageIndex = 0
     @Binding var isFirst: Bool
-    let pages: [OnboardingPage] = OnboardingPage.samplePages
+    let pages: [OnboardingPage] = OnboardingPage.OnboardingResources
     
     init(isFirst: Binding<Bool>) {
         self._isFirst = isFirst

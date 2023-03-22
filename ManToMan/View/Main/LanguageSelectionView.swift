@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct LanguageSelectionView: View {
-    @Binding var langList: [String]
+    @Binding var langList: [Lang]
     @Binding var currentLang: String
     @Binding var isSheetPresented: Bool
+    
     
     var body: some View {
         VStack (alignment: .center){
@@ -26,6 +27,7 @@ struct LanguageSelectionView: View {
                         Text("상대방은 어떤 언어를 사용하나요?")
                             .font(.customTitle())
                             .padding(EdgeInsets(top: 40, leading: 0, bottom: 18, trailing: 0))
+                            .multilineTextAlignment(.center)
                         
                         Spacer()
                     }
@@ -40,13 +42,13 @@ struct LanguageSelectionView: View {
                         Spacer()
                         
                         Button(action: {
-                            currentLang = lang
+                            currentLang = NSLocalizedString(lang.key, comment: "")
                             isSheetPresented = false
                         }, label: {
-                            Text(lang)
+                            Text(NSLocalizedString(lang.key, comment: ""))
                                 .padding(.vertical, 18)
                                 .font(.customeBody())
-                                .foregroundColor(lang == currentLang ? Color.mainBlue : Color.black)
+                                .foregroundColor(currentLang == NSLocalizedString(lang.key, comment: "") ? Color.mainBlue : Color.black)
                         })
                         
                         Spacer()
@@ -57,10 +59,15 @@ struct LanguageSelectionView: View {
             .listStyle(.inset)
         }
     }
-}
-
-struct LanguageSelectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        LanguageSelectionView(langList: .constant(["영어", "일본어", "중국어(간체)"]), currentLang: .constant("영어"), isSheetPresented: .constant(true))
+    
+    func localizedStringForLocalizedStringKey(_ key: LocalizedStringKey) -> String {
+            let keyString = "\(key)"
+            return NSLocalizedString(keyString, comment: "")
     }
 }
+
+//struct LanguageSelectionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LanguageSelectionView(langList: .constant(["영어", "일본어", "중국어(간체)"]), currentLang: .constant("영어"), isSheetPresented: .constant(true))
+//    }
+//}

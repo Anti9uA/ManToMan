@@ -6,18 +6,24 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct OnboardingPage: Identifiable, Equatable {
     let id = UUID()
-    var description: String
+    var description: LocalizedStringKey
     var imageUrl: String
     var tag: Int
     
-    static var samplePage = OnboardingPage(description: "This is a sample description for the purpose of debugging", imageUrl: "work", tag: 0)
-    
-    static var samplePages: [OnboardingPage] = [
-        OnboardingPage(description: "상대방과 마주보며 대화해보세요", imageUrl: "onboarding1", tag: 0),
-        OnboardingPage(description: "번역 기록에서 빠르게 말을 불러와요", imageUrl: "onboarding2", tag: 1),
-        OnboardingPage(description: "마이크를 건네 대답도 번역해 보세요!", imageUrl: "onboarding3", tag: 2),
+    static var OnboardingResources: [OnboardingPage] = [
+        OnboardingPage(description: "onboarding_description_0", imageUrl: NSLocalizedString("onboardingImage0", comment: ""), tag: 0),
+        OnboardingPage(description: "onboarding_description_1", imageUrl: NSLocalizedString("onboardingImage1", comment: ""), tag: 1),
+        OnboardingPage(description: "onboarding_description_2", imageUrl: NSLocalizedString("onboardingImage2", comment: ""), tag: 2),
     ]
 }
+//    static var ENOnboardingResources: [OnboardingPage] = [
+//        OnboardingPage(description: "You can talk Face to Face!", imageUrl: "onboarding1", tag: 0),
+//        OnboardingPage(description: "Search fastly from recent records!", imageUrl: "onboarding2", tag: 1),
+//        OnboardingPage(description: "Drag the microphone\nto translate the action", imageUrl: "onboarding3", tag: 2),
+//    ]
+
+

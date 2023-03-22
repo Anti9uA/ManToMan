@@ -14,8 +14,10 @@ class ManToManAPI {
     
     @Published var translated : TranslatedModel?
     @Published var initialText : String = ""
-    @Published var langList: [String: String] = ["한글" : "ko", "영어": "en", "일본어": "ja", "중국어(간체)": "zh-cn"]
-    
+    @Published var langList: [String: String] = ["한글" : "ko", "영어": "en", "일본어": "ja", "중국어(간체)": "zh-cn",
+                                                 "Korean" : "ko", "Japanese" : "ja", "Chinese" : "zh-cn", "English" : "en",
+                                                 "韓国語" : "ko", "英語" : "en", "中国語" : "zh-cn", "日本語" : "ja"]
+
     static let instance = ManToManAPI()
     
     var cancellables = Set<AnyCancellable>()

@@ -13,8 +13,8 @@ struct OnboardingPageView: View {
     
     var body: some View {
         ZStack{
-            VStack(spacing: 50) {
-                Image("\(onboardingPage.imageUrl)")
+            VStack(spacing: 45) {
+                Image(onboardingPage.imageUrl)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 240)

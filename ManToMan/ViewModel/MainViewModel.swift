@@ -17,6 +17,11 @@ class MainViewModel: ObservableObject {
     @Published var mainViewState: MainViewState = .idle
     @Published var text : String = ""
     @Published var debouncedText: String = ""
+    @Published var langList: [Lang] = [
+        Lang(key: "langlist_0", displayName: NSLocalizedString("langlist_0", comment: "")),
+            Lang(key: "langlist_1", displayName: NSLocalizedString("langlist_1", comment: "")),
+            Lang(key: "langlist_2", displayName: NSLocalizedString("langlist_2", comment: ""))
+        ]
     
     let manToManAPI = ManToManAPI.instance
     

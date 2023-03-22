@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  ManToMan
+
+  Created by Kyubo Shim on 2023/03/20.
+  
+*/
+
+"onboarding_description_0" = "You can talk Face to Face!";
+"onboarding_description_1" = "Search fastly from recent records!";
+"onboarding_description_2" = "Drag to translate partner's response!";
+
+"onboardingImage0" = "ENOnboarding0";
+"onboardingImage1" = "ENOnboarding1";
+"onboardingImage2" = "ENOnboarding2";
+
+"langlist_0" = "Korean";
+"langlist_1" = "Japanese";
+"langlist_2" = "Chinese";
+"시작하기" = "Let's Start!";
+
+"한국어를 입력하세요." = "Enter English Text";
+
+"상대방이 말하고 있어요." = "Partner speaking.";
+"partner_speaking" = "Partner speaking.";
+
+"말해주세요." = "Please Speak.";
+"user_speaking" = "Please Speak.";
+
+"상대방은 어떤 언어를 사용하나요?" = "What language does your partner speaks?";
+
+"마이크를 당겨 상대방 대화도 번역해보세요!" = "Drag to translate your partner's conversation!";
+
+

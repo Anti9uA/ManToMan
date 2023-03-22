@@ -19,6 +19,9 @@
 		203D3E5B2990204A0050163B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D3E5A2990204A0050163B /* LottieView.swift */; };
 		203D3E5F2990F2CA0050163B /* speaking.json in Resources */ = {isa = PBXBuildFile; fileRef = 203D3E5E2990F2CA0050163B /* speaking.json */; };
 		20421FBA29AE841C00310030 /* OnboadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20421FB929AE841C00310030 /* OnboadingViewModel.swift */; };
+		20CC720F29C80C3900920757 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 20CC721129C80C3900920757 /* Localizable.strings */; };
+		20CC721629CB46CB00920757 /* LanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CC721529CB46CB00920757 /* LanguageViewModel.swift */; };
+		20CC721829CB46E700920757 /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CC721729CB46E700920757 /* LanguageModel.swift */; };
 		20DBD9CE298ECB0400BF882B /* ManToManApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9CD298ECB0400BF882B /* ManToManApp.swift */; };
 		20DBD9D0298ECB0400BF882B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9CF298ECB0400BF882B /* MainView.swift */; };
 		20DBD9D2298ECB0600BF882B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20DBD9D1298ECB0600BF882B /* Assets.xcassets */; };
@@ -51,6 +54,10 @@
 		203D3E5A2990204A0050163B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		203D3E5E2990F2CA0050163B /* speaking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = speaking.json; sourceTree = "<group>"; };
 		20421FB929AE841C00310030 /* OnboadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboadingViewModel.swift; sourceTree = "<group>"; };
+		20CC721329C80C3E00920757 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		20CC721429C813BF00920757 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		20CC721529CB46CB00920757 /* LanguageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewModel.swift; sourceTree = "<group>"; };
+		20CC721729CB46E700920757 /* LanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageModel.swift; sourceTree = "<group>"; };
 		20DBD9CA298ECB0400BF882B /* ManToMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManToMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DBD9CD298ECB0400BF882B /* ManToManApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManToManApp.swift; sourceTree = "<group>"; };
 		20DBD9CF298ECB0400BF882B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -188,6 +195,8 @@
 			isa = PBXGroup;
 			children = (
 				20DBD9E7298ECCD800BF882B /* MainViewModel.swift */,
+				20CC721529CB46CB00920757 /* LanguageViewModel.swift */,
+				20CC721129C80C3900920757 /* Localizable.strings */,
 				20421FB929AE841C00310030 /* OnboadingViewModel.swift */,
 				201EBD0529B96EFF00B6C885 /* RecordViewModel.swift */,
 			);
@@ -201,6 +210,7 @@
 				20DBD9E3298ECC9200BF882B /* DataController.swift */,
 				20DBD9E5298ECCC400BF882B /* MainModel.swift */,
 				20162845299DFCF000D0A5E5 /* OnboardingPageModel.swift */,
+				20CC721729CB46E700920757 /* LanguageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -288,6 +298,7 @@
 				en,
 				Base,
 				ko,
+				ja,
 			);
 			mainGroup = 20DBD9C1298ECB0400BF882B;
 			packageReferences = (
@@ -309,6 +320,7 @@
 			files = (
 				2016284B299E118B00D0A5E5 /* hand.json in Resources */,
 				B22EC64D298FABCB0034977E /* LINESeedKR-Rg.otf in Resources */,
+				20CC720F29C80C3900920757 /* Localizable.strings in Resources */,
 				B22EC652298FAC270034977E /* LINESeedSans_A_Bd.otf in Resources */,
 				2016283D299DF9E800D0A5E5 /* launchScreen.json in Resources */,
 				B22EC64C298FABCB0034977E /* LINESeedKR-Bd.otf in Resources */,
@@ -341,7 +353,9 @@
 				201EBD0629B96EFF00B6C885 /* RecordViewModel.swift in Sources */,
 				20DBD9E8298ECCD800BF882B /* MainViewModel.swift in Sources */,
 				20421FBA29AE841C00310030 /* OnboadingViewModel.swift in Sources */,
+				20CC721629CB46CB00920757 /* LanguageViewModel.swift in Sources */,
 				203D3E5B2990204A0050163B /* LottieView.swift in Sources */,
+				20CC721829CB46E700920757 /* LanguageModel.swift in Sources */,
 				20162840299DFC7300D0A5E5 /* OnboardingView.swift in Sources */,
 				20DBD9ED298ECD4B00BF882B /* RecordButtonView.swift in Sources */,
 				20DBD9F6298ED89800BF882B /* FontExtension.swift in Sources */,
@@ -350,6 +364,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		20CC721129C80C3900920757 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20CC721329C80C3E00920757 /* en */,
+				20CC721429C813BF00920757 /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		20DBD9D6298ECB0600BF882B /* Debug */ = {
@@ -482,8 +508,8 @@
 				INFOPLIST_FILE = ManToMan/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "맨투맨";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 번역을 위해 마이크 사용을 허가해주세요.";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "음성 번역을 위해 권한을 허가해주세요.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -520,8 +546,8 @@
 				INFOPLIST_FILE = ManToMan/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "맨투맨";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 번역을 위해 마이크 사용을 허가해주세요.";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "음성 번역을 위해 권한을 허가해주세요.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

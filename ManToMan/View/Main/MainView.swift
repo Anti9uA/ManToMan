@@ -12,18 +12,24 @@ import Speech
 struct MainView: View {
     @Environment(\.managedObjectContext) var managedObjContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var recent: FetchedResults<Recent>
-    @AppStorage("selectedLang") var currentLang: String = "영어"
+    // @AppStorage("selectedLang") var currentLang: String = "영어"
     @AppStorage("mikeInstruction") var isFirst: Bool = true
-    @StateObject var mv = MainViewModel()
+    @AppStorage("currenLocale") var currentLocale: String = Locale.current.language.languageCode!.identifier as String
+    @StateObject private var mv = MainViewModel()
+    @StateObject private var lv = LanguageViewModel()
     @State var isSheetPresented: Bool = false
-    @State var langList: [String] = ["영어", "일본어", "중국어(간체)"]
+//    @State var langList: [LocalizedStringKey] = [LocalizedStringKey("langlist_0"), LocalizedStringKey("langlist_1"), LocalizedStringKey("langlist_2")]
     @State var isConfrontToggled = false
     @State var isRecordButtonToggled = false
     @State var placeholderLine: CGFloat = 5
     @State var recentOpacity = 0.0
     @State var recentDelay = 0.5
     @State var isSpeechAuth = false
+    private var defaultLang: [String: String] = ["ko": "한글", "en" : "영어", "ja": "일본어"]
     
+    init() {
+        print(currentLocale)
+    }
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -41,7 +47,7 @@ struct MainView: View {
                         self.isSheetPresented.toggle()
                     }, label: {
                         HStack {
-                            Text("\(currentLang)")
+                            Text("\(lv.currentLang)")
                                 .font(.customTitle())
                                 .foregroundColor(.black)
                             
@@ -50,10 +56,10 @@ struct MainView: View {
                         }
                     })
                     .sheet(isPresented: $isSheetPresented) {
-                        LanguageSelectionView(langList: $langList, currentLang: $currentLang, isSheetPresented: $isSheetPresented)
+                        LanguageSelectionView(langList: $mv.langList, currentLang: $lv.currentLang, isSheetPresented: $isSheetPresented)
                             .presentationDetents([.medium, .large])
                             .onDisappear{
-                                ManToManAPI.instance.postData(text: mv.debouncedText, selectedlang: mv.mainViewState == .mikePassed ? "한글" : currentLang)
+                                ManToManAPI.instance.postData(text: mv.debouncedText, selectedlang: mv.mainViewState == .mikePassed ? defaultLang[currentLocale] ?? "한글" : lv.currentLang)
                             }
                     }
                     
@@ -69,7 +75,7 @@ struct MainView: View {
                         switch mv.mainViewState {
                             case .idle, .mikeOwned:
                                 if let translated = mv.translated?.result {
-                                    Text(translated.isEmpty ? mv.defaultString.idle[currentLang]! : translated)
+                                    Text(translated.isEmpty ? mv.defaultString.idle[lv.currentLang]! : translated)
                                         .font(.english())
                                         .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
                                         .frame(width: geo.size.width - 72)
@@ -81,7 +87,7 @@ struct MainView: View {
                                 }
                                 
                                 else {
-                                    Text(mv.defaultString.idle[currentLang]!)
+                                    Text(mv.defaultString.idle[lv.currentLang]!)
                                         .font(.korean())
                                         .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
                                         .frame(width: 350)
@@ -91,7 +97,7 @@ struct MainView: View {
                                 }
                                 
                             case .mikePassed:
-                                Text(mv.text.isEmpty ? mv.defaultString.pleaseSpeak[currentLang]! : mv.text)
+                                Text(mv.text.isEmpty ? mv.defaultString.pleaseSpeak[lv.currentLang]! : mv.text)
                                     .font(.english())
                                     .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
                                     .frame(width: geo.size.width - 72)
@@ -101,7 +107,7 @@ struct MainView: View {
                                     .cornerRadius(30)
                                     .multilineTextAlignment(.center)
                                     .onChange(of: mv.debouncedText) { newValue in
-                                        ManToManAPI.instance.postData(text: newValue, selectedlang: mv.mainViewState == .mikePassed ? "한글" : currentLang)
+                                        ManToManAPI.instance.postData(text: newValue, selectedlang: mv.mainViewState == .mikePassed ? defaultLang[currentLocale] ?? "한글" : lv.currentLang)
                                     }
                         }
     
@@ -121,7 +127,7 @@ struct MainView: View {
                                                 .padding(.top, 25)
                                             
                                             Rectangle()
-                                                .fill(.blue)
+                                                .fill(Color.mainBlue)
                                                 .cornerRadius(10)
                                                 .frame(width: placeholderLine, height: 5)
                                                 .padding(.bottom, 1)
@@ -136,7 +142,7 @@ struct MainView: View {
                                     .multilineTextAlignment(.center)
                                     .submitLabel(.done)
                                     .onChange(of: mv.debouncedText) { newValue in
-                                        ManToManAPI.instance.postData(text: newValue, selectedlang: mv.mainViewState == .mikePassed ? "한글" : currentLang)
+                                        ManToManAPI.instance.postData(text: newValue, selectedlang: mv.mainViewState == .mikePassed ? defaultLang[currentLocale] ?? "한글" : lv.currentLang)
                                         if let last = newValue.last, last == "\n" {
                                             mv.text.removeLast()
                                             if !mv.text.isEmpty {
@@ -147,23 +153,23 @@ struct MainView: View {
                                     }
                                     .onAppear {
                                         withAnimation(.easeInOut(duration: 0.25).delay(0.3)){
-                                            placeholderLine = 190
+                                            placeholderLine = 200
                                         }
                                     }
                             case .mikeOwned:
-                                Text(mv.text.isEmpty ? "말해주세요." : mv.text)
+                                Text(mv.text.isEmpty ? NSLocalizedString("user_speaking", comment: "") : mv.text)
                                     .font(.korean())
                                     .frame(width: geo.size.width - 90)
                                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
                                     .foregroundColor(mv.text.isEmpty ? .disabledBlack : .black)
                                     .multilineTextAlignment(.center)
                                     .onChange(of: mv.debouncedText) { newValue in
-                                        ManToManAPI.instance.postData(text: newValue, selectedlang: mv.mainViewState == .mikePassed ? "한글" : currentLang)
+                                        ManToManAPI.instance.postData(text: newValue, selectedlang: mv.mainViewState == .mikePassed ? defaultLang[currentLocale] ?? "한글" : lv.currentLang)
                                     }
                                 
                             case .mikePassed:
-                                let translated = mv.translated?.result ?? "상대방이 말하고 있어요."
-                                Text(translated.isEmpty ? "상대방이 말하고 있어요." : translated)
+                                let translated = mv.translated?.result ?? NSLocalizedString("partner_speaking", comment: "")
+                                Text(translated.isEmpty ? NSLocalizedString("partner_speaking", comment: "") : translated)
                                     .font(.korean())
                                     .foregroundColor(translated.isEmpty || mv.translated?.result == nil ? .disabledBlack : .black)
                                     .frame(width: geo.size.width - 90)
@@ -271,7 +277,7 @@ struct MainView: View {
                     ZStack(alignment: .center) {
                         // MARK: 녹음 시작 버튼
                         RecordButtonView(mainViewState: $mv.mainViewState, text: $mv.text, isFirst: $isFirst, isSpeechAuth: $isSpeechAuth, startRecord: {
-                            mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? currentLang : "한글")
+                            mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글")
                         }, finishRecord: {
                             mv.audioEngine.stop()
                             mv.recognitionRequest?.endAudio()
