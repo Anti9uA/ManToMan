@@ -16,9 +16,11 @@ class RecordViewModel: ObservableObject {
                 return
             }
             if let window = scene.windows.first(where: { $0.isKeyWindow }) {
-                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "취소", style: .cancel))
-                alert.addAction(UIAlertAction(title: "설정으로 이동", style: .default) { _ in
+                let localizedTitle = NSLocalizedString(title, comment: "")
+                let localizedMessage = NSLocalizedString(message, comment: "")
+                let alert = UIAlertController(title: localizedTitle, message: localizedMessage, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("취소", comment: ""), style: .cancel))
+                alert.addAction(UIAlertAction(title: NSLocalizedString("설정으로 이동", comment: ""), style: .default) { _ in
                     UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
                 })
                 window.rootViewController?.present(alert, animated: true, completion: nil)

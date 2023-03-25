@@ -31,4 +31,13 @@
 
 "마이크를 당겨 상대방 대화도 번역해보세요!" = "Drag to translate your partner's conversation!";
 
+"음성인식 권한 허용이 필요합니다." = "Speech recognition permission is required.";
+"음성인식 기능 사용을 위해 설정으로 이동해 음성인식 권한을 허용해주세요." = "Please go to settings and allow access to use the voice recognition feature.";
+
+"마이크 권한 허용이 필요합니다." = "Microphone permission is required.";
+"음성인식 기능 사용을 위해 설정으로 이동해 마이크 권한을 허용해주세요." = "Please go to settings and allow access to use the Microphone feature.";
+"취소" = "Cancel";
+"설정으로 이동" = "Open Settings";
+
+
 

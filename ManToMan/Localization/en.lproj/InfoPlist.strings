@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  ManToMan
+
+  Created by Kyubo Shim on 2023/03/25.
+  
+*/
+
+"NSMicrophoneUsageDescription" = "Microphone permission is required for the voice-to-text use";
+"NSSpeechRecognitionUsageDescription" = "Speech recognition permission is required for the voice-to-text use.";

@@ -19,6 +19,7 @@
 		203D3E5B2990204A0050163B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D3E5A2990204A0050163B /* LottieView.swift */; };
 		203D3E5F2990F2CA0050163B /* speaking.json in Resources */ = {isa = PBXBuildFile; fileRef = 203D3E5E2990F2CA0050163B /* speaking.json */; };
 		20421FBA29AE841C00310030 /* OnboadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20421FB929AE841C00310030 /* OnboadingViewModel.swift */; };
+		208AF57F29CF0C7700B07BDE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 208AF58129CF0C7700B07BDE /* InfoPlist.strings */; };
 		20CC720F29C80C3900920757 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 20CC721129C80C3900920757 /* Localizable.strings */; };
 		20CC721629CB46CB00920757 /* LanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CC721529CB46CB00920757 /* LanguageViewModel.swift */; };
 		20CC721829CB46E700920757 /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CC721729CB46E700920757 /* LanguageModel.swift */; };
@@ -54,6 +55,8 @@
 		203D3E5A2990204A0050163B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		203D3E5E2990F2CA0050163B /* speaking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = speaking.json; sourceTree = "<group>"; };
 		20421FB929AE841C00310030 /* OnboadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboadingViewModel.swift; sourceTree = "<group>"; };
+		208AF58029CF0C7700B07BDE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		208AF58229CF0C7D00B07BDE /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		20CC721329C80C3E00920757 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		20CC721429C813BF00920757 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		20CC721529CB46CB00920757 /* LanguageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewModel.swift; sourceTree = "<group>"; };
@@ -138,6 +141,15 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
+		208AF58329CF0C8500B07BDE /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				20CC721129C80C3900920757 /* Localizable.strings */,
+				208AF58129CF0C7700B07BDE /* InfoPlist.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		20DBD9C1298ECB0400BF882B = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +169,7 @@
 		20DBD9CC298ECB0400BF882B /* ManToMan */ = {
 			isa = PBXGroup;
 			children = (
+				208AF58329CF0C8500B07BDE /* Localization */,
 				2016284C299FBC5C00D0A5E5 /* Properties */,
 				203D3E592990203A0050163B /* Lottie */,
 				B22EC653298FAC380034977E /* Info.plist */,
@@ -196,7 +209,6 @@
 			children = (
 				20DBD9E7298ECCD800BF882B /* MainViewModel.swift */,
 				20CC721529CB46CB00920757 /* LanguageViewModel.swift */,
-				20CC721129C80C3900920757 /* Localizable.strings */,
 				20421FB929AE841C00310030 /* OnboadingViewModel.swift */,
 				201EBD0529B96EFF00B6C885 /* RecordViewModel.swift */,
 			);
@@ -283,7 +295,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					20DBD9C9298ECB0400BF882B = {
 						CreatedOnToolsVersion = 14.0.1;
@@ -319,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2016284B299E118B00D0A5E5 /* hand.json in Resources */,
+				208AF57F29CF0C7700B07BDE /* InfoPlist.strings in Resources */,
 				B22EC64D298FABCB0034977E /* LINESeedKR-Rg.otf in Resources */,
 				20CC720F29C80C3900920757 /* Localizable.strings in Resources */,
 				B22EC652298FAC270034977E /* LINESeedSans_A_Bd.otf in Resources */,
@@ -366,6 +379,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		208AF58129CF0C7700B07BDE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				208AF58029CF0C7700B07BDE /* en */,
+				208AF58229CF0C7D00B07BDE /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		20CC721129C80C3900920757 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -382,6 +404,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -443,6 +466,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -508,19 +532,17 @@
 				INFOPLIST_FILE = ManToMan/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "맨투맨";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Kyubo.ManToMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -546,19 +568,17 @@
 				INFOPLIST_FILE = ManToMan/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "맨투맨";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Kyubo.ManToMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

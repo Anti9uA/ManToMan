@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  ManToMan
+
+  Created by Kyubo Shim on 2023/03/25.
+  
+*/
+
+"NSMicrophoneUsageDescription" = "음성인식 기능을 위해 마이크 권한을 허용해주세요.";
+"NSSpeechRecognitionUsageDescription" = "음성인식 기능을 위해 마이크 권한을 허용해주세요.";
