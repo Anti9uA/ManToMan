@@ -41,8 +41,8 @@ struct LangListModel {
     
     init() {
         self.langList = ["한글" : "ko-KR", "영어": "en-US", "일본어": "ja-JP", "중국어(간체)": "zh",
-                         "Korean" : "ko-KR", "English" : "en-US", "Chinese" : "zh", "Japanese": "ja-JP",
-                         "韓国語" : "ko-KR", "英語" : "en-US", "中国語" : "zh", "日本語" : "ja-JP"]
+                         "Korean" : "ko-KR", "English" : "en-US", "Chinese" : "zh", "Japanese": "ja-JP"]
+                         //"韓国語" : "ko-KR", "英語" : "en-US", "中国語" : "zh", "日本語" : "ja-JP"]
     }
 }
 
