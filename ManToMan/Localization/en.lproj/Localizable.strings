@@ -6,38 +6,67 @@
   
 */
 
+//* ----------------------------- 온보딩 ----------------------------- *//
+
+// 온보딩 멘트
 "onboarding_description_0" = "You can talk Face to Face!";
 "onboarding_description_1" = "Search fastly from recent records!";
 "onboarding_description_2" = "Drag to translate partner's response!";
 
+// 온보딩 그림
 "onboardingImage0" = "ENOnboarding0";
 "onboardingImage1" = "ENOnboarding1";
 "onboardingImage2" = "ENOnboarding2";
 
+// 시작 버튼
+"시작하기" = "Let's Start!";
+
+//* ----------------------------------------------------------------- * //
+
+
+//* ----------------------------- 언어 선택 창 ----------------------------- *//
+
+// 언어 선택창 제목
+"상대방은 어떤 언어를 사용하나요?" = "What language does your partner speaks?";
+
+// 언어선택 배열
 "langlist_0" = "Korean";
 "langlist_1" = "Japanese";
 "langlist_2" = "Chinese";
-"시작하기" = "Let's Start!";
 
+//* --------------------------------------------------------------------- *//
+
+
+//* ----------------------------- 메인뷰 화면 ----------------------------- *//
+
+// 텍스트 필드 Placeholder
 "한국어를 입력하세요." = "Enter English Text";
 
-"상대방이 말하고 있어요." = "Partner speaking.";
+// 파트너 말하는중 (마이크 당김)
 "partner_speaking" = "Partner speaking.";
-
-"말해주세요." = "Please Speak.";
+// 내가 말하는중 (마이크 탭)
 "user_speaking" = "Please Speak.";
 
-"상대방은 어떤 언어를 사용하나요?" = "What language does your partner speaks?";
-
+// 최초 마이크 설명 안내
 "마이크를 당겨 상대방 대화도 번역해보세요!" = "Drag to translate your partner's conversation!";
 
+//* --------------------------------------------------------------------- *//
+
+
+//* ----------------------------- 권한 설정 팝업 ----------------------------- *//
+
+// 음성인식 권한
 "음성인식 권한 허용이 필요합니다." = "Speech recognition permission is required.";
 "음성인식 기능 사용을 위해 설정으로 이동해 음성인식 권한을 허용해주세요." = "Please go to settings and allow access to use the voice recognition feature.";
 
+// 마이크 권한
 "마이크 권한 허용이 필요합니다." = "Microphone permission is required.";
 "음성인식 기능 사용을 위해 설정으로 이동해 마이크 권한을 허용해주세요." = "Please go to settings and allow access to use the Microphone feature.";
+
+// 버튼
 "취소" = "Cancel";
 "설정으로 이동" = "Open Settings";
 
+//* ----------------------------------------------------------------------- *//
 
 
