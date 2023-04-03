@@ -12,14 +12,12 @@ import Speech
 struct MainView: View {
     @Environment(\.managedObjectContext) var managedObjContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var recent: FetchedResults<Recent>
-    // @AppStorage("selectedLang") var currentLang: String = "영어"
-    @AppStorage("mikeInstruction") var isFirst: Bool = true
+    @AppStorage("mikeInstruction") var mikeInstruction: Bool = true
     @AppStorage("currenLocale") var currentLocale: String = Locale.current.language.languageCode!.identifier as String
     @StateObject private var mv = MainViewModel()
     @StateObject private var lv = LanguageViewModel()
     @State var isSheetPresented: Bool = false
-//    @State var langList: [LocalizedStringKey] = [LocalizedStringKey("langlist_0"), LocalizedStringKey("langlist_1"), LocalizedStringKey("langlist_2")]
-    @State var isConfrontToggled = false
+    @State var isTranslatedReversed = false
     @State var isRecordButtonToggled = false
     @State var placeholderLine: CGFloat = 5
     @State var recentOpacity = 0.0
@@ -77,7 +75,7 @@ struct MainView: View {
                                 if let translated = mv.translated?.result {
                                     Text(translated.isEmpty ? mv.defaultString.idle[lv.currentLang]! : translated)
                                         .font(.english())
-                                        .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
+                                        .rotationEffect(Angle(degrees: isTranslatedReversed ? 0 : 180))
                                         .frame(width: geo.size.width - 72)
                                         .padding()
                                         .background(.white)
@@ -89,7 +87,7 @@ struct MainView: View {
                                 else {
                                     Text(mv.defaultString.idle[lv.currentLang]!)
                                         .font(.korean())
-                                        .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
+                                        .rotationEffect(Angle(degrees: isTranslatedReversed ? 0 : 180))
                                         .frame(width: 350)
                                         .background(.white)
                                         .foregroundColor(Color.disabledBlue)
@@ -99,7 +97,7 @@ struct MainView: View {
                             case .mikePassed:
                                 Text(mv.text.isEmpty ? mv.defaultString.pleaseSpeak[lv.currentLang]! : mv.text)
                                     .font(.english())
-                                    .rotationEffect(Angle(degrees: isConfrontToggled ? 0 : 180))
+                                    .rotationEffect(Angle(degrees: isTranslatedReversed ? 0 : 180))
                                     .frame(width: geo.size.width - 72)
                                     .padding()
                                     .background(.white)
@@ -257,7 +255,7 @@ struct MainView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: geo.size.width, height: 50), alignment: .bottom)
-                    if isFirst {
+                    if mikeInstruction {
                         Text("마이크를 당겨 상대방 대화도 번역해보세요!")
                             .font(.customCaption())
                             .foregroundColor(.mainBlue)
@@ -276,7 +274,7 @@ struct MainView: View {
                     
                     ZStack(alignment: .center) {
                         // MARK: 녹음 시작 버튼
-                        RecordButtonView(mainViewState: $mv.mainViewState, text: $mv.text, isFirst: $isFirst, isSpeechAuth: $isSpeechAuth, startRecord: {
+                        RecordButtonView(mainViewState: $mv.mainViewState, text: $mv.text, isFirst: $mikeInstruction, isSpeechAuth: $isSpeechAuth, startRecord: {
                             mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글")
                         }, finishRecord: {
                             mv.audioEngine.stop()
@@ -292,10 +290,10 @@ struct MainView: View {
                             HStack{
                                 Spacer()
                                 Button(action: {
-                                    self.isConfrontToggled.toggle()
+                                    self.isTranslatedReversed.toggle()
                                     
                                 }, label: {
-                                    Image(isConfrontToggled ? "meSpeaks" : "youSpeaks")
+                                    Image(isTranslatedReversed ? "meSpeaks" : "youSpeaks")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 67, height: 67)

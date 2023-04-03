@@ -42,7 +42,3 @@ extension View {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
-
-enum SpeechRecognitionError: Error {
-    case microphonePermissionDenied
-}

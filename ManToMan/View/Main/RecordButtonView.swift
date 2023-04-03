@@ -13,7 +13,6 @@ struct RecordButtonView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var recent: FetchedResults<Recent>
     @StateObject var rv = RecordViewModel()
     @State var buttonOffset: CGFloat = 0.0
-    // 전체 Zstack의 높이 - 패딩값
     @State var buttonheight : Double = 150
     @State var fixedVar: CGFloat = 90
     @State var micTransitionToggle: Bool = false
@@ -88,19 +87,19 @@ struct RecordButtonView: View {
                                                         }
                                                     } else {
                                                         buttonOffset = 0
-                                                        rv.presentAuthorizationDeniedAlert(title: "마이크 권한 허용이 필요합니다.", message: "음성인식 기능 사용을 위해 설정으로 이동해 마이크 권한을 허용해주세요.")
+                                                        rv.presentAuthorizationDeniedAlert(alarmTitle: "마이크 권한 허용이 필요합니다.", alarmMessage: "음성인식 기능 사용을 위해 설정으로 이동해 마이크 권한을 허용해주세요.")
                                                     }
                                                 }
                                             }
                                         case .denied, .restricted, .notDetermined:
                                             withAnimation(.spring()) {
                                                 buttonOffset = 0
-                                                rv.presentAuthorizationDeniedAlert(title: "음성인식 권한 허용이 필요합니다.", message: "음성인식 기능 사용을 위해 설정으로 이동해 음성인식 권한을 허용해주세요.")
+                                                rv.presentAuthorizationDeniedAlert(alarmTitle: "음성인식 권한 허용이 필요합니다.", alarmMessage: "음성인식 기능 사용을 위해 설정으로 이동해 음성인식 권한을 허용해주세요.")
                                             }
                                         @unknown default:
                                             withAnimation(.spring()) {
                                                 buttonOffset = 0
-                                                rv.presentAuthorizationDeniedAlert(title: "음성인식 권한 허용이 필요합니다!", message: "원활한 앱 사용을 위해 음성인식 권한을 허용해주세요.")
+                                                rv.presentAuthorizationDeniedAlert(alarmTitle: "음성인식 권한 허용이 필요합니다!", alarmMessage: "원활한 앱 사용을 위해 음성인식 권한을 허용해주세요.")
                                             }
                                     }
                                 }
@@ -121,17 +120,17 @@ struct RecordButtonView: View {
                                                 self.startRecord()
                                                 overlayToggle.toggle()
                                             } else {
-                                                rv.presentAuthorizationDeniedAlert(title: "마이크 권한 허용이 필요합니다.", message: "음성인식 기능 사용을 위해 설정으로 이동해 마이크 권한을 허용해주세요.")
+                                                rv.presentAuthorizationDeniedAlert(alarmTitle: "마이크 권한 허용이 필요합니다.", alarmMessage: "음성인식 기능 사용을 위해 설정으로 이동해 마이크 권한을 허용해주세요.")
                                             }
                                         }
                                     }
                                 case .denied, .restricted, .notDetermined:
                                     withAnimation(.spring()) {
-                                        rv.presentAuthorizationDeniedAlert(title: "음성인식 권한 허용이 필요합니다.", message: "음성인식 기능 사용을 위해 설정으로 이동해 음성인식 권한을 허용해주세요.")
+                                        rv.presentAuthorizationDeniedAlert(alarmTitle: "음성인식 권한 허용이 필요합니다.", alarmMessage: "음성인식 기능 사용을 위해 설정으로 이동해 음성인식 권한을 허용해주세요.")
                                     }
                                 @unknown default:
                                     withAnimation(.spring()) {
-                                        rv.presentAuthorizationDeniedAlert(title: "음성인식 권한 허용이 필요합니다!", message: "원활한 앱 사용을 위해 음성인식 권한을 허용해주세요.")
+                                        rv.presentAuthorizationDeniedAlert(alarmTitle: "음성인식 권한 허용이 필요합니다!", alarmMessage: "원활한 앱 사용을 위해 음성인식 권한을 허용해주세요.")
                                     }
                             }
                         }
