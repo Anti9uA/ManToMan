@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  ManToMan
+
+  Created by Kyubo Shim on 2023/03/25.
+  
+*/
+
+"NSMicrophoneUsageDescription" = "音声からテキストへの使用には、マイクの許可が必要です";
+"NSSpeechRecognitionUsageDescription" = "音声からテキストへの使用には、音声認識権限が必要です。";
+"CFBundleDisplayName" = "マン-トゥ-マン";

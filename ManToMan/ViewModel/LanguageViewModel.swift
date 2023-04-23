@@ -15,8 +15,8 @@ class LanguageViewModel: ObservableObject {
             return Language.english.rawValue
         case "ko":
             return Language.korean.rawValue
-//        case "ja":
-//            return Language.japanese.rawValue
+        case "ja":
+            return Language.japanese.rawValue
         default:
             return Language.english.rawValue // 기본 언어로 영어를 사용합니다.
         }

@@ -111,26 +111,6 @@ class MainViewModel: ObservableObject {
         }
     }
     
-    func requestSpeechAuthorization(completion: @escaping (Bool) -> Void) {
-        // Request Authorization
-        SFSpeechRecognizer.requestAuthorization { authStatus in
-            DispatchQueue.main.async {
-                switch authStatus {
-                    case .authorized:
-                        completion(true)
-                    case .denied:
-                        completion(false)
-                    case .restricted:
-                        completion(false)
-                    case .notDetermined:
-                        completion(false)
-                    @unknown default:
-                        completion(false)
-                }
-            }
-        }
-    }
-    
     func shouldUseCustomFrame() -> Bool {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
               let horizontalSizeClass = windowScene.windows.first?.rootViewController?.traitCollection.horizontalSizeClass else {

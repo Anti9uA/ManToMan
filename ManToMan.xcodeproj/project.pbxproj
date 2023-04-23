@@ -44,6 +44,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		200ACB8329E6DE8300BAB80B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		200ACB8429E70A0000BAB80B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		20162834299A2CA800D0A5E5 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		2016283C299DF9E800D0A5E5 /* launchScreen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = launchScreen.json; sourceTree = "<group>"; };
 		2016283F299DFC7300D0A5E5 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 			children = (
 				208AF58029CF0C7700B07BDE /* en */,
 				208AF58229CF0C7D00B07BDE /* ko */,
+				200ACB8429E70A0000BAB80B /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 			children = (
 				20CC721329C80C3E00920757 /* en */,
 				20CC721429C813BF00920757 /* ko */,
+				200ACB8329E6DE8300BAB80B /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
