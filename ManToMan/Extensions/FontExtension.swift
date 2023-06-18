@@ -16,7 +16,7 @@ extension Font {
         return Font.custom("LINESeedSansKR-Bold", size: 20)
     }
     
-    static func customeBody() -> Font {
+    static func customBody() -> Font {
         return Font.custom("LINESeedSansKR-Regular", size: 20)
     }
     

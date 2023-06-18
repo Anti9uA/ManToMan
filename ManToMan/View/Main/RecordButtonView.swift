@@ -10,7 +10,6 @@ import Speech
 
 struct RecordButtonView: View {
     @Environment(\.managedObjectContext) var managedObjContext
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var recent: FetchedResults<Recent>
     @StateObject var rv = RecordViewModel()
     @State var buttonOffset: CGFloat = 0.0
     @State var buttonheight : Double = 150
@@ -46,8 +45,8 @@ struct RecordButtonView: View {
             VStack{
                 Spacer()
                 ZStack {
-                    Circle()
-                        .fill(Color.customDarkGray)
+                    Capsule()
+                        .fill(Color.mainBlue)
                 }
                 .frame(height: fixedVar, alignment: .center)
                 .offset(y: buttonOffset)
@@ -158,7 +157,7 @@ struct RecordButtonView: View {
                     if micTransitionToggle {
                         Image("longMic")
                             .resizable()
-                            .frame(width: 44, height: 141)
+                            .scaledToFit()
                             .transition(.move(edge: .bottom))
                             .animation(.easeIn(duration: 0.4).delay(delay2))
                             .onAppear{ self.delay2 = 0.3}

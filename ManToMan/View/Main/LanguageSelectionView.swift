@@ -47,7 +47,7 @@ struct LanguageSelectionView: View {
                         }, label: {
                             Text(NSLocalizedString(lang.key, comment: ""))
                                 .padding(.vertical, 18)
-                                .font(.customeBody())
+                                .font(.customBody())
                                 .foregroundColor(currentLang == NSLocalizedString(lang.key, comment: "") ? Color.mainBlue : Color.black)
                         })
                         

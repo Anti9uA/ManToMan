@@ -20,9 +20,11 @@ extension Color {
     //main color
     static let mainBlue = Color("mainBlue")
     static let mainRed = Color("mainRed")
+    static let mainPurple = Color("mainPurple")
 
     //disabled color
     static let disabledBlack = Color("disabledBlack")
     static let disabledBlue = Color("disabledBlue")
+    static let disabledPurple = Color("disabledPurple")
 
 }

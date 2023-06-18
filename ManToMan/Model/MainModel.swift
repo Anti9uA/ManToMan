@@ -14,6 +14,12 @@ enum MainViewState {
     case mikePassed
 }
 
+enum ButtonTappedState {
+    case noneTapped
+    case myVoiceButtonTapped
+    case partnerVoiceButtonTapped
+}
+
 struct TranslatedModel: Codable {
     var result: String = ""
 }
