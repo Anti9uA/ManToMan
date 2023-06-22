@@ -73,14 +73,18 @@ struct PartnerVoiceRecordView: View {
             }
         }, label: {
             ZStack{
-                Color.blue
+                Color.mainPurple
                 switch buttonTappedState {
                     case .noneTapped, .myVoiceButtonTapped:
-                        Image(systemName: "star.fill")
-                            .resizable()
-                            .frame(width: 32, height: 32)
-                            .foregroundColor(.white)
-                            .font(.headline)
+                        VStack{
+                            Spacer()
+                            Image("micIcon")
+                                .resizable()
+                                .offset(y : mainViewState != .mikePassed ? 0 : 50)
+                                .frame(width: 27, height: 66)
+                                .foregroundColor(.white)
+                                
+                        }
                     case .partnerVoiceButtonTapped:
                         Image(systemName: "square.fill")
                             .resizable()

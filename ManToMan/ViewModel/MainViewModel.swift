@@ -26,15 +26,9 @@ class MainViewModel: ObservableObject {
     
     let manToManAPI = ManToManAPI.instance
     
-//    var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
-//
-//    var recognitionTask: SFSpeechRecognitionTask?
-    
     var audioEngines = [String: AVAudioEngine]()
     var recognitionRequests = [String: SFSpeechAudioBufferRecognitionRequest]()
     var recognitionTasks = [String: SFSpeechRecognitionTask?]()
-    
-    // var audioEngines: [String: AVAudioEngine] = [:]
     
     var cancellable = Set<AnyCancellable>()
     
@@ -60,23 +54,22 @@ class MainViewModel: ObservableObject {
     }
     
     func getAudioEngine(key: String) -> AVAudioEngine {
-            if let audioEngine = audioEngines[key] {
-                return audioEngine
-            } else {
-                let newAudioEngine = AVAudioEngine()
-                audioEngines[key] = newAudioEngine
-                return newAudioEngine
-            }
+        guard let audioEngine = audioEngines[key] else {
+            let newAudioEngine = AVAudioEngine()
+            audioEngines[key] = newAudioEngine
+            return newAudioEngine
+        }
+        return audioEngine
     }
     
     func startRecording(selectedLang: String, for key: String) {
         let otherKey = key == "myAudioEngine" ? "partnerAudioEngine" : "myAudioEngine"
-            let otherAudioEngine = getAudioEngine(key: otherKey)
-            
-            if otherAudioEngine.isRunning {
-                otherAudioEngine.stop()
-                otherAudioEngine.inputNode.removeTap(onBus: 0)
-            }
+        let otherAudioEngine = getAudioEngine(key: otherKey)
+        
+        if otherAudioEngine.isRunning {
+            otherAudioEngine.stop()
+            otherAudioEngine.inputNode.removeTap(onBus: 0)
+        }
         
         let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: langModel.langList[selectedLang]!))!
         
@@ -84,127 +77,60 @@ class MainViewModel: ObservableObject {
             print("Speech Recognition is not available")
             return
         }
-
+        
         do {
             let audioSession = AVAudioSession.sharedInstance()
             try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
             let audioEngine = getAudioEngine(key: key)
             let inputNode = audioEngine.inputNode
-
+            
             recognitionRequests[key] = SFSpeechAudioBufferRecognitionRequest()
             guard let recognitionRequest = recognitionRequests[key] else { fatalError("SFSpeechAudioBufferRecognitionRequest 객체 생성 오류") }
             recognitionRequest.shouldReportPartialResults = true
-
+            
             if #available(iOS 13, *) {
                 recognitionRequest.requiresOnDeviceRecognition = false
             }
-
+            
             recognitionTasks[key] = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
                 var isFinal = false
-
+                
                 if let result = result {
                     self.text = result.bestTranscription.formattedString
                     isFinal = result.isFinal
                     print("Text \(result.bestTranscription.formattedString)")
                 }
-
+                
                 if error != nil || isFinal {
                     self.stopRecording(for: key)
                 }
             }
-
+            
             let recordingFormat = inputNode.outputFormat(forBus: 0)
             inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
                 self.recognitionRequests[key]?.append(buffer)
             }
-
+            
             audioEngine.prepare()
             try audioEngine.start()
-
+            
             self.text = ""
-        } catch {
+        } catch let error as NSError {
             print("Error starting recording: \(error.localizedDescription)")
         }
     }
-
-
+    
+    
     func stopRecording(for key: String) {
-            if let audioEngine = audioEngines[key], audioEngine.isRunning {
-                audioEngine.stop()
-                recognitionRequests[key]?.endAudio()
-                recognitionTasks[key]??.finish()
-                audioEngine.inputNode.removeTap(onBus: 0)
-                
-//                recognitionRequests[key] = nil
-//                recognitionTasks[key] = nil
-            }
+        if let audioEngine = audioEngines[key], audioEngine.isRunning {
+            audioEngine.stop()
+            recognitionRequests[key]?.endAudio()
+            recognitionTasks[key]??.finish()
+            audioEngine.inputNode.removeTap(onBus: 0)
         }
-//    func startRecording(selectedLang: String) {
-////        if let recognitionTask = recognitionTask {
-////            recognitionTask.cancel()
-////            self.recognitionTask = nil
-////        }
-////
-////        if audioEngine.isRunning {
-////            audioEngine.stop()
-////            audioEngine.inputNode.removeTap(onBus: 0)
-////            self.recognitionRequest = nil
-////            self.recognitionTask = nil
-////        }
-//
-//
-//        let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: langModel.langList[selectedLang]!))!
-//
-//        guard speechRecognizer.isAvailable else {
-//            print("Speech Recognition is not available")
-//            return
-//        }
-//
-//        do {
-//            let audioSession = AVAudioSession.sharedInstance()
-//            try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
-//            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-//            let inputNode = audioEngine.inputNode
-//
-//            recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-//            guard let recognitionRequest = recognitionRequest else { fatalError("SFSpeechAudioBufferRecognitionRequest 객체 생성 오류") }
-//            recognitionRequest.shouldReportPartialResults = true
-//
-//            if #available(iOS 13, *) {
-//                recognitionRequest.requiresOnDeviceRecognition = false
-//            }
-//
-//            recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
-//                var isFinal = false
-//
-//                if let result = result {
-//                    self.text = result.bestTranscription.formattedString
-//                    isFinal = result.isFinal
-//                    print("Text \(result.bestTranscription.formattedString)")
-//                }
-//
-//                if error != nil || isFinal {
-//                    self.audioEngine.stop()
-//                    inputNode.removeTap(onBus: 0)
-//                    self.recognitionRequest = nil
-//                    self.recognitionTask = nil
-//                }
-//            }
-//
-//            let recordingFormat = inputNode.outputFormat(forBus: 0)
-//            inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
-//                self.recognitionRequest?.append(buffer)
-//            }
-//
-//            audioEngine.prepare()
-//            try audioEngine.start()
-//
-//            self.text = ""
-//        } catch {
-//            print("Error starting recording: \(error.localizedDescription)")
-//        }
-//    }
+    }
+    
     
     func shouldUseCustomFrame() -> Bool {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,

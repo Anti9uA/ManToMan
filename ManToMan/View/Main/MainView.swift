@@ -68,9 +68,9 @@ struct MainView: View {
                         
                         ZStack(alignment: .topLeading){
                             Rectangle()
-                                .cornerRadius(30)
                                 .frame(width: geo.size.width - 40, height: 220)
                                 .foregroundColor(Color.white)
+                                .cornerRadius(30)
                             
                             switch mv.mainViewState {
                                 case .idle, .mikeOwned:
@@ -95,26 +95,47 @@ struct MainView: View {
                                     }
                                     
                                 case .mikePassed:
-                                    Text(mv.text.isEmpty ? mv.defaultString.pleaseSpeak[lv.currentLang]! : mv.text)
-//                                        .font(.english())
-//                                        .rotationEffect(Angle(degrees: isTranslatedReversed ? 0 : 180))
-//                                        .frame(width: geo.size.width - 80, height: 190, alignment: .topLeading)
-//                                        .padding()
-//                                        .background(.white)
-//                                        .foregroundColor(Color.mainBlue)
-                                        .font(.english())
-                                        .frame(width: geo.size.width - 80, height: 190, alignment: .topLeading)
-                                        .background(.white)
-                                        .minimumScaleFactor(0.8)
-                                        .foregroundColor(Color.mainPurple)
-                                        .padding(EdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20))
-                                        .overlay(
-                                                RoundedRectangle(cornerRadius: 20)
-                                                    .stroke(Color.mainPurple, lineWidth: 2.5)
-                                            )
-                                        .onChange(of: mv.debouncedText) { newValue in
-                                            ManToManAPI.instance.postData(text: newValue, selectedlang: mv.mainViewState == .mikePassed ? defaultLang[currentLocale] ?? "한글" : lv.currentLang)
+                                    ZStack{
+                                        HStack{
+                                            if mv.text.isEmpty {
+                                                Image("head")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 38)
+                                            }
+                                            Text(mv.text.isEmpty ? mv.defaultString.pleaseSpeak[lv.currentLang]! : mv.text)
+                                            //                                        .font(.english())
+                                            //                                        .rotationEffect(Angle(degrees: isTranslatedReversed ? 0 : 180))
+                                            //                                        .frame(width: geo.size.width - 80, height: 190, alignment: .topLeading)
+                                            //                                        .padding()
+                                            //                                        .background(.white)
+                                            //                                        .foregroundColor(Color.mainBlue)
+                                                .font(.english())
+                                                .cornerRadius(20)
+//                                                .frame(width: geo.size.width - 80, height: 190, alignment: .topLeading)
+//                                                .background(.white)
+//                                                .minimumScaleFactor(0.8)
+                                                .foregroundColor(Color.mainPurple)
+//                                                .padding(EdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20))
+//                                                .overlay(
+//                                                    RoundedRectangle(cornerRadius: 20)
+//                                                        .stroke(Color.mainPurple, lineWidth: 2.5)
+//                                                )
+                                                .onChange(of: mv.debouncedText) { newValue in
+                                                    ManToManAPI.instance.postData(text: newValue, selectedlang: mv.mainViewState == .mikePassed ? defaultLang[currentLocale] ?? "한글" : lv.currentLang)
+                                                }
                                         }
+                                    }
+                                    .padding(EdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20))
+                                    .frame(width: geo.size.width - 40, height: 220, alignment: .topLeading)
+                                    .background(.white)
+                                    .minimumScaleFactor(0.8)
+                                    .cornerRadius(20)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .stroke(Color.mainPurple, lineWidth: 2.5)
+                                    )
+                                    
                             }
                             
                         }
@@ -148,9 +169,9 @@ struct MainView: View {
                                         .background(.white)
                                         .submitLabel(.done)
                                         .overlay(
-                                                RoundedRectangle(cornerRadius: 20)
-                                                    .stroke(Color.mainBlue, lineWidth: 5)
-                                            )
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(Color.mainBlue, lineWidth: 5)
+                                        )
                                         .cornerRadius(20)
                                         .onChange(of: mv.debouncedText) { newValue in
                                             ManToManAPI.instance.postData(text: newValue, selectedlang: mv.mainViewState == .mikePassed ? defaultLang[currentLocale] ?? "한글" : lv.currentLang)
@@ -178,7 +199,7 @@ struct MainView: View {
                                             Text(mv.text.isEmpty ? NSLocalizedString("user_speaking", comment: "") : mv.text)
                                                 .font(.korean())
                                                 .foregroundColor(mv.text.isEmpty ? .disabledBlack : .black)
-                                                
+                                            
                                                 .multilineTextAlignment(.center)
                                                 .onChange(of: mv.debouncedText) { newValue in
                                                     ManToManAPI.instance.postData(text: newValue, selectedlang: mv.mainViewState == .mikePassed ? defaultLang[currentLocale] ?? "한글" : lv.currentLang)
@@ -188,7 +209,7 @@ struct MainView: View {
                                     }
                                     .frame(width: geo.size.width - 80)
                                     .padding(20)
-//                                    .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                                    //                                    .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
                                     .background(.white)
                                     .cornerRadius(20)
                                     .overlay(
@@ -198,15 +219,17 @@ struct MainView: View {
                                     
                                 case .mikePassed:
                                     let translated = mv.translated?.result ?? NSLocalizedString("partner_speaking", comment: "")
-                                    Text(translated.isEmpty ? NSLocalizedString("partner_speaking", comment: "") : translated)
-                                        .font(.korean())
-                                        .foregroundColor(translated.isEmpty || mv.translated?.result == nil ? .disabledBlack : .black)
-                                        .frame(width: geo.size.width - 80)
-                                        .padding(20)
-//                                        .padding(EdgeInsets(top: 0, leading: 20, bottom: 15, trailing: 20))
-                                        .multilineTextAlignment(.center)
-                                        .background(.white)
-                                        .cornerRadius(20)
+                                        
+                                        Text(translated.isEmpty ? NSLocalizedString("partner_speaking", comment: "") : translated)
+                                            .font(.korean())
+                                            .foregroundColor(translated.isEmpty || mv.translated?.result == nil ? .disabledBlack : .black)
+                                            .frame(width: geo.size.width - 80)
+                                            .padding(20)
+                                        //                                        .padding(EdgeInsets(top: 0, leading: 20, bottom: 15, trailing: 20))
+                                            .multilineTextAlignment(.center)
+                                            .background(.white)
+                                            .cornerRadius(20)
+                                    
                                     
                             }
                             
@@ -328,24 +351,34 @@ struct MainView: View {
                         
                         ZStack(alignment: .center) {
                             // MARK: 녹음 시작 버튼
-                            HStack{
-                                VStack{
-                                    if mv.mainViewState == .mikeOwned {
-                                        LottieView(filename: "speaking", lastTime: .infinity)
-                                            .frame(width: 60, height: 20)
-                                    }
+                            VStack {
+                                HStack{
+                                    
+                                    LottieView(filename: "speaking", lastTime: .infinity)
+                                        .frame(width: 60, height: 20)
+                                        .opacity(mv.mainViewState != .mikeOwned ? 0 : 1)
+                                        .padding(.trailing, 65)
+                                    
+                                    LottieView(filename: "speaking", lastTime: .infinity)
+                                        .frame(width: 60, height: 20)
+                                        .opacity(mv.mainViewState != .mikePassed ? 0 : 1)
+//                                    if mv.mainViewState == .mikePassed {
+//                                        LottieView(filename: "speaking", lastTime: .infinity)
+//                                            .frame(width: 60, height: 20)
+//                                    }
+                                }
+                                HStack{
+                                    
+                                    
                                     MyVoiceButtonView(mainViewState: $mv.mainViewState, buttonTappedState: $mv.buttonTappedState, text: $mv.text, isFirst: $mikeInstruction, isSpeechAuth: $isSpeechAuth , startRecord: {
                                         mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글", for: "myAudioEngine")
                                     }, finishRecord: {
                                         mv.stopRecording(for: "myAudioEngine")
                                     })
-                                }
-
-                                VStack{
-                                    if mv.mainViewState == .mikePassed {
-                                        LottieView(filename: "speaking", lastTime: .infinity)
-                                            .frame(width: 60, height: 20)
-                                    }
+                                    .padding(.trailing, 40)
+                                    
+                                    
+                                    
                                     
                                     PartnerVoiceRecordView(mainViewState: $mv.mainViewState, buttonTappedState: $mv.buttonTappedState, text: $mv.text, isFirst: $mikeInstruction, isSpeechAuth: $isSpeechAuth, startRecord: {
                                         mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글", for: "partnerAudioEngine")
@@ -353,49 +386,50 @@ struct MainView: View {
                                         mv.stopRecording(for: "partnerAudioEngine")
                                         
                                     })
+                                    
+                                    
+                                    
+                                    //                                MyVoiceButtonView(mainViewState: $mv.mainViewState, buttonTappedState: $mv.buttonTappedState, text: $mv.text, isFirst: $mikeInstruction, isSpeechAuth: $isSpeechAuth , startRecord: {
+                                    //                                    if mv.audioEngine.isRunning {
+                                    //                                        mv.audioEngine.stop()
+                                    //                                        mv.audioEngine.inputNode.removeTap(onBus: 0)
+                                    //                                        mv.recognitionRequest = nil
+                                    //                                        mv.recognitionTask = nil
+                                    //                                    }
+                                    //                                    mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글")
+                                    //                                }, finishRecord: {
+                                    //                                    mv.audioEngine.inputNode.removeTap(onBus: 0)
+                                    //                                    mv.recognitionRequest?.endAudio()
+                                    //                                    mv.audioEngine.stop()
+                                    //                                    mv.recognitionRequest = nil
+                                    //                                    mv.recognitionTask = nil
+                                    //                                })
+                                    
+                                    //                                SampleButtonView(mainViewState: $mv.mainViewState, buttonTappedState: $mv.buttonTappedState, text: $mv.text, isFirst: $mikeInstruction, isSpeechAuth: $isSpeechAuth , startRecord: {
+                                    //                                        mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글")
+                                    //                                    }, finishRecord: {
+                                    //                                        mv.audioEngine.stop()
+                                    //                                        mv.recognitionRequest?.endAudio()
+                                    //                                    })
+                                    
+                                    //                                PartnerVoiceRecordView(mainViewState: $mv.mainViewState, buttonTappedState: $mv.buttonTappedState, text: $mv.text, isFirst: $mikeInstruction, isSpeechAuth: $isSpeechAuth, startRecord: {
+                                    //                                    mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글")
+                                    //                                }, finishRecord: {
+                                    //                                    mv.audioEngine.stop()
+                                    //                                    mv.audioEngine.inputNode.removeTap(onBus: 0)
+                                    //                                    mv.recognitionRequest?.endAudio()
+                                    //                                    mv.recognitionRequest = nil
+                                    //                                    mv.recognitionTask = nil
+                                    //                                })
                                 }
-
-
-//                                MyVoiceButtonView(mainViewState: $mv.mainViewState, buttonTappedState: $mv.buttonTappedState, text: $mv.text, isFirst: $mikeInstruction, isSpeechAuth: $isSpeechAuth , startRecord: {
-//                                    if mv.audioEngine.isRunning {
-//                                        mv.audioEngine.stop()
-//                                        mv.audioEngine.inputNode.removeTap(onBus: 0)
-//                                        mv.recognitionRequest = nil
-//                                        mv.recognitionTask = nil
-//                                    }
-//                                    mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글")
-//                                }, finishRecord: {
-//                                    mv.audioEngine.inputNode.removeTap(onBus: 0)
-//                                    mv.recognitionRequest?.endAudio()
-//                                    mv.audioEngine.stop()
-//                                    mv.recognitionRequest = nil
-//                                    mv.recognitionTask = nil
-//                                })
-                                
-//                                SampleButtonView(mainViewState: $mv.mainViewState, buttonTappedState: $mv.buttonTappedState, text: $mv.text, isFirst: $mikeInstruction, isSpeechAuth: $isSpeechAuth , startRecord: {
-//                                        mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글")
-//                                    }, finishRecord: {
-//                                        mv.audioEngine.stop()
-//                                        mv.recognitionRequest?.endAudio()
-//                                    })
-                                
-//                                PartnerVoiceRecordView(mainViewState: $mv.mainViewState, buttonTappedState: $mv.buttonTappedState, text: $mv.text, isFirst: $mikeInstruction, isSpeechAuth: $isSpeechAuth, startRecord: {
-//                                    mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글")
-//                                }, finishRecord: {
-//                                    mv.audioEngine.stop()
-//                                    mv.audioEngine.inputNode.removeTap(onBus: 0)
-//                                    mv.recognitionRequest?.endAudio()
-//                                    mv.recognitionRequest = nil
-//                                    mv.recognitionTask = nil
-//                                })
                             }
-//                            RecordButtonView(mainViewState: $mv.mainViewState, text: $mv.text, isFirst: $mikeInstruction, isSpeechAuth: $isSpeechAuth, startRecord: {
-//                                mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글")
-//                            }, finishRecord: {
-//                                mv.audioEngine.stop()
-//                                mv.recognitionRequest?.endAudio()
-//                            })
-//                            .frame(height: 230)     // 하단 가리개가 가릴시 높이 미세 조정
+                            //                            RecordButtonView(mainViewState: $mv.mainViewState, text: $mv.text, isFirst: $mikeInstruction, isSpeechAuth: $isSpeechAuth, startRecord: {
+                            //                                mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글")
+                            //                            }, finishRecord: {
+                            //                                mv.audioEngine.stop()
+                            //                                mv.recognitionRequest?.endAudio()
+                            //                            })
+                            //                            .frame(height: 230)     // 하단 가리개가 가릴시 높이 미세 조정
                             
                             
                             // MARK: UI 반전 토글 버튼
