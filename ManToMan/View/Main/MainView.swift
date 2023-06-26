@@ -18,7 +18,7 @@ struct MainView: View {
     @StateObject private var lv = LanguageViewModel()
     @State var isSheetPresented: Bool = false
     @State var isRecentPresented: Bool = false
-    @State var isTranslatedReversed = false
+    @State var isTranslatedReversed = true
     @State var isRecordButtonToggled = false
     @State var placeholderLine: CGFloat = 5
     @State var recentOpacity = 0.0
@@ -150,7 +150,7 @@ struct MainView: View {
                                     TextField("", text: $mv.text, axis: .vertical)
                                         .font(.korean())
                                         .foregroundColor(.mainBlue)
-                                        .padding(20)
+                                        .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 40))
                                         .frame(width: geo.size.width - 40)
                                         .placeholder(when: mv.text.isEmpty) {
                                             HStack{
@@ -192,10 +192,12 @@ struct MainView: View {
                                 case .mikeOwned:
                                     ZStack{
                                         HStack{
-                                            Image("head")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 38)
+                                            if mv.text.isEmpty{
+                                                Image("head")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 38)
+                                            }
                                             Text(mv.text.isEmpty ? NSLocalizedString("user_speaking", comment: "") : mv.text)
                                                 .font(.korean())
                                                 .foregroundColor(mv.text.isEmpty ? .disabledBlack : .black)
@@ -263,12 +265,11 @@ struct MainView: View {
                                             .foregroundColor(Color.mainBlue)
                                     })
                                 }
-                                .padding(.horizontal, 25)
-                                .padding(.bottom, 15)
+                                .padding(.trailing, 35)
                             }
                         }
                         .padding(.top, 20)
-                        .frame(width: geo.size.width - 40)
+//                        .frame(width: geo.size.width - 100)
                         
                         // MARK: 최근 기록 열람 메뉴
                         // Spacer()
@@ -354,14 +355,15 @@ struct MainView: View {
                             VStack {
                                 HStack{
                                     
-                                    LottieView(filename: "speaking", lastTime: .infinity)
+                                    LottieView(filename: "userSpeakingMotion", lastTime: .infinity)
                                         .frame(width: 60, height: 20)
                                         .opacity(mv.mainViewState != .mikeOwned ? 0 : 1)
-                                        .padding(.trailing, 65)
+                                        .padding(.trailing, 33)
                                     
-                                    LottieView(filename: "speaking", lastTime: .infinity)
+                                    LottieView(filename: "partnerSpeakingMotion", lastTime: .infinity)
                                         .frame(width: 60, height: 20)
                                         .opacity(mv.mainViewState != .mikePassed ? 0 : 1)
+                                        .padding(.leading, 36)
 //                                    if mv.mainViewState == .mikePassed {
 //                                        LottieView(filename: "speaking", lastTime: .infinity)
 //                                            .frame(width: 60, height: 20)
@@ -434,40 +436,31 @@ struct MainView: View {
                             
                             // MARK: UI 반전 토글 버튼
                             
-                            VStack{
-                                Spacer()
-                                HStack{
-                                    Spacer()
-                                    Button(action: {
-                                        self.isTranslatedReversed.toggle()
-                                        
-                                    }, label: {
-                                        Image(isTranslatedReversed ? "meSpeaks" : "youSpeaks")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(width: 67, height: 67)
-                                    })
-                                }
-                                .padding(.trailing, 40)
-                                .padding(.bottom, 10)
-                                
-                            }
+//                            VStack{
+//                                Spacer()
+//                                HStack{
+//                                    Spacer()
+//                                    Button(action: {
+//                                        self.isTranslatedReversed.toggle()
+//
+//                                    }, label: {
+//                                        Image(isTranslatedReversed ? "meSpeaks" : "youSpeaks")
+//                                            .resizable()
+//                                            .aspectRatio(contentMode: .fit)
+//                                            .frame(width: 67, height: 67)
+//                                    })
+//                                }
+//                                .padding(.trailing, 40)
+//                                .padding(.bottom, 10)
+//
+//                            }
+                            
+                            
                         }
                         .frame(height: 130)
-                        .padding(.bottom, 70)   // 가리개 깨질시 미세 조정
+                        .padding(.vertical, 30)   // 가리개 깨질시 미세 조정
                     }
                     .padding(.top, geo.safeAreaInsets.top)
-                    
-                    // MARK: 마이크 애니메이션 가리개
-                    
-                    VStack {
-                        Spacer()
-                        Image("roundBottom")
-                            .resizable()
-                            .frame(width: mv.shouldUseCustomFrame() ? 45 : 43, height: mv.shouldUseCustomFrame() ? 26 : 25)
-                        
-                    }
-                    .ignoresSafeArea()
                 }
                 .cornerRadius(12)
                 

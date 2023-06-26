@@ -23,80 +23,86 @@ struct MyVoiceButtonView: View {
     var finishRecord: () -> Void
     
     var body: some View {
-        Button(action: {
-            switch buttonTappedState {
-                case .noneTapped, .partnerVoiceButtonTapped:
-                    isFirst = false
-                    SFSpeechRecognizer.requestAuthorization { authStatus in
-                        DispatchQueue.main.async {
-                            switch authStatus {
-                                case .authorized:
-                                    AVAudioSession.sharedInstance().requestRecordPermission { success in
-                                        withAnimation(.easeIn) {
-                                            if success {
-                                                mainViewState = .mikeOwned
-                                                buttonTappedState = .myVoiceButtonTapped
-                                                self.startRecord()
-                                                
-                                            } else {
-                                                rv.presentAuthorizationDeniedAlert(alarmTitle: "마이크 권한 허용이 필요합니다.", alarmMessage: "음성인식 기능 사용을 위해 설정으로 이동해 마이크 권한을 허용해주세요.")
-                                            }
-                                        }
-                                    }
-                                case .denied, .restricted, .notDetermined:
-                                    withAnimation(.easeIn) {
-                                        rv.presentAuthorizationDeniedAlert(alarmTitle: "음성인식 권한 허용이 필요합니다.", alarmMessage: "음성인식 기능 사용을 위해 설정으로 이동해 음성인식 권한을 허용해주세요.")
-                                    }
-                                @unknown default:
-                                    withAnimation(.spring()) {
-                                        rv.presentAuthorizationDeniedAlert(alarmTitle: "음성인식 권한 허용이 필요합니다!", alarmMessage: "원활한 앱 사용을 위해 음성인식 권한을 허용해주세요.")
-                                    }
-                            }
-                        }
-                    }
-                case .myVoiceButtonTapped:
-                    withAnimation(.easeIn){
-                        self.finishRecord()
-                        if !text.isEmpty && text != "듣는중.." && mainViewState != .mikePassed {
-                            DataController().addRecent(sentence: text, context: managedObjContext)
-                        }
-                        else if text.isEmpty{
-                            text = ""
-                            mainViewState = .idle
-                        }
-                        else {
-                            text = ""
-                        }
-                        
-                        buttonTappedState = .noneTapped
-                    }
-                    
-            }
-        }, label: {
-            ZStack{
-                Color.mainBlue
+        VStack{
+            Button(action: {
                 switch buttonTappedState {
                     case .noneTapped, .partnerVoiceButtonTapped:
-                        VStack{
-                            Spacer()
-                            Image("micIcon")
-                                .resizable()
-                                .offset(y : mainViewState != .mikeOwned ? 0 : 50)
-                                .frame(width: 27, height: 66)
-                                .foregroundColor(.white)
-                                
+                        isFirst = false
+                        SFSpeechRecognizer.requestAuthorization { authStatus in
+                            DispatchQueue.main.async {
+                                switch authStatus {
+                                    case .authorized:
+                                        AVAudioSession.sharedInstance().requestRecordPermission { success in
+                                            withAnimation(.easeIn) {
+                                                if success {
+                                                    mainViewState = .mikeOwned
+                                                    buttonTappedState = .myVoiceButtonTapped
+                                                    self.startRecord()
+                                                    
+                                                } else {
+                                                    rv.presentAuthorizationDeniedAlert(alarmTitle: "마이크 권한 허용이 필요합니다.", alarmMessage: "음성인식 기능 사용을 위해 설정으로 이동해 마이크 권한을 허용해주세요.")
+                                                }
+                                            }
+                                        }
+                                    case .denied, .restricted, .notDetermined:
+                                        withAnimation(.easeIn) {
+                                            rv.presentAuthorizationDeniedAlert(alarmTitle: "음성인식 권한 허용이 필요합니다.", alarmMessage: "음성인식 기능 사용을 위해 설정으로 이동해 음성인식 권한을 허용해주세요.")
+                                        }
+                                    @unknown default:
+                                        withAnimation(.spring()) {
+                                            rv.presentAuthorizationDeniedAlert(alarmTitle: "음성인식 권한 허용이 필요합니다!", alarmMessage: "원활한 앱 사용을 위해 음성인식 권한을 허용해주세요.")
+                                        }
+                                }
+                            }
                         }
                     case .myVoiceButtonTapped:
-                        Image(systemName: "square.fill")
-                            .resizable()
-                            .frame(width: 32, height: 32)
-                            .foregroundColor(.white)
-                            .font(.headline)
+                        withAnimation(.easeIn){
+                            self.finishRecord()
+                            if !text.isEmpty && text != "듣는중.." && mainViewState != .mikePassed {
+                                DataController().addRecent(sentence: text, context: managedObjContext)
+                            }
+                            else if text.isEmpty{
+                                text = ""
+                                mainViewState = .idle
+                            }
+                            else {
+                                text = ""
+                            }
+                            
+                            buttonTappedState = .noneTapped
+                        }
+                        
                 }
-            }
-            .frame(width: 88, height: 88)
-            .cornerRadius(30)
-        })
+            }, label: {
+                ZStack{
+                    Color.mainBlue
+                    switch buttonTappedState {
+                        case .noneTapped, .partnerVoiceButtonTapped:
+                            VStack{
+                                Spacer()
+                                Image("micIcon")
+                                    .resizable()
+                                    .offset(y : mainViewState != .mikeOwned ? 0 : 50)
+                                    .frame(width: 27, height: 66)
+                                    .foregroundColor(.white)
+                                
+                            }
+                        case .myVoiceButtonTapped:
+                            Image(systemName: "square.fill")
+                                .resizable()
+                                .frame(width: 32, height: 32)
+                                .foregroundColor(.white)
+                                .font(.headline)
+                    }
+                }
+                .frame(width: 88, height: 88)
+                .cornerRadius(30)
+            })
+            
+            Text("내 마이크")
+                .font(.customCaption())
+                .padding(.top, 15)
+        }
     }
 }
 

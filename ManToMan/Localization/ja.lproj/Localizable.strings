@@ -67,6 +67,20 @@
 "취소" = "キャンセル";
 "설정으로 이동" = "設定を開く";
 
+
+// 마이크 라벨
+"내 마이크" = "私のマイク";
+"상대 마이크" = "相手のマイク";
+
+"Onboarding_Partner_Sample_Text_1" = "기다려주세요..";
+"Onboarding_Partner_Sample_Text_2" = "화장실은..";
+"Onboarding_Partner_Sample_Text_3" = "화장실은 어디인가요?";
+"Onboarding_Partner_Sample_Text_4" = "근처에 있어요.";
+
+"Onboarding_User_Sample_Text_1" = "トイレは..";
+"Onboarding_User_Sample_Text_2" = "トイレはどこですか？";
+"Onboarding_User_Sample_Text_3" = "近くにあります。";
+
 //* ----------------------------------------------------------------------- *//
 
 

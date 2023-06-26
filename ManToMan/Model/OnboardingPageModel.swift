@@ -20,6 +20,13 @@ struct OnboardingPage: Identifiable, Equatable {
         OnboardingPage(description: "onboarding_description_2", imageUrl: NSLocalizedString("onboardingImage2", comment: ""), tag: 2),
     ]
 }
+
+enum OnboardingState {
+    case page1
+    case page2
+    case page3
+    case page4
+}
 //    static var ENOnboardingResources: [OnboardingPage] = [
 //        OnboardingPage(description: "You can talk Face to Face!", imageUrl: "onboarding1", tag: 0),
 //        OnboardingPage(description: "Search fastly from recent records!", imageUrl: "onboarding2", tag: 1),

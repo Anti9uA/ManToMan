@@ -67,4 +67,13 @@
 "취소" = "취소";
 "설정으로 이동" = "설정으로 이동";
 
+"Onboarding_Partner_Sample_Text_1" = "Please wait..";
+"Onboarding_Partner_Sample_Text_2" = "Where is..";
+"Onboarding_Partner_Sample_Text_3" = "Where is the toilet?";
+"Onboarding_Partner_Sample_Text_4" = "It's nearby.";
+
+"Onboarding_User_Sample_Text_1" = "어디에..";
+"Onboarding_User_Sample_Text_2" = "화장실은 어디입니까?";
+"Onboarding_User_Sample_Text_3" = "근처에 있어요.";
+
 //* ----------------------------------------------------------------------- *//
