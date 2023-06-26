@@ -12,7 +12,7 @@ struct LaunchScreenView: View {
         ZStack{
             Color.background
                 .ignoresSafeArea()
-            LottieView(filename: "launchScreen", lastTime: 0.5)
+            LottieView(filename: NSLocalizedString("launchScreen", comment: ""), lastTime: 0.5)
         }
     }
 }

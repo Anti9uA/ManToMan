@@ -187,17 +187,19 @@ struct MainView: View {
                                             }
                                             Text(mv.text.isEmpty ? NSLocalizedString("user_speaking", comment: "") : mv.text)
                                                 .font(.korean())
-                                                .foregroundColor(mv.text.isEmpty ? .disabledBlack : .black)
-                                            
-                                                .multilineTextAlignment(.center)
+                                                .foregroundColor(mv.text.isEmpty ? .disabledBlack : .mainBlue)
+                                                .multilineTextAlignment(.leading)
+                                                .padding(.trailing, 20)
                                                 .onChange(of: mv.debouncedText) { newValue in
                                                     ManToManAPI.instance.postData(text: newValue, selectedlang: mv.mainViewState == .mikePassed ? defaultLang[currentLocale] ?? "한글" : lv.currentLang)
                                                 }
+                                            
                                             Spacer()
                                         }
                                     }
                                     .frame(width: geo.size.width - 80)
                                     .padding(20)
+                                    
                                     .background(.white)
                                     .cornerRadius(20)
                                     .overlay(
@@ -210,24 +212,23 @@ struct MainView: View {
                                         
                                         Text(translated.isEmpty ? NSLocalizedString("partner_speaking", comment: "") : translated)
                                             .font(.korean())
-                                            .foregroundColor(translated.isEmpty || mv.translated?.result == nil ? .disabledBlack : .black)
+                                            .foregroundColor(translated.isEmpty || mv.translated?.result == nil ? .disabledBlue : .black)
                                             .frame(width: geo.size.width - 80)
                                             .padding(20)
-                                            .multilineTextAlignment(.center)
                                             .background(.white)
                                             .cornerRadius(20)
+                                            .multilineTextAlignment(.leading)
                                     
                                     
                             }
                             
-                            if !mv.text.isEmpty && !mv.getAudioEngine(key: "myAudioEngine").isRunning && !mv.getAudioEngine(key: "myAudioEngine").isRunning  {
+                            if !mv.text.isEmpty && !mv.getAudioEngine(key: "myAudioEngine").isRunning && !mv.getAudioEngine(key: "partnerAudioEngine").isRunning  {
                                 HStack {
                                     Spacer()
                                     Button(action: {
                                         DispatchQueue.main.async {
                                             mv.text = ""
                                             mv.translated?.result = ""
-                                            // flipSpeaker = false
                                             mv.mainViewState = .idle
                                         }
                                     }, label: {
@@ -249,12 +250,12 @@ struct MainView: View {
                                     
                                     LottieView(filename: "userSpeakingMotion", lastTime: .infinity)
                                         .frame(width: 60, height: 20)
-                                        .opacity(mv.mainViewState != .mikeOwned ? 0 : 1)
+                                        .opacity(mv.buttonTappedState == .myVoiceButtonTapped ? 1 : 0)
                                         .padding(.trailing, 33)
                                     
                                     LottieView(filename: "partnerSpeakingMotion", lastTime: .infinity)
                                         .frame(width: 60, height: 20)
-                                        .opacity(mv.mainViewState != .mikePassed ? 0 : 1)
+                                        .opacity(mv.buttonTappedState == .partnerVoiceButtonTapped ? 1 : 0)
                                         .padding(.leading, 36)
                                 }
                                 HStack{
@@ -296,6 +297,21 @@ struct MainView: View {
                 .background(.background)
                 .cornerRadius(12)
                 .onTapGesture {
+                    switch mv.mainViewState {
+                        case .mikeOwned:
+                            mv.stopRecording(for: "myAudioEngine")
+                            mv.mainViewState = .idle
+                            mv.buttonTappedState = .noneTapped
+                        case .mikePassed:
+                            mv.stopRecording(for: "partnerAudioEngine")
+                            if mv.text.isEmpty {
+                                mv.mainViewState = .idle
+                            }
+                            mv.text = ""
+                            mv.buttonTappedState = .noneTapped
+                        case .idle:
+                            break
+                    }
                     self.isRecentPresented.toggle()
                 }
                 .sheet(isPresented: $isRecentPresented) {

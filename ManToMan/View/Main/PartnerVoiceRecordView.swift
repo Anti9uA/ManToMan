@@ -36,6 +36,9 @@ struct PartnerVoiceRecordView: View {
                                             withAnimation(.easeIn) {
                                                 if success {
                                                     // MARK: 순서 중요!! 먼저 녹음을 시작하고 상태를 바꿔줘야함!!!!!
+                                                    if !text.isEmpty && text != "듣는중.." && mainViewState != .mikePassed {
+                                                        DataController().addRecent(sentence: text, context: managedObjContext)
+                                                    }
                                                     mainViewState = .mikePassed
                                                     buttonTappedState = .partnerVoiceButtonTapped
                                                     self.startRecord()
@@ -60,19 +63,36 @@ struct PartnerVoiceRecordView: View {
                     case .partnerVoiceButtonTapped:
                         withAnimation(.easeIn) {
                             self.finishRecord()
+
                             if !text.isEmpty && text != "듣는중.." && mainViewState != .mikePassed {
                                 DataController().addRecent(sentence: text, context: managedObjContext)
-                            }
-                            else if text.isEmpty{
-                                buttonTappedState = .noneTapped
-                                text = ""
+                                mainViewState = .idle
+                            } else if text.isEmpty {
                                 mainViewState = .idle
                             }
-                            else {
+
+                            if mainViewState != .mikePassed {
                                 text = ""
                             }
+                            
                             buttonTappedState = .noneTapped
                         }
+//                        withAnimation(.easeIn) {
+//                            self.finishRecord()
+//                            if !text.isEmpty && text != "듣는중.." && mainViewState != .mikePassed {
+//                                DataController().addRecent(sentence: text, context: managedObjContext)
+//                                mainViewState = .idle
+//
+//                            }
+//                            else if text.isEmpty{
+//                                text = ""
+//                                mainViewState = .idle
+//                            }
+//                            else {
+//                                text = ""
+//                            }
+//                            buttonTappedState = .noneTapped
+//                        }
                 }
             }, label: {
                 ZStack{
@@ -83,7 +103,6 @@ struct PartnerVoiceRecordView: View {
                                 Spacer()
                                 Image("micIcon")
                                     .resizable()
-                                    .offset(y : mainViewState != .mikePassed ? 0 : 50)
                                     .frame(width: 27, height: 66)
                                     .foregroundColor(.white)
                                 

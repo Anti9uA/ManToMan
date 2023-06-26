@@ -56,21 +56,17 @@ struct MyVoiceButtonView: View {
                             }
                         }
                     case .myVoiceButtonTapped:
-                        withAnimation(.easeIn){
-                            self.finishRecord()
-                            if !text.isEmpty && text != "듣는중.." && mainViewState != .mikePassed {
-                                DataController().addRecent(sentence: text, context: managedObjContext)
-                            }
-                            else if text.isEmpty{
+                        withAnimation(.easeIn) {
+                                self.finishRecord()
+
+                                if !text.isEmpty && text != "듣는중.." && mainViewState != .mikePassed {
+                                    DataController().addRecent(sentence: text, context: managedObjContext)
+                                }
+
                                 text = ""
                                 mainViewState = .idle
+                                buttonTappedState = .noneTapped
                             }
-                            else {
-                                text = ""
-                            }
-                            
-                            buttonTappedState = .noneTapped
-                        }
                         
                 }
             }, label: {
@@ -82,10 +78,8 @@ struct MyVoiceButtonView: View {
                                 Spacer()
                                 Image("micIcon")
                                     .resizable()
-                                    .offset(y : mainViewState != .mikeOwned ? 0 : 50)
                                     .frame(width: 27, height: 66)
                                     .foregroundColor(.white)
-                                
                             }
                         case .myVoiceButtonTapped:
                             Image(systemName: "square.fill")

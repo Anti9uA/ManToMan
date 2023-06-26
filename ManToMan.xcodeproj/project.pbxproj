@@ -22,7 +22,8 @@
 		204751342A0C707F000E2353 /* VoiceRecordButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204751332A0C707F000E2353 /* VoiceRecordButtonView.swift */; };
 		207052F62A45A70500B352F7 /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207052F52A45A70500B352F7 /* InstructionView.swift */; };
 		207052F82A49275600B352F7 /* partnerSpeakingMotion.json in Resources */ = {isa = PBXBuildFile; fileRef = 207052F72A49275500B352F7 /* partnerSpeakingMotion.json */; };
-		207052FC2A4942D300B352F7 /* launchScreen.json in Resources */ = {isa = PBXBuildFile; fileRef = 207052FB2A4942D300B352F7 /* launchScreen.json */; };
+		207052FE2A49C2F800B352F7 /* launchScreen_KR.json in Resources */ = {isa = PBXBuildFile; fileRef = 207052FD2A49C2F800B352F7 /* launchScreen_KR.json */; };
+		207053012A49E3F900B352F7 /* launchScreen_EN.json in Resources */ = {isa = PBXBuildFile; fileRef = 207053002A49E3F900B352F7 /* launchScreen_EN.json */; };
 		208AF57F29CF0C7700B07BDE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 208AF58129CF0C7700B07BDE /* InfoPlist.strings */; };
 		20A23DBE2A348B03003C036C /* MyVoiceButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A23DBD2A348B03003C036C /* MyVoiceButtonView.swift */; };
 		20A23DC02A34A9D3003C036C /* PartnerVoiceRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A23DBF2A34A9D3003C036C /* PartnerVoiceRecordView.swift */; };
@@ -67,7 +68,8 @@
 		204751332A0C707F000E2353 /* VoiceRecordButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordButtonView.swift; sourceTree = "<group>"; };
 		207052F52A45A70500B352F7 /* InstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		207052F72A49275500B352F7 /* partnerSpeakingMotion.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = partnerSpeakingMotion.json; sourceTree = "<group>"; };
-		207052FB2A4942D300B352F7 /* launchScreen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = launchScreen.json; sourceTree = "<group>"; };
+		207052FD2A49C2F800B352F7 /* launchScreen_KR.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = launchScreen_KR.json; sourceTree = "<group>"; };
+		207053002A49E3F900B352F7 /* launchScreen_EN.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = launchScreen_EN.json; sourceTree = "<group>"; };
 		208AF58029CF0C7700B07BDE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		208AF58229CF0C7D00B07BDE /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		20A23DBD2A348B03003C036C /* MyVoiceButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVoiceButtonView.swift; sourceTree = "<group>"; };
@@ -155,13 +157,22 @@
 		203D3E592990203A0050163B /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
-				207052FB2A4942D300B352F7 /* launchScreen.json */,
+				207052FF2A49E37200B352F7 /* launchScreen */,
 				207052F72A49275500B352F7 /* partnerSpeakingMotion.json */,
 				2016284A299E118B00D0A5E5 /* hand.json */,
 				203D3E5E2990F2CA0050163B /* userSpeakingMotion.json */,
 				203D3E5A2990204A0050163B /* LottieView.swift */,
 			);
 			path = Lottie;
+			sourceTree = "<group>";
+		};
+		207052FF2A49E37200B352F7 /* launchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				207053002A49E3F900B352F7 /* launchScreen_EN.json */,
+				207052FD2A49C2F800B352F7 /* launchScreen_KR.json */,
+			);
+			path = launchScreen;
 			sourceTree = "<group>";
 		};
 		208AF58329CF0C8500B07BDE /* Localization */ = {
@@ -354,9 +365,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2016284B299E118B00D0A5E5 /* hand.json in Resources */,
+				207052FE2A49C2F800B352F7 /* launchScreen_KR.json in Resources */,
 				208AF57F29CF0C7700B07BDE /* InfoPlist.strings in Resources */,
+				207053012A49E3F900B352F7 /* launchScreen_EN.json in Resources */,
 				207052F82A49275600B352F7 /* partnerSpeakingMotion.json in Resources */,
-				207052FC2A4942D300B352F7 /* launchScreen.json in Resources */,
 				B22EC64D298FABCB0034977E /* LINESeedKR-Rg.otf in Resources */,
 				20CC720F29C80C3900920757 /* Localizable.strings in Resources */,
 				B22EC652298FAC270034977E /* LINESeedSans_A_Bd.otf in Resources */,
@@ -556,7 +568,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"ManToMan/Preview Content\"";
 				DEVELOPMENT_TEAM = Y6P5ZFWBM8;
 				ENABLE_PREVIEWS = YES;
@@ -591,7 +603,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"ManToMan/Preview Content\"";
 				DEVELOPMENT_TEAM = Y6P5ZFWBM8;
 				ENABLE_PREVIEWS = YES;
