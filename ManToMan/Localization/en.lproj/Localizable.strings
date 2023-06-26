@@ -70,7 +70,7 @@
 
 // 마이크 라벨
 "내 마이크" = "My Mic";
-"상대 마이크" = "Partner Mic";
+"상대 마이크" = "Partner's Mic";
 
 // Onboarding Sample Text
 "Onboarding_Partner_Sample_Text_1" = "기다려주세요..";
@@ -82,6 +82,12 @@
 "Onboarding_User_Sample_Text_2" = "Where is the toilet?";
 "Onboarding_User_Sample_Text_3" = "It's nearby.";
 "Onboarding_User_Sample_Text_4" = "근처에 있어요.";
+
+"Instruction_Sentence_1" = "Click on the My Mic.";
+"Instruction_Sentence_2" = "Recognizes your voices\nand show it to your partner.";
+"Instruction_Sentence_3" = "Oh, your partner starts to speak!\nTurn on the Partner's Mic.";
+"Instruction_Sentence_4" = "You can turn on the Partner's Mic\nas soon as your partner starts to respond.";
+
 
 //* ----------------------------------------------------------------------- *//
 

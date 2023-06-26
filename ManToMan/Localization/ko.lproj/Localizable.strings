@@ -76,4 +76,9 @@
 "Onboarding_User_Sample_Text_2" = "화장실은 어디입니까?";
 "Onboarding_User_Sample_Text_3" = "근처에 있어요.";
 
+"Instruction_Sentence_1" = "내 마이크를 클릭해보세요.";
+"Instruction_Sentence_2" = "내 음성을 인식해\n번역된 말은 상대방에 보여줘요.";
+"Instruction_Sentence_3" = "앗, 상대방이 말하기 시작하네요.\n상대방 마이크를 켜보세요.";
+"Instruction_Sentence_4" = "상대방이 대답하기 시작하면\n바로 마이크를 켜줄 수 있어요.";
+
 //* ----------------------------------------------------------------------- *//

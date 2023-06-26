@@ -25,7 +25,8 @@ struct ManToManApp: App {
             }
             else {
                 if isFirst {
-                    OnboardingView(viewModel: OnboardingViewModel(isFirst: $isFirst))
+                    InstructionView(onboardingViewModel: OnboardingViewModel(isFirst: $isFirst))
+                    // OnboardingView(viewModel: OnboardingViewModel(isFirst: $isFirst))
                 }
                 else {
                     MainView()

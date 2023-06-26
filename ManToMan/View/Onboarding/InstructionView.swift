@@ -246,7 +246,33 @@ struct InstructionView: View {
                 .ignoresSafeArea()
                 
                 
-                Text("텍스트1")
+                switch onboardingViewModel.onboardingState {
+                    case .page1:
+                        Text("Instruction_Sentence_1")
+                            .font(.korean())
+                            .foregroundColor(.white)
+                            .padding(.top, 180)
+                            .multilineTextAlignment(.center)
+                    case .page2:
+                        Text("Instruction_Sentence_2")
+                            .font(.korean())
+                            .foregroundColor(.white)
+                            .padding(.top, 180)
+                            .multilineTextAlignment(.center)
+                    case .page3:
+                        Text("Instruction_Sentence_3")
+                            .font(.korean())
+                            .foregroundColor(.white)
+                            .padding(.top, 180)
+                            .multilineTextAlignment(.center)
+                    case .page4:
+                        Text("Instruction_Sentence_4")
+                            .font(.korean())
+                            .foregroundColor(.white)
+                            .padding(.top, 180)
+                            .multilineTextAlignment(.center)
+                }
+                
             }
             .onTapGesture {
                 switch onboardingViewModel.onboardingState {
@@ -257,7 +283,7 @@ struct InstructionView: View {
                     case .page3:
                         onboardingViewModel.onboardingState = .page4
                     case .page4:
-                        onboardingViewModel.onboardingState = .page1
+                        onboardingViewModel.isFirst = false
                 }
             }
         }
@@ -267,6 +293,6 @@ struct InstructionView: View {
 
 struct InstructionView_Previews: PreviewProvider {
     static var previews: some View {
-        InstructionView(onboardingViewModel: OnboardingViewModel(isFirst: .constant(false)))
+        InstructionView(onboardingViewModel: OnboardingViewModel(isFirst: .constant(true)))
     }
 }

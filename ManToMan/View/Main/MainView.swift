@@ -104,23 +104,9 @@ struct MainView: View {
                                                     .frame(width: 38)
                                             }
                                             Text(mv.text.isEmpty ? mv.defaultString.pleaseSpeak[lv.currentLang]! : mv.text)
-                                            //                                        .font(.english())
-                                            //                                        .rotationEffect(Angle(degrees: isTranslatedReversed ? 0 : 180))
-                                            //                                        .frame(width: geo.size.width - 80, height: 190, alignment: .topLeading)
-                                            //                                        .padding()
-                                            //                                        .background(.white)
-                                            //                                        .foregroundColor(Color.mainBlue)
                                                 .font(.english())
                                                 .cornerRadius(20)
-//                                                .frame(width: geo.size.width - 80, height: 190, alignment: .topLeading)
-//                                                .background(.white)
-//                                                .minimumScaleFactor(0.8)
                                                 .foregroundColor(Color.mainPurple)
-//                                                .padding(EdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20))
-//                                                .overlay(
-//                                                    RoundedRectangle(cornerRadius: 20)
-//                                                        .stroke(Color.mainPurple, lineWidth: 2.5)
-//                                                )
                                                 .onChange(of: mv.debouncedText) { newValue in
                                                     ManToManAPI.instance.postData(text: newValue, selectedlang: mv.mainViewState == .mikePassed ? defaultLang[currentLocale] ?? "한글" : lv.currentLang)
                                                 }
@@ -131,15 +117,17 @@ struct MainView: View {
                                     .background(.white)
                                     .minimumScaleFactor(0.8)
                                     .cornerRadius(20)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 20)
-                                            .stroke(Color.mainPurple, lineWidth: 2.5)
-                                    )
                                     
                             }
                             
                         }
                         .rotationEffect(Angle(degrees: isTranslatedReversed ? 180 : 0))
+                        .overlay {
+                            if mv.mainViewState == .mikePassed {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.mainPurple, lineWidth: 2.5)
+                            }
+                        }
                         
                         
                         ZStack{
@@ -165,7 +153,6 @@ struct MainView: View {
                                             .padding(20)
                                             .lineLimit(...7)
                                         }
-                                    // .multilineTextAlignment(.leading)
                                         .background(.white)
                                         .submitLabel(.done)
                                         .overlay(
@@ -211,7 +198,6 @@ struct MainView: View {
                                     }
                                     .frame(width: geo.size.width - 80)
                                     .padding(20)
-                                    //                                    .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
                                     .background(.white)
                                     .cornerRadius(20)
                                     .overlay(
@@ -227,28 +213,12 @@ struct MainView: View {
                                             .foregroundColor(translated.isEmpty || mv.translated?.result == nil ? .disabledBlack : .black)
                                             .frame(width: geo.size.width - 80)
                                             .padding(20)
-                                        //                                        .padding(EdgeInsets(top: 0, leading: 20, bottom: 15, trailing: 20))
                                             .multilineTextAlignment(.center)
                                             .background(.white)
                                             .cornerRadius(20)
                                     
                                     
                             }
-                            
-                            // MARK: 입력 일괄 삭제 버튼
-                            //                        if !mv.text.isEmpty && !mv.audioEngine.isRunning  {
-                            //                                Button(action: {
-                            //                                    DispatchQueue.main.async {
-                            //                                        mv.text = ""
-                            //                                        mv.translated?.result = ""
-                            //                                        // flipSpeaker = false
-                            //                                        mv.mainViewState = .idle
-                            //                                    }
-                            //                                }, label: {
-                            //                                    Image(systemName: "x.circle.fill")
-                            //                                        .foregroundColor(Color.mainBlue)
-                            //                                })
-                            //                        }
                             
                             if !mv.text.isEmpty && !mv.getAudioEngine(key: "myAudioEngine").isRunning && !mv.getAudioEngine(key: "myAudioEngine").isRunning  {
                                 HStack {
@@ -269,85 +239,7 @@ struct MainView: View {
                             }
                         }
                         .padding(.top, 20)
-//                        .frame(width: geo.size.width - 100)
                         
-                        // MARK: 최근 기록 열람 메뉴
-                        // Spacer()
-                        
-                        //                    ScrollView (.vertical){
-                        //                        ZStack{
-                        //                            VStack{
-                        //                                ForEach(recent, id: \.self){ sen in
-                        //                                    ZStack{
-                        //                                        Button(action: {
-                        //                                            mv.text = sen.sentence ?? "error"
-                        //                                        }, label: {
-                        //                                            Text(sen.sentence ?? "error")
-                        //                                                .lineLimit(1)
-                        //                                                .font(.customTitle())
-                        //                                                .foregroundColor(.customDarkGray)
-                        //                                                .opacity(recentOpacity)
-                        //
-                        //                                        })
-                        //                                        .frame(width: geo.size.width - 100)
-                        //
-                        //                                        HStack{
-                        //                                            Spacer()
-                        //                                            Button(action: {
-                        //                                                withAnimation {
-                        //                                                    self.managedObjContext.delete(sen)
-                        //                                                    DataController().save(context: managedObjContext)
-                        //                                                }
-                        //                                            }, label: {
-                        //                                                Image(systemName: "x.circle.fill")
-                        //                                                    .foregroundColor(Color.customDarkGray)
-                        //                                                    .opacity(recentOpacity)
-                        //                                            })
-                        //                                        }
-                        //                                        .padding(.horizontal, 25)
-                        //                                    }
-                        //                                    .padding(.bottom, 20)
-                        //
-                        //                                }
-                        //                                Rectangle()
-                        //                                    .fill(Color.background)
-                        //                                    .frame(height: 10)
-                        //                                    .padding(.top, 20)
-                        //                            }
-                        //                            if !mv.text.isEmpty || mv.text == "\n" || mv.mainViewState != .idle {
-                        //                                Color.background
-                        //                            }
-                        //                        }
-                        //                    }
-                        //                    .onAppear {
-                        //                        withAnimation(.easeIn(duration: 0.9).delay(recentDelay)) {
-                        //                            recentOpacity = 1.0
-                        //                        }
-                        //                    }
-                        //                    .overlay(
-                        //                        Image("gradientBox")
-                        //                            .resizable()
-                        //                            .aspectRatio(contentMode: .fill)
-                        //                            .frame(width: geo.size.width, height: 50),
-                        //                        alignment: .bottom
-                        //                    )
-                        
-                        //                    if mikeInstruction {
-                        //                        Text("마이크를 당겨 상대방 대화도 번역해보세요!")
-                        //                            .font(.customCaption())
-                        //                            .foregroundColor(.mainBlue)
-                        //                            .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
-                        //                            .background(Color.white)
-                        //                            .cornerRadius(30)
-                        //                            .offset(y: 70)
-                        //                            .opacity(recentOpacity)
-                        //                            .onAppear {
-                        //                                withAnimation(.easeIn(duration: 0.9).delay(recentDelay)) {
-                        //                                    recentOpacity = 1.0
-                        //                                }
-                        //                            }
-                        //
-                        //                    }
                         Spacer()
                         
                         ZStack(alignment: .center) {
@@ -364,10 +256,6 @@ struct MainView: View {
                                         .frame(width: 60, height: 20)
                                         .opacity(mv.mainViewState != .mikePassed ? 0 : 1)
                                         .padding(.leading, 36)
-//                                    if mv.mainViewState == .mikePassed {
-//                                        LottieView(filename: "speaking", lastTime: .infinity)
-//                                            .frame(width: 60, height: 20)
-//                                    }
                                 }
                                 HStack{
                                     
@@ -388,74 +276,9 @@ struct MainView: View {
                                         mv.stopRecording(for: "partnerAudioEngine")
                                         
                                     })
-                                    
-                                    
-                                    
-                                    //                                MyVoiceButtonView(mainViewState: $mv.mainViewState, buttonTappedState: $mv.buttonTappedState, text: $mv.text, isFirst: $mikeInstruction, isSpeechAuth: $isSpeechAuth , startRecord: {
-                                    //                                    if mv.audioEngine.isRunning {
-                                    //                                        mv.audioEngine.stop()
-                                    //                                        mv.audioEngine.inputNode.removeTap(onBus: 0)
-                                    //                                        mv.recognitionRequest = nil
-                                    //                                        mv.recognitionTask = nil
-                                    //                                    }
-                                    //                                    mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글")
-                                    //                                }, finishRecord: {
-                                    //                                    mv.audioEngine.inputNode.removeTap(onBus: 0)
-                                    //                                    mv.recognitionRequest?.endAudio()
-                                    //                                    mv.audioEngine.stop()
-                                    //                                    mv.recognitionRequest = nil
-                                    //                                    mv.recognitionTask = nil
-                                    //                                })
-                                    
-                                    //                                SampleButtonView(mainViewState: $mv.mainViewState, buttonTappedState: $mv.buttonTappedState, text: $mv.text, isFirst: $mikeInstruction, isSpeechAuth: $isSpeechAuth , startRecord: {
-                                    //                                        mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글")
-                                    //                                    }, finishRecord: {
-                                    //                                        mv.audioEngine.stop()
-                                    //                                        mv.recognitionRequest?.endAudio()
-                                    //                                    })
-                                    
-                                    //                                PartnerVoiceRecordView(mainViewState: $mv.mainViewState, buttonTappedState: $mv.buttonTappedState, text: $mv.text, isFirst: $mikeInstruction, isSpeechAuth: $isSpeechAuth, startRecord: {
-                                    //                                    mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글")
-                                    //                                }, finishRecord: {
-                                    //                                    mv.audioEngine.stop()
-                                    //                                    mv.audioEngine.inputNode.removeTap(onBus: 0)
-                                    //                                    mv.recognitionRequest?.endAudio()
-                                    //                                    mv.recognitionRequest = nil
-                                    //                                    mv.recognitionTask = nil
-                                    //                                })
                                 }
                             }
-                            //                            RecordButtonView(mainViewState: $mv.mainViewState, text: $mv.text, isFirst: $mikeInstruction, isSpeechAuth: $isSpeechAuth, startRecord: {
-                            //                                mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글")
-                            //                            }, finishRecord: {
-                            //                                mv.audioEngine.stop()
-                            //                                mv.recognitionRequest?.endAudio()
-                            //                            })
-                            //                            .frame(height: 230)     // 하단 가리개가 가릴시 높이 미세 조정
-                            
-                            
-                            // MARK: UI 반전 토글 버튼
-                            
-//                            VStack{
-//                                Spacer()
-//                                HStack{
-//                                    Spacer()
-//                                    Button(action: {
-//                                        self.isTranslatedReversed.toggle()
-//
-//                                    }, label: {
-//                                        Image(isTranslatedReversed ? "meSpeaks" : "youSpeaks")
-//                                            .resizable()
-//                                            .aspectRatio(contentMode: .fit)
-//                                            .frame(width: 67, height: 67)
-//                                    })
-//                                }
-//                                .padding(.trailing, 40)
-//                                .padding(.bottom, 10)
-//
-//                            }
-                            
-                            
+                           
                         }
                         .frame(height: 130)
                         .padding(.vertical, 30)   // 가리개 깨질시 미세 조정

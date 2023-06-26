@@ -81,6 +81,11 @@
 "Onboarding_User_Sample_Text_2" = "トイレはどこですか？";
 "Onboarding_User_Sample_Text_3" = "近くにあります。";
 
+"Instruction_Sentence_1" = "私のマイクを\nつけてみてください。";
+"Instruction_Sentence_2" = "私の音声を認識して\n翻訳された言葉を見せてくれます。";
+"Instruction_Sentence_3" = "あっ、相手が話し始めますね！\n相手のマイクをつけてみてください。";
+"Instruction_Sentence_4" = "相手が答え始めたら\nすぐマイクをつけて翻訳できます!";
+
 //* ----------------------------------------------------------------------- *//
 
 

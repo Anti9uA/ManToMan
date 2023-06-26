@@ -114,6 +114,7 @@
 		2016283E299DFC5000D0A5E5 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				207052F52A45A70500B352F7 /* InstructionView.swift */,
 				2016283F299DFC7300D0A5E5 /* OnboardingView.swift */,
 				20162843299DFCBB00D0A5E5 /* OnboardingPageView.swift */,
 			);
@@ -131,7 +132,6 @@
 				20A23DBD2A348B03003C036C /* MyVoiceButtonView.swift */,
 				20A23DBF2A34A9D3003C036C /* PartnerVoiceRecordView.swift */,
 				20A23DC12A358F7A003C036C /* SampleButtonView.swift */,
-				207052F52A45A70500B352F7 /* InstructionView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";

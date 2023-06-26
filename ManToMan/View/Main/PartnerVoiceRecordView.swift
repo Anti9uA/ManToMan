@@ -58,19 +58,21 @@ struct PartnerVoiceRecordView: View {
                             }
                         }
                     case .partnerVoiceButtonTapped:
-                        self.finishRecord()
-                        if !text.isEmpty && text != "듣는중.." && mainViewState != .mikePassed {
-                            DataController().addRecent(sentence: text, context: managedObjContext)
-                        }
-                        else if text.isEmpty{
+                        withAnimation(.easeIn) {
+                            self.finishRecord()
+                            if !text.isEmpty && text != "듣는중.." && mainViewState != .mikePassed {
+                                DataController().addRecent(sentence: text, context: managedObjContext)
+                            }
+                            else if text.isEmpty{
+                                buttonTappedState = .noneTapped
+                                text = ""
+                                mainViewState = .idle
+                            }
+                            else {
+                                text = ""
+                            }
                             buttonTappedState = .noneTapped
-                            text = ""
-                            mainViewState = .idle
                         }
-                        else {
-                            text = ""
-                        }
-                        buttonTappedState = .noneTapped
                 }
             }, label: {
                 ZStack{
