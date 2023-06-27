@@ -187,7 +187,7 @@ struct MainView: View {
                                             }
                                             Text(mv.text.isEmpty ? NSLocalizedString("user_speaking", comment: "") : mv.text)
                                                 .font(.korean())
-                                                .foregroundColor(mv.text.isEmpty ? .disabledBlack : .mainBlue)
+                                                .foregroundColor(mv.text.isEmpty ? .disabledBlue : .mainBlue)
                                                 .multilineTextAlignment(.leading)
                                                 .padding(.trailing, 20)
                                                 .onChange(of: mv.debouncedText) { newValue in

@@ -18,11 +18,11 @@ class OnboardingViewModel: ObservableObject {
         self._isFirst = isFirst
     }
     
-    func incrementPage() {
-        pageIndex += 1
-    }
-    
-    func goToZero() {
-        pageIndex = 0
-    }
+//    func incrementPage() {
+//        pageIndex += 1
+//    }
+//
+//    func goToZero() {
+//        pageIndex = 0
+//    }
 }

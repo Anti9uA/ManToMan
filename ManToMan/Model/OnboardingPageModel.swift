@@ -27,10 +27,6 @@ enum OnboardingState {
     case page3
     case page4
 }
-//    static var ENOnboardingResources: [OnboardingPage] = [
-//        OnboardingPage(description: "You can talk Face to Face!", imageUrl: "onboarding1", tag: 0),
-//        OnboardingPage(description: "Search fastly from recent records!", imageUrl: "onboarding2", tag: 1),
-//        OnboardingPage(description: "Drag the microphone\nto translate the action", imageUrl: "onboarding3", tag: 2),
-//    ]
+
 
 

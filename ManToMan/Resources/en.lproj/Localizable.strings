@@ -85,8 +85,8 @@
 
 "Instruction_Sentence_1" = "Click on the My Mic.";
 "Instruction_Sentence_2" = "Recognizes your voices\nand show it to your partner.";
-"Instruction_Sentence_3" = "Oh, your partner starts to speak!\nTurn on the Partner's Mic.";
-"Instruction_Sentence_4" = "You can turn on the Partner's Mic\nas soon as your partner starts to respond.";
+"Instruction_Sentence_3" = "Oh, your partner\n starts to speak!\nTurn on the Partner's Mic.";
+"Instruction_Sentence_4" = "You can turn on\nthe Partner's Mic\nas soon as your partner\nstarts to respond.";
 
 "번역기록" = "Recents";
 
