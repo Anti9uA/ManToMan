@@ -37,11 +37,6 @@ struct InstructionView: View {
                                     .foregroundColor(Color.white)
                                     .cornerRadius(30)
                                 
-//                                Text("기다려주세요..")
-//                                    .font(.english())
-//                                    .foregroundColor(.mainPurple)
-//                                    .rotationEffect(Angle(degrees: 180))
-//                                    .padding(20)
                                 switch onboardingViewModel.onboardingState {
                                     case .page1:
                                         Text("Onboarding_Partner_Sample_Text_1")
@@ -88,8 +83,6 @@ struct InstructionView: View {
                                     .overlay(RoundedRectangle(cornerRadius: 20)
                                         .stroke(Color.mainBlue.opacity(0.3), lineWidth: 2.5)
                                     )
-                                
-                                
                                 
                                 
                                 

@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		200ED7362A0F8D200098F3FC /* RecentRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200ED7352A0F8D200098F3FC /* RecentRecordView.swift */; };
 		20162835299A2CA800D0A5E5 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20162834299A2CA800D0A5E5 /* LaunchScreenView.swift */; };
-		20162840299DFC7300D0A5E5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2016283F299DFC7300D0A5E5 /* OnboardingView.swift */; };
-		20162844299DFCBB00D0A5E5 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20162843299DFCBB00D0A5E5 /* OnboardingPageView.swift */; };
 		20162846299DFCF000D0A5E5 /* OnboardingPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20162845299DFCF000D0A5E5 /* OnboardingPageModel.swift */; };
 		2016284E299FBC7500D0A5E5 /* properties.json in Resources */ = {isa = PBXBuildFile; fileRef = 2016284D299FBC7500D0A5E5 /* properties.json */; };
 		201EBD0629B96EFF00B6C885 /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201EBD0529B96EFF00B6C885 /* RecordViewModel.swift */; };
@@ -18,7 +16,6 @@
 		203D3E5B2990204A0050163B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D3E5A2990204A0050163B /* LottieView.swift */; };
 		203D3E5F2990F2CA0050163B /* userSpeakingMotion.json in Resources */ = {isa = PBXBuildFile; fileRef = 203D3E5E2990F2CA0050163B /* userSpeakingMotion.json */; };
 		20421FBA29AE841C00310030 /* OnboadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20421FB929AE841C00310030 /* OnboadingViewModel.swift */; };
-		204751342A0C707F000E2353 /* VoiceRecordButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204751332A0C707F000E2353 /* VoiceRecordButtonView.swift */; };
 		207052F62A45A70500B352F7 /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207052F52A45A70500B352F7 /* InstructionView.swift */; };
 		207052F82A49275600B352F7 /* partnerSpeakingMotion.json in Resources */ = {isa = PBXBuildFile; fileRef = 207052F72A49275500B352F7 /* partnerSpeakingMotion.json */; };
 		207052FE2A49C2F800B352F7 /* launchScreen_KR.json in Resources */ = {isa = PBXBuildFile; fileRef = 207052FD2A49C2F800B352F7 /* launchScreen_KR.json */; };
@@ -26,7 +23,6 @@
 		208AF57F29CF0C7700B07BDE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 208AF58129CF0C7700B07BDE /* InfoPlist.strings */; };
 		20A23DBE2A348B03003C036C /* MyVoiceButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A23DBD2A348B03003C036C /* MyVoiceButtonView.swift */; };
 		20A23DC02A34A9D3003C036C /* PartnerVoiceRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A23DBF2A34A9D3003C036C /* PartnerVoiceRecordView.swift */; };
-		20A23DC22A358F7A003C036C /* SampleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A23DC12A358F7A003C036C /* SampleButtonView.swift */; };
 		20CC720F29C80C3900920757 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 20CC721129C80C3900920757 /* Localizable.strings */; };
 		20CC721629CB46CB00920757 /* LanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CC721529CB46CB00920757 /* LanguageViewModel.swift */; };
 		20CC721829CB46E700920757 /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CC721729CB46E700920757 /* LanguageModel.swift */; };
@@ -39,7 +35,6 @@
 		20DBD9E6298ECCC400BF882B /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9E5298ECCC400BF882B /* MainModel.swift */; };
 		20DBD9E8298ECCD800BF882B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9E7298ECCD800BF882B /* MainViewModel.swift */; };
 		20DBD9EB298ECD1800BF882B /* ManToManAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9EA298ECD1800BF882B /* ManToManAPI.swift */; };
-		20DBD9ED298ECD4B00BF882B /* RecordButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9EC298ECD4B00BF882B /* RecordButtonView.swift */; };
 		20DBD9EF298ECD6000BF882B /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9EE298ECD6000BF882B /* LanguageSelectionView.swift */; };
 		20DBD9F6298ED89800BF882B /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9F5298ED89800BF882B /* FontExtension.swift */; };
 		B22EC64C298FABCB0034977E /* LINESeedKR-Bd.otf in Resources */ = {isa = PBXBuildFile; fileRef = B22EC64A298FABCB0034977E /* LINESeedKR-Bd.otf */; };
@@ -55,15 +50,12 @@
 		200ACB8429E70A0000BAB80B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		200ED7352A0F8D200098F3FC /* RecentRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentRecordView.swift; sourceTree = "<group>"; };
 		20162834299A2CA800D0A5E5 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
-		2016283F299DFC7300D0A5E5 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		20162843299DFCBB00D0A5E5 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		20162845299DFCF000D0A5E5 /* OnboardingPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageModel.swift; sourceTree = "<group>"; };
 		2016284D299FBC7500D0A5E5 /* properties.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = properties.json; sourceTree = "<group>"; };
 		201EBD0529B96EFF00B6C885 /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 		203D3E5A2990204A0050163B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		203D3E5E2990F2CA0050163B /* userSpeakingMotion.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userSpeakingMotion.json; sourceTree = "<group>"; };
 		20421FB929AE841C00310030 /* OnboadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboadingViewModel.swift; sourceTree = "<group>"; };
-		204751332A0C707F000E2353 /* VoiceRecordButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordButtonView.swift; sourceTree = "<group>"; };
 		207052F52A45A70500B352F7 /* InstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		207052F72A49275500B352F7 /* partnerSpeakingMotion.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = partnerSpeakingMotion.json; sourceTree = "<group>"; };
 		207052FD2A49C2F800B352F7 /* launchScreen_KR.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = launchScreen_KR.json; sourceTree = "<group>"; };
@@ -72,7 +64,6 @@
 		208AF58229CF0C7D00B07BDE /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		20A23DBD2A348B03003C036C /* MyVoiceButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVoiceButtonView.swift; sourceTree = "<group>"; };
 		20A23DBF2A34A9D3003C036C /* PartnerVoiceRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerVoiceRecordView.swift; sourceTree = "<group>"; };
-		20A23DC12A358F7A003C036C /* SampleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleButtonView.swift; sourceTree = "<group>"; };
 		20CC721329C80C3E00920757 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		20CC721429C813BF00920757 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		20CC721529CB46CB00920757 /* LanguageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewModel.swift; sourceTree = "<group>"; };
@@ -87,7 +78,6 @@
 		20DBD9E5298ECCC400BF882B /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		20DBD9E7298ECCD800BF882B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		20DBD9EA298ECD1800BF882B /* ManToManAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManToManAPI.swift; sourceTree = "<group>"; };
-		20DBD9EC298ECD4B00BF882B /* RecordButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButtonView.swift; sourceTree = "<group>"; };
 		20DBD9EE298ECD6000BF882B /* LanguageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionView.swift; sourceTree = "<group>"; };
 		20DBD9F5298ED89800BF882B /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 		B22EC64A298FABCB0034977E /* LINESeedKR-Bd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LINESeedKR-Bd.otf"; sourceTree = "<group>"; };
@@ -111,25 +101,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2016283E299DFC5000D0A5E5 /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				2016283F299DFC7300D0A5E5 /* OnboardingView.swift */,
-				20162843299DFCBB00D0A5E5 /* OnboardingPageView.swift */,
-			);
-			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		20162841299DFC7C00D0A5E5 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				20DBD9EC298ECD4B00BF882B /* RecordButtonView.swift */,
-				204751332A0C707F000E2353 /* VoiceRecordButtonView.swift */,
-				20A23DC12A358F7A003C036C /* SampleButtonView.swift */,
-			);
-			path = Main;
-			sourceTree = "<group>";
-		};
 		2016284C299FBC5C00D0A5E5 /* Properties */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,24 +202,14 @@
 				20C164532A4AC45800B939F1 /* Resources */,
 				2016284C299FBC5C00D0A5E5 /* Properties */,
 				203D3E592990203A0050163B /* Lotties */,
-				B22EC64E298FABD30034977E /* Font */,
+				B22EC64E298FABD30034977E /* Fonts */,
 				20DBD9F4298ED87900BF882B /* Extensions */,
 				20DBD9E9298ECCFE00BF882B /* Utilities */,
 				20DBD9DE298ECC1200BF882B /* App */,
 				20DBD9DD298ECB3B00BF882B /* Model */,
 				20DBD9DC298ECB3100BF882B /* ViewModel */,
-				20DBD9DB298ECB0E00BF882B /* Legacies */,
 			);
 			path = ManToMan;
-			sourceTree = "<group>";
-		};
-		20DBD9DB298ECB0E00BF882B /* Legacies */ = {
-			isa = PBXGroup;
-			children = (
-				20162841299DFC7C00D0A5E5 /* Main */,
-				2016283E299DFC5000D0A5E5 /* Onboarding */,
-			);
-			path = Legacies;
 			sourceTree = "<group>";
 		};
 		20DBD9DC298ECB3100BF882B /* ViewModel */ = {
@@ -300,7 +261,7 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		B22EC64E298FABD30034977E /* Font */ = {
+		B22EC64E298FABD30034977E /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
 				B22EC651298FAC270034977E /* LINESeedSans_A_Bd.otf */,
@@ -308,7 +269,7 @@
 				B22EC64A298FABCB0034977E /* LINESeedKR-Bd.otf */,
 				B22EC64B298FABCB0034977E /* LINESeedKR-Rg.otf */,
 			);
-			path = Font;
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,16 +365,13 @@
 				B22EC655298FAF230034977E /* UIExtension.swift in Sources */,
 				20DBD9E4298ECC9200BF882B /* DataController.swift in Sources */,
 				20DBD9E1298ECC3600BF882B /* RecentLog.xcdatamodeld in Sources */,
-				204751342A0C707F000E2353 /* VoiceRecordButtonView.swift in Sources */,
 				207052F62A45A70500B352F7 /* InstructionView.swift in Sources */,
 				20A23DBE2A348B03003C036C /* MyVoiceButtonView.swift in Sources */,
-				20A23DC22A358F7A003C036C /* SampleButtonView.swift in Sources */,
 				20A23DC02A34A9D3003C036C /* PartnerVoiceRecordView.swift in Sources */,
 				20DBD9D0298ECB0400BF882B /* MainView.swift in Sources */,
 				20162835299A2CA800D0A5E5 /* LaunchScreenView.swift in Sources */,
 				B22EC657298FAFD00034977E /* ColorExtension.swift in Sources */,
 				20DBD9CE298ECB0400BF882B /* ManToManApp.swift in Sources */,
-				20162844299DFCBB00D0A5E5 /* OnboardingPageView.swift in Sources */,
 				20DBD9EB298ECD1800BF882B /* ManToManAPI.swift in Sources */,
 				20DBD9E6298ECCC400BF882B /* MainModel.swift in Sources */,
 				201EBD0629B96EFF00B6C885 /* RecordViewModel.swift in Sources */,
@@ -422,9 +380,7 @@
 				20CC721629CB46CB00920757 /* LanguageViewModel.swift in Sources */,
 				203D3E5B2990204A0050163B /* LottieView.swift in Sources */,
 				20CC721829CB46E700920757 /* LanguageModel.swift in Sources */,
-				20162840299DFC7300D0A5E5 /* OnboardingView.swift in Sources */,
 				200ED7362A0F8D200098F3FC /* RecentRecordView.swift in Sources */,
-				20DBD9ED298ECD4B00BF882B /* RecordButtonView.swift in Sources */,
 				20DBD9F6298ED89800BF882B /* FontExtension.swift in Sources */,
 				20162846299DFCF000D0A5E5 /* OnboardingPageModel.swift in Sources */,
 			);
