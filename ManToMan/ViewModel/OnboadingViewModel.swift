@@ -12,17 +12,8 @@ class OnboardingViewModel: ObservableObject {
     @Published var pageIndex = 0
     @Published var onboardingState: OnboardingState = .page1
     @Binding var isFirst: Bool
-//    let pages: [OnboardingPage] = OnboardingPage.OnboardingResources
     
     init(isFirst: Binding<Bool>) {
         self._isFirst = isFirst
     }
-    
-//    func incrementPage() {
-//        pageIndex += 1
-//    }
-//
-//    func goToZero() {
-//        pageIndex = 0
-//    }
 }
