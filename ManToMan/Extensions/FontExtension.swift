@@ -36,4 +36,8 @@ extension Font {
     static func english() -> Font {
         return Font.custom("LINESeedJPApp_OTF-Bold", size: 24)
     }
+    
+    static func sampleTextFont() -> Font {
+        return Font.custom("LINESeedJPApp_OTF-Bold", size: 20)
+    }
 }

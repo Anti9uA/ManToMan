@@ -16,4 +16,21 @@ class OnboardingViewModel: ObservableObject {
     init(isFirst: Binding<Bool>) {
         self._isFirst = isFirst
     }
+    
+    func shouldUseCustomFrame() -> Bool {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let horizontalSizeClass = windowScene.windows.first?.rootViewController?.traitCollection.horizontalSizeClass else {
+            return false
+        }
+        
+        if horizontalSizeClass == .compact {
+            if UIScreen.main.bounds.height == 568 { // iPhone SE
+                return true
+            } else if UIScreen.main.bounds.height == 667 { // iPod 7
+                return true
+            }
+        }
+        
+        return false
+    }
 }

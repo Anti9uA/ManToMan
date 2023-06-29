@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct InstructionView: View {
+    @Environment(\.horizontalSizeClass) var sizeClass
     @StateObject private var lv = LanguageViewModel()
     @StateObject var onboardingViewModel: OnboardingViewModel
     let opacityLevel = 0.8
@@ -33,9 +34,9 @@ struct InstructionView: View {
                             
                             ZStack (alignment: .bottomTrailing){
                                 Rectangle()
+                                    .cornerRadius(30)
                                     .frame(width: geo.size.width - 40, height: 220)
                                     .foregroundColor(Color.white)
-                                    .cornerRadius(30)
                                 
                                 switch onboardingViewModel.onboardingState {
                                     case .page1:
@@ -231,41 +232,41 @@ struct InstructionView: View {
                     .frame(width: geo.size.width)
                     .background(.background)
                     .cornerRadius(12)
-                    .overlay(Color.black.opacity(opacityLevel))
+                    .overlay(Color.black.opacity(opacityLevel).cornerRadius(12))
                 }
                 .background(Color.customLightGray.overlay(Color.black.opacity(opacityLevel)))
                 .ignoresSafeArea()
                 
-                
-                switch onboardingViewModel.onboardingState {
-                    case .page1:
-                        Text("Instruction_Sentence_1")
-                            .font(.english())
-                            .foregroundColor(.white)
-                            .padding(.top, 150)
-                            .padding(.horizontal)
-                            .multilineTextAlignment(.center)
-                    case .page2:
-                        Text("Instruction_Sentence_2")
-                            .font(.english())
-                            .foregroundColor(.white)
-                            .padding(.top, 150)
-                            .padding(.horizontal)
-                            .multilineTextAlignment(.center)
-                    case .page3:
-                        Text("Instruction_Sentence_3")
-                            .font(.english())
-                            .foregroundColor(.white)
-                            .padding(.top, 150)
-                            .padding(.horizontal)
-                            .multilineTextAlignment(.center)
-                    case .page4:
-                        Text("Instruction_Sentence_4")
-                            .font(.english())
-                            .foregroundColor(.white)
-                            .padding(.top, 150)
-                            .padding(.horizontal)
-                            .multilineTextAlignment(.center)
+                VStack{
+                    switch onboardingViewModel.onboardingState {
+                        case .page1:
+                            Text("Instruction_Sentence_1")
+                                .font(.sampleTextFont())
+                                .foregroundColor(.white)
+                                .padding(.top, 150)
+                                .padding(.horizontal)
+                                .multilineTextAlignment(.center)
+                        case .page2:
+                            Text("Instruction_Sentence_2")
+                                .font(.sampleTextFont())
+                                .foregroundColor(.white)
+                                .padding(.top, onboardingViewModel.shouldUseCustomFrame() ? -150 : 150)
+                                .padding(.horizontal)
+                                .multilineTextAlignment(.center)
+                        case .page3:
+                            Text("Instruction_Sentence_3")
+                                .font(.sampleTextFont())
+                                .foregroundColor(.white)
+                                .padding(.top, onboardingViewModel.shouldUseCustomFrame() ? 50 : 150)
+                                .padding(.horizontal)
+                                .multilineTextAlignment(.center)
+                        case .page4:
+                            Text("Instruction_Sentence_4")
+                                .font(.sampleTextFont())
+                                .foregroundColor(.white)
+                                .padding(.top, onboardingViewModel.shouldUseCustomFrame() ? 50 : 150)
+                                .multilineTextAlignment(.center)
+                    }
                 }
             }
             //            .onTapGesture {
