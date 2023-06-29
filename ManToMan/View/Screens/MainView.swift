@@ -63,7 +63,6 @@ struct MainView: View {
                                 }
                         }
                         
-                        
                         // MARK: 번역 결과 창
                         
                         ZStack(alignment: .topLeading){
@@ -133,6 +132,7 @@ struct MainView: View {
                         ZStack{
                             
                             // MARK: 한글 입력 텍스트 필드
+                            
                             switch mv.mainViewState {
                                 case .idle:
                                     TextField("", text: $mv.text, axis: .vertical)
@@ -209,16 +209,15 @@ struct MainView: View {
                                     
                                 case .mikePassed:
                                     let translated = mv.translated?.result ?? NSLocalizedString("partner_speaking", comment: "")
-                                        
-                                        Text(translated.isEmpty ? NSLocalizedString("partner_speaking", comment: "") : translated)
-                                            .font(.korean())
-                                            .foregroundColor(translated.isEmpty || mv.translated?.result == nil ? .disabledBlue : .black)
-                                            .frame(width: geo.size.width - 80)
-                                            .padding(20)
-                                            .background(.white)
-                                            .cornerRadius(20)
-                                            .multilineTextAlignment(.leading)
                                     
+                                    Text(translated.isEmpty ? NSLocalizedString("partner_speaking", comment: "") : translated)
+                                        .font(.korean())
+                                        .foregroundColor(translated.isEmpty || mv.translated?.result == nil ? .disabledBlue : .black)
+                                        .frame(width: geo.size.width - 80)
+                                        .padding(20)
+                                        .background(.white)
+                                        .cornerRadius(20)
+                                        .multilineTextAlignment(.leading)
                                     
                             }
                             
@@ -244,7 +243,8 @@ struct MainView: View {
                         Spacer()
                         
                         ZStack(alignment: .center) {
-                            // MARK: 녹음 시작 버튼
+                            
+                            // MARK: 녹음 진행중 애니메이션
                             VStack {
                                 HStack{
                                     
@@ -258,18 +258,15 @@ struct MainView: View {
                                         .opacity(mv.buttonTappedState == .partnerVoiceButtonTapped ? 1 : 0)
                                         .padding(.leading, 36)
                                 }
+                                
+                                // MARK: 녹음 시작 버튼
                                 HStack{
-                                    
-                                    
                                     MyVoiceButtonView(mainViewState: $mv.mainViewState, buttonTappedState: $mv.buttonTappedState, text: $mv.text, isFirst: $mikeInstruction, isSpeechAuth: $isSpeechAuth , startRecord: {
                                         mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글", for: "myAudioEngine")
                                     }, finishRecord: {
                                         mv.stopRecording(for: "myAudioEngine")
                                     })
                                     .padding(.trailing, 40)
-                                    
-                                    
-                                    
                                     
                                     PartnerVoiceRecordView(mainViewState: $mv.mainViewState, buttonTappedState: $mv.buttonTappedState, text: $mv.text, isFirst: $mikeInstruction, isSpeechAuth: $isSpeechAuth, startRecord: {
                                         mv.startRecording(selectedLang: mv.mainViewState == .mikePassed ? lv.currentLang : defaultLang[currentLocale] ?? "한글", for: "partnerAudioEngine")
@@ -279,10 +276,9 @@ struct MainView: View {
                                     })
                                 }
                             }
-                           
                         }
                         .frame(height: 130)
-                        .padding(.vertical, 30)   // 가리개 깨질시 미세 조정
+                        .padding(.vertical, 30)
                     }
                     .padding(.top, geo.safeAreaInsets.top)
                 }
@@ -322,8 +318,6 @@ struct MainView: View {
             }
             .ignoresSafeArea()
             .background(Color.customLightGray)
-            
-            
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }

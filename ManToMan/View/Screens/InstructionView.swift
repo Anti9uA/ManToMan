@@ -63,9 +63,7 @@ struct InstructionView: View {
                                             .rotationEffect(Angle(degrees: 180))
                                             .padding(20)
                                 }
-
                             }
-                            
                             .overlay(
                                 RoundedRectangle(cornerRadius: 30)
                                     .fill(onboardingViewModel.onboardingState != .page4 ? Color.black.opacity(opacityLevel) : Color.clear)
@@ -83,8 +81,6 @@ struct InstructionView: View {
                                     .overlay(RoundedRectangle(cornerRadius: 20)
                                         .stroke(Color.mainBlue.opacity(0.3), lineWidth: 2.5)
                                     )
-                                
-                                
                                 
                                 HStack{
                                     switch onboardingViewModel.onboardingState {
@@ -141,11 +137,9 @@ struct InstructionView: View {
                                                     .frame(width: 32, height: 32)
                                                     .foregroundColor(.white)
                                                     .font(.headline)
-                                            }
-                                            else {
+                                            } else {
                                                 VStack{
                                                     Spacer()
-                                                    
                                                     
                                                     Image("micIcon")
                                                         .resizable()
@@ -153,7 +147,6 @@ struct InstructionView: View {
                                                         .foregroundColor(.white)
                                                 }
                                             }
-                                            
                                         }
                                         .frame(width: 88, height: 88)
                                         .cornerRadius(30)
@@ -189,9 +182,7 @@ struct InstructionView: View {
                                                     .frame(width: 32, height: 32)
                                                     .foregroundColor(.white)
                                                     .font(.headline)
-                                            }
-                                            
-                                            else {
+                                            } else {
                                                 VStack{
                                                     Spacer()
                                                     
@@ -200,9 +191,7 @@ struct InstructionView: View {
                                                         .frame(width: 27, height: 66)
                                                         .foregroundColor(.white)
                                                 }
-                                                
                                             }
-                                            
                                         }
                                         .frame(width: 88, height: 88)
                                         .cornerRadius(30)
@@ -229,10 +218,8 @@ struct InstructionView: View {
                                 .frame(height: 130)
                                 .padding(.bottom, 15)
                             }
-                            
                         }
                         .frame(width: geo.size.width, alignment: .top)
-                        
                     }
                     .padding(.top, geo.safeAreaInsets.top)
                     
@@ -276,20 +263,19 @@ struct InstructionView: View {
                             .padding(.top, 150)
                             .multilineTextAlignment(.center)
                 }
-                
             }
-//            .onTapGesture {
-//                switch onboardingViewModel.onboardingState {
-//                    case .page1:
-//                        onboardingViewModel.onboardingState = .page2
-//                    case .page2:
-//                        onboardingViewModel.onboardingState = .page3
-//                    case .page3:
-//                        onboardingViewModel.onboardingState = .page4
-//                    case .page4:
-//                        onboardingViewModel.isFirst = false
-//                }
-//            }
+            //            .onTapGesture {
+            //                switch onboardingViewModel.onboardingState {
+            //                    case .page1:
+            //                        onboardingViewModel.onboardingState = .page2
+            //                    case .page2:
+            //                        onboardingViewModel.onboardingState = .page3
+            //                    case .page3:
+            //                        onboardingViewModel.onboardingState = .page4
+            //                    case .page4:
+            //                        onboardingViewModel.isFirst = false
+            //                }
+            //            }
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }

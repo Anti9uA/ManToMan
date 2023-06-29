@@ -61,13 +61,7 @@ struct LanguageSelectionView: View {
     }
     
     func localizedStringForLocalizedStringKey(_ key: LocalizedStringKey) -> String {
-            let keyString = "\(key)"
-            return NSLocalizedString(keyString, comment: "")
+        let keyString = "\(key)"
+        return NSLocalizedString(keyString, comment: "")
     }
 }
-
-//struct LanguageSelectionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LanguageSelectionView(langList: .constant(["영어", "일본어", "중국어(간체)"]), currentLang: .constant("영어"), isSheetPresented: .constant(true))
-//    }
-//}
