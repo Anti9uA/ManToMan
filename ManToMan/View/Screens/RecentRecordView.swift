@@ -82,16 +82,3 @@ struct RecentRecordView_Previews: PreviewProvider {
         RecentRecordView(isRecentPresented: .constant(true), text: .constant("asdf"))
     }
 }
-
-//                    Spacer()
-//
-//                    Button(action: {
-//                        withAnimation {
-//                            self.managedObjContext.delete(sen)
-//                            DataController().save(context: managedObjContext)
-//                        }
-//                    }, label: {
-//                        Image(systemName: "x.circle.fill")
-//                            .foregroundColor(Color.customDarkGray)
-//                            .opacity(recentOpacity)
-//                    })

@@ -18,6 +18,7 @@ struct MyVoiceButtonView: View {
     @Binding var text: String
     @Binding var isFirst: Bool
     @Binding var isSpeechAuth: Bool
+    @State var micOffset = 0
     
     var startRecord: () -> Void
     var finishRecord: () -> Void

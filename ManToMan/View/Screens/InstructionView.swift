@@ -28,7 +28,7 @@ struct InstructionView: View {
                                 
                                 Image(systemName: "chevron.down")
                                     .fontWeight(.bold)
-                                    .foregroundColor(Color.mainBlue)
+                                    .foregroundColor(Color.disabledBlue)
                             }
                             
                             ZStack (alignment: .bottomTrailing){
@@ -161,6 +161,16 @@ struct InstructionView: View {
                                             RoundedRectangle(cornerRadius: 30)
                                                 .fill((onboardingViewModel.onboardingState == .page1) || (onboardingViewModel.onboardingState == .page2) ?  Color.clear : Color.black.opacity(opacityLevel))
                                         )
+                                        .onTapGesture {
+                                            switch onboardingViewModel.onboardingState {
+                                                case .page1:
+                                                    onboardingViewModel.onboardingState = .page2
+                                                case .page2:
+                                                    onboardingViewModel.onboardingState = .page3
+                                                case .page3, .page4:
+                                                    break
+                                            }
+                                        }
                                         
                                         Text("내 마이크")
                                             .font(.customCaption())
@@ -200,6 +210,16 @@ struct InstructionView: View {
                                             RoundedRectangle(cornerRadius: 30)
                                                 .fill((onboardingViewModel.onboardingState == .page3) || (onboardingViewModel.onboardingState == .page4) ?  Color.clear : Color.black.opacity(opacityLevel))
                                         )
+                                        .onTapGesture {
+                                            switch onboardingViewModel.onboardingState {
+                                                case .page1, .page2:
+                                                    break
+                                                case .page3:
+                                                    onboardingViewModel.onboardingState = .page4
+                                                case .page4:
+                                                    onboardingViewModel.isFirst = false
+                                            }
+                                        }
                                         
                                         Text("상대 마이크")
                                             .font(.customCaption())
@@ -207,9 +227,8 @@ struct InstructionView: View {
                                     }
                                 }
                                 .frame(height: 130)
-                                .padding(.bottom, 30)
+                                .padding(.bottom, 15)
                             }
-                            
                             
                         }
                         .frame(width: geo.size.width, alignment: .top)
@@ -226,14 +245,6 @@ struct InstructionView: View {
                     .background(.background)
                     .cornerRadius(12)
                     .overlay(Color.black.opacity(opacityLevel))
-                    //            VStack{
-                    //                Text("번역기록")
-                    //                    .font(.customTitle())
-                    //                    .padding(EdgeInsets(top: 20, leading: 0, bottom: geo.safeAreaInsets.bottom + 7, trailing: 0))
-                    //            }
-                    //            .frame(width: geo.size.width)
-                    //            .background(.background)
-                    //            .cornerRadius(12)
                 }
                 .background(Color.customLightGray.overlay(Color.black.opacity(opacityLevel)))
                 .ignoresSafeArea()
@@ -244,41 +255,41 @@ struct InstructionView: View {
                         Text("Instruction_Sentence_1")
                             .font(.korean())
                             .foregroundColor(.white)
-                            .padding(.top, 180)
+                            .padding(.top, 150)
                             .multilineTextAlignment(.center)
                     case .page2:
                         Text("Instruction_Sentence_2")
                             .font(.korean())
                             .foregroundColor(.white)
-                            .padding(.top, 180)
+                            .padding(.top, 150)
                             .multilineTextAlignment(.center)
                     case .page3:
                         Text("Instruction_Sentence_3")
                             .font(.korean())
                             .foregroundColor(.white)
-                            .padding(.top, 180)
+                            .padding(.top, 150)
                             .multilineTextAlignment(.center)
                     case .page4:
                         Text("Instruction_Sentence_4")
                             .font(.korean())
                             .foregroundColor(.white)
-                            .padding(.top, 180)
+                            .padding(.top, 150)
                             .multilineTextAlignment(.center)
                 }
                 
             }
-            .onTapGesture {
-                switch onboardingViewModel.onboardingState {
-                    case .page1:
-                        onboardingViewModel.onboardingState = .page2
-                    case .page2:
-                        onboardingViewModel.onboardingState = .page3
-                    case .page3:
-                        onboardingViewModel.onboardingState = .page4
-                    case .page4:
-                        onboardingViewModel.isFirst = false
-                }
-            }
+//            .onTapGesture {
+//                switch onboardingViewModel.onboardingState {
+//                    case .page1:
+//                        onboardingViewModel.onboardingState = .page2
+//                    case .page2:
+//                        onboardingViewModel.onboardingState = .page3
+//                    case .page3:
+//                        onboardingViewModel.onboardingState = .page4
+//                    case .page4:
+//                        onboardingViewModel.isFirst = false
+//                }
+//            }
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }
