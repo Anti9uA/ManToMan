@@ -33,7 +33,7 @@ struct RecentRecordView: View {
                             self.isRecentPresented = false
                         }, label: {
                             Text("취소")
-                                .font(.customBody())
+                                .font(.customSubBody())
                                 .foregroundColor(.blue)
                         })
                     }

@@ -240,27 +240,31 @@ struct InstructionView: View {
                 switch onboardingViewModel.onboardingState {
                     case .page1:
                         Text("Instruction_Sentence_1")
-                            .font(.korean())
+                            .font(.english())
                             .foregroundColor(.white)
                             .padding(.top, 150)
+                            .padding(.horizontal)
                             .multilineTextAlignment(.center)
                     case .page2:
                         Text("Instruction_Sentence_2")
-                            .font(.korean())
+                            .font(.english())
                             .foregroundColor(.white)
                             .padding(.top, 150)
+                            .padding(.horizontal)
                             .multilineTextAlignment(.center)
                     case .page3:
                         Text("Instruction_Sentence_3")
-                            .font(.korean())
+                            .font(.english())
                             .foregroundColor(.white)
                             .padding(.top, 150)
+                            .padding(.horizontal)
                             .multilineTextAlignment(.center)
                     case .page4:
                         Text("Instruction_Sentence_4")
-                            .font(.korean())
+                            .font(.english())
                             .foregroundColor(.white)
                             .padding(.top, 150)
+                            .padding(.horizontal)
                             .multilineTextAlignment(.center)
                 }
             }

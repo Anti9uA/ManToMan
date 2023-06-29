@@ -58,16 +58,16 @@ struct MyVoiceButtonView: View {
                         }
                     case .myVoiceButtonTapped:
                         withAnimation(.easeIn) {
-                                self.finishRecord()
-
-                                if !text.isEmpty && text != "듣는중.." && mainViewState != .mikePassed {
-                                    DataController().addRecent(sentence: text, context: managedObjContext)
-                                }
-
-                                text = ""
-                                mainViewState = .idle
-                                buttonTappedState = .noneTapped
+                            self.finishRecord()
+                            
+                            if !text.isEmpty && text != "듣는중.." && mainViewState != .mikePassed {
+                                DataController().addRecent(sentence: text, context: managedObjContext)
                             }
+                            
+                            text = ""
+                            mainViewState = .idle
+                            buttonTappedState = .noneTapped
+                        }
                         
                 }
             }, label: {
@@ -100,6 +100,7 @@ struct MyVoiceButtonView: View {
         }
     }
 }
+
 
 struct MyVoiceButtonView_Previews: PreviewProvider {
     static var previews: some View {

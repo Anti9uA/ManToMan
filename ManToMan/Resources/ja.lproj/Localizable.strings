@@ -43,9 +43,9 @@
 "한국어를 입력하세요." = "日本語を入力。";
 
 // 파트너 말하는중 (마이크 당김)
-"partner_speaking" = "パートナが話中";
+"partner_speaking" = "相手が話しています。";
 // 내가 말하는중 (마이크 탭)
-"user_speaking" = "話してください";
+"user_speaking" = "話してください。";
 
 // 최초 마이크 설명 안내
 "마이크를 당겨 상대방 대화도 번역해보세요!" = "上へドラッグでパートナー発言翻訳！";
@@ -81,12 +81,12 @@
 "Onboarding_User_Sample_Text_2" = "トイレはどこですか？";
 "Onboarding_User_Sample_Text_3" = "近くにあります。";
 
-"Instruction_Sentence_1" = "私のマイクを\nつけてみてください。";
-"Instruction_Sentence_2" = "私の音声を認識して\n翻訳された言葉を見せてくれます。";
-"Instruction_Sentence_3" = "あっ、相手が話し始めますね！\n相手のマイクをつけてみてください。";
-"Instruction_Sentence_4" = "相手が答え始めたら\nすぐマイクをつけて翻訳できます!";
+"Instruction_Sentence_1" = "マイクボタンを押してください。";
+"Instruction_Sentence_2" = "自分の音声を認識して\n通訳した言葉は相手に\nみさせることができます。";
+"Instruction_Sentence_3" = "あっ、相手が話をし始めました！\n相手のをマイクボタンを\n押してみよう。";
+"Instruction_Sentence_4" = "相手が返事を始めたら\nすぐにマイクをオンに\nすることができます！";
 
-"번역기록" = "最近の記録";
+"번역기록" = "翻訳履歴";
 
 "launchScreen" = "launchScreen_EN";
 //* ----------------------------------------------------------------------- *//
