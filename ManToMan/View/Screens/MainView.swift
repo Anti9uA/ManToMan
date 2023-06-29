@@ -212,7 +212,7 @@ struct MainView: View {
                                     
                                     Text(translated.isEmpty ? NSLocalizedString("partner_speaking", comment: "") : translated)
                                         .font(.korean())
-                                        .foregroundColor(translated.isEmpty || mv.translated?.result == nil ? .disabledBlue : .black)
+                                        .foregroundColor(translated.isEmpty || mv.translated?.result == nil ? .disabledBlue : .mainBlue)
                                         .frame(width: geo.size.width - 80)
                                         .padding(20)
                                         .background(.white)
