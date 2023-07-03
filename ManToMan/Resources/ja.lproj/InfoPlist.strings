@@ -9,3 +9,4 @@
 "NSMicrophoneUsageDescription" = "音声からテキストへの使用には、マイクの許可が必要です";
 "NSSpeechRecognitionUsageDescription" = "音声からテキストへの使用には、音声認識権限が必要です。";
 "CFBundleDisplayName" = "マン-トゥ-マン";
+

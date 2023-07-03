@@ -11,6 +11,7 @@ import Speech
 
 struct MainView: View {
     @Environment(\.managedObjectContext) var managedObjContext
+    @Environment(\.scenePhase) private var scenePhase
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var recent: FetchedResults<Recent>
     @AppStorage("mikeInstruction") var mikeInstruction: Bool = true
     @AppStorage("currenLocale") var currentLocale: String = Locale.current.language.languageCode!.identifier as String
@@ -318,6 +319,26 @@ struct MainView: View {
             }
             .ignoresSafeArea()
             .background(Color.customLightGray)
+            .onChange(of: scenePhase) { phase in
+                if phase == .inactive || phase == .background {
+                    print("active")
+                    switch mv.mainViewState {
+                        case .mikeOwned:
+                            mv.stopRecording(for: "myAudioEngine")
+                            mv.mainViewState = .idle
+                            mv.buttonTappedState = .noneTapped
+                        case .mikePassed:
+                            mv.stopRecording(for: "partnerAudioEngine")
+                            if mv.text.isEmpty {
+                                mv.mainViewState = .idle
+                            }
+                            mv.text = ""
+                            mv.buttonTappedState = .noneTapped
+                        case .idle:
+                            break
+                    }
+                }
+            }
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }

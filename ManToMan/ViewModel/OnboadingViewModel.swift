@@ -15,6 +15,7 @@ class OnboardingViewModel: ObservableObject {
     
     init(isFirst: Binding<Bool>) {
         self._isFirst = isFirst
+        // self._appVersion = appVersion
     }
     
     func shouldUseCustomFrame() -> Bool {
@@ -32,5 +33,16 @@ class OnboardingViewModel: ObservableObject {
         }
         
         return false
+    }
+    
+    func majorVersion(from version: String) -> String {
+        let majorVersion = version.split(separator: ".").first ?? ""
+        return String(majorVersion)
+    }
+    
+    func didMajorVersionChange(currentVersion: String, savedVersion: String) -> Bool {
+        let currentMajorVersion = majorVersion(from: currentVersion)
+        let savedMajorVersion = majorVersion(from: savedVersion)
+        return currentMajorVersion != savedMajorVersion
     }
 }

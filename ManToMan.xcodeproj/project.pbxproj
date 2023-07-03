@@ -16,6 +16,7 @@
 		203D3E5B2990204A0050163B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D3E5A2990204A0050163B /* LottieView.swift */; };
 		203D3E5F2990F2CA0050163B /* userSpeakingMotion.json in Resources */ = {isa = PBXBuildFile; fileRef = 203D3E5E2990F2CA0050163B /* userSpeakingMotion.json */; };
 		20421FBA29AE841C00310030 /* OnboadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20421FB929AE841C00310030 /* OnboadingViewModel.swift */; };
+		2048BC362A4DE3C90055E83B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20DBD9D1298ECB0600BF882B /* Assets.xcassets */; };
 		207052F62A45A70500B352F7 /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207052F52A45A70500B352F7 /* InstructionView.swift */; };
 		207052F82A49275600B352F7 /* partnerSpeakingMotion.json in Resources */ = {isa = PBXBuildFile; fileRef = 207052F72A49275500B352F7 /* partnerSpeakingMotion.json */; };
 		207052FE2A49C2F800B352F7 /* launchScreen_KR.json in Resources */ = {isa = PBXBuildFile; fileRef = 207052FD2A49C2F800B352F7 /* launchScreen_KR.json */; };
@@ -28,7 +29,6 @@
 		20CC721829CB46E700920757 /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CC721729CB46E700920757 /* LanguageModel.swift */; };
 		20DBD9CE298ECB0400BF882B /* ManToManApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9CD298ECB0400BF882B /* ManToManApp.swift */; };
 		20DBD9D0298ECB0400BF882B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9CF298ECB0400BF882B /* MainView.swift */; };
-		20DBD9D2298ECB0600BF882B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20DBD9D1298ECB0600BF882B /* Assets.xcassets */; };
 		20DBD9D5298ECB0600BF882B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20DBD9D4298ECB0600BF882B /* Preview Assets.xcassets */; };
 		20DBD9E1298ECC3600BF882B /* RecentLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9DF298ECC3600BF882B /* RecentLog.xcdatamodeld */; };
 		20DBD9E4298ECC9200BF882B /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBD9E3298ECC9200BF882B /* DataController.swift */; };
@@ -71,7 +71,7 @@
 		20DBD9CA298ECB0400BF882B /* ManToMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManToMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DBD9CD298ECB0400BF882B /* ManToManApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManToManApp.swift; sourceTree = "<group>"; };
 		20DBD9CF298ECB0400BF882B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		20DBD9D1298ECB0600BF882B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		20DBD9D1298ECB0600BF882B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ManToMan/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		20DBD9D4298ECB0600BF882B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		20DBD9E0298ECC3600BF882B /* RecentLog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecentLog.xcdatamodel; sourceTree = "<group>"; };
 		20DBD9E3298ECC9200BF882B /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
@@ -130,10 +130,10 @@
 		20C164532A4AC45800B939F1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				20DBD9D4298ECB0600BF882B /* Preview Assets.xcassets */,
+				B22EC653298FAC380034977E /* Info.plist */,
 				203D3E592990203A0050163B /* Lotties */,
 				B22EC64E298FABD30034977E /* Fonts */,
-				20DBD9D1298ECB0600BF882B /* Assets.xcassets */,
-				20DBD9D4298ECB0600BF882B /* Preview Assets.xcassets */,
 				208AF58129CF0C7700B07BDE /* InfoPlist.strings */,
 				20CC721129C80C3900920757 /* Localizable.strings */,
 			);
@@ -199,7 +199,7 @@
 		20DBD9CC298ECB0400BF882B /* ManToMan */ = {
 			isa = PBXGroup;
 			children = (
-				B22EC653298FAC380034977E /* Info.plist */,
+				20DBD9D1298ECB0600BF882B /* Assets.xcassets */,
 				20C164542A4AC5C100B939F1 /* View */,
 				20C164532A4AC45800B939F1 /* Resources */,
 				2016284C299FBC5C00D0A5E5 /* Properties */,
@@ -344,13 +344,13 @@
 				207052F82A49275600B352F7 /* partnerSpeakingMotion.json in Resources */,
 				B22EC64D298FABCB0034977E /* LINESeedKR-Rg.otf in Resources */,
 				20CC720F29C80C3900920757 /* Localizable.strings in Resources */,
+				2048BC362A4DE3C90055E83B /* Assets.xcassets in Resources */,
 				B22EC652298FAC270034977E /* LINESeedSans_A_Bd.otf in Resources */,
 				B22EC64C298FABCB0034977E /* LINESeedKR-Bd.otf in Resources */,
 				20DBD9D5298ECB0600BF882B /* Preview Assets.xcassets in Resources */,
 				B22EC650298FAC0D0034977E /* LINESeedJP_A_OTF_Bd.otf in Resources */,
 				203D3E5F2990F2CA0050163B /* userSpeakingMotion.json in Resources */,
 				2016284E299FBC7500D0A5E5 /* properties.json in Resources */,
-				20DBD9D2298ECB0600BF882B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +416,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -478,6 +481,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -533,16 +539,21 @@
 		20DBD9D9298ECB0600BF882B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = AppIcon;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				ASSETCATALOG_COMPILER_STANDALONE_ICON_BEHAVIOR = default;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_ASSET_PATHS = "\"ManToMan/Resources\"";
+				CURRENT_PROJECT_VERSION = 6;
+				DEVELOPMENT_ASSET_PATHS = "ManToMan/Resources ManToMan/Assets.xcassets";
 				DEVELOPMENT_TEAM = Y6P5ZFWBM8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ManToMan/Info.plist;
+				INFOPLIST_FILE = ManToMan/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -568,16 +579,21 @@
 		20DBD9DA298ECB0600BF882B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = AppIcon;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				ASSETCATALOG_COMPILER_STANDALONE_ICON_BEHAVIOR = default;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_ASSET_PATHS = "\"ManToMan/Resources\"";
+				CURRENT_PROJECT_VERSION = 6;
+				DEVELOPMENT_ASSET_PATHS = "ManToMan/Resources ManToMan/Assets.xcassets";
 				DEVELOPMENT_TEAM = Y6P5ZFWBM8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ManToMan/Info.plist;
+				INFOPLIST_FILE = ManToMan/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

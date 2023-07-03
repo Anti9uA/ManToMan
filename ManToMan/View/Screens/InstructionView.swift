@@ -208,6 +208,7 @@ struct InstructionView: View {
                                                     onboardingViewModel.onboardingState = .page4
                                                 case .page4:
                                                     onboardingViewModel.isFirst = false
+                                                    
                                             }
                                         }
                                         
