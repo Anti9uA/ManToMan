@@ -1,7 +1,7 @@
-<img src="https://user-images.githubusercontent.com/52993882/219649239-959ac1a7-5094-4a23-8ccc-3ac28951c8ce.png" width="200"   height="200"/>
+<img src="https://github.com/Anti9uA/ManToMan/assets/52993882/9ddd23e0-6cbc-4322-ae28-7a57f3dca0bf" width="200"   height="200"/>
 
 
-# ManToMan 번역기 앱  
+# ManToMan 번역기 앱
 필요한 번역만 쉽고 빠르게! 마주보며 소통하는 맨투맨 한손 번역기
 
 
@@ -73,7 +73,7 @@
 
 
 ## 화면 구성
-|![main](https://user-images.githubusercontent.com/52993882/219629941-3485c07b-6898-418c-b06b-80c0bc0b8832.jpg)|![langSelect](https://user-images.githubusercontent.com/52993882/219629922-778333fd-a123-4d34-82a9-6af105b581ab.jpg)| ![meRecord](https://user-images.githubusercontent.com/52993882/219629936-e7749077-e621-4551-b6c2-4c798dc0e2df.jpg)| ![uRecord](https://user-images.githubusercontent.com/52993882/219629940-c8e7c1dc-6b60-4f91-9a84-0396c75328a3.jpg) |
+|![main](https://github.com/Anti9uA/ManToMan/assets/52993882/48dd253a-2fc7-4ada-8a5c-32b89fd505af)|![langSelect](https://github.com/Anti9uA/ManToMan/assets/52993882/247f4ab4-8c26-41b4-a22c-5efae0241a04)| ![meRecord](https://github.com/Anti9uA/ManToMan/assets/52993882/869f6530-cebe-43ea-a63f-e4039f14471d)| ![uRecord](https://github.com/Anti9uA/ManToMan/assets/52993882/b8bc8317-b6c1-4803-a5a2-7287216bff7a) |
 | :-----------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: |
 |                                                      메인                                                      |                                                       언어 선택 페이지                                                        |                                                      사용자 녹음 창                                                       |                                                     상대방 녹음 창                                                      |
                         
@@ -82,30 +82,47 @@
 ## 핵심 기능
 ### 실시간 번역
 - 텍스트 디바운싱을 통해 문장을 치는 동안 실시간으로 쿼리를 날려 번역결과를 보여줍니다.
-<img src="https://user-images.githubusercontent.com/52993882/219642288-7d4838af-3888-4332-aeb3-d023d44476f9.gif" width="200"    height="450"/>
+<!-- <img src="https://user-images.githubusercontent.com/52993882/219642288-7d4838af-3888-4332-aeb3-d023d44476f9.gif" width="200"    height="450"/> -->
+| <img src="https://user-images.githubusercontent.com/52993882/219642288-7d4838af-3888-4332-aeb3-d023d44476f9.gif" width="200" height="450"/> | <img src="https://github.com/Anti9uA/ManToMan/assets/52993882/cd07e077-dbab-49e2-a38e-58b51c4d1b20" width="200" height="450"/> |
+| :----: | :----: |
+|맨투맨 1.0|맨투맨 2.0 |
+
  </div>
 
 ### 최근 기록 저장
 - UT 결과, 여행 중에는 자주 번역하는 문장이 정해져 있다는 것에서 영감을 얻어 최근 기록을 빠르게 불러와야하는 필요성을 느꼈습니다.
 - 맨투맨은 최근 기록을 메인창에 구현했고, 빠르게 최근기록을 불러올수 있습니다.
-<img src="https://user-images.githubusercontent.com/52993882/219642270-3e91f4e3-e596-4443-a7cd-6147ff76019c.gif" width="200"    height="450"/>
+<!-- <img src="https://user-images.githubusercontent.com/52993882/219642270-3e91f4e3-e596-4443-a7cd-6147ff76019c.gif" width="200"    height="450"/> -->
+| <img src="https://user-images.githubusercontent.com/52993882/219642270-3e91f4e3-e596-4443-a7cd-6147ff76019c.gif" width="200" height="450"/> | <img src="https://github.com/Anti9uA/ManToMan/assets/52993882/82f21e78-5cd2-432a-b1a2-481c0df1e86e" width="200" height="450"/> |
+| :----: | :----: |
+|맨투맨 1.0|맨투맨 2.0 |
  </div>
 
 ### 다중 언어 지원
 - 영어 뿐만 아니라 일본어, 중국어를 지원하고 있고 추후 스페인어, 불어 등 지원 언어를 늘려나갈 계획입니다.
-<img src="https://user-images.githubusercontent.com/52993882/219645631-f6c50d63-1577-4024-b23b-f4f71b11ea4a.gif" width="200"    height="450"/>
+<!-- <img src="https://user-images.githubusercontent.com/52993882/219645631-f6c50d63-1577-4024-b23b-f4f71b11ea4a.gif" width="200"    height="450"/> -->
+| <img src="https://user-images.githubusercontent.com/52993882/219645631-f6c50d63-1577-4024-b23b-f4f71b11ea4a.gif" width="200" height="450"/> | <img src="https://github.com/Anti9uA/ManToMan/assets/52993882/79e84766-cc8a-4e7e-9bb1-0bdc127aaaac" width="200" height="450"/> |
+| :----: | :----: |
+|맨투맨 1.0|맨투맨 2.0 |
  </div>
 
 ### 음성 인식
 &ensp;&ensp;**사용자 음성인식**
 - 앱 사용자의 음성인식을 통해 번역결과를 보여줍니다.
-<img src="https://user-images.githubusercontent.com/52993882/219646153-56c13e70-dbfe-44b1-80ca-6428ce9e8b61.gif" width="200"    height="450"/>
+<!-- <img src="https://user-images.githubusercontent.com/52993882/219646153-56c13e70-dbfe-44b1-80ca-6428ce9e8b61.gif" width="200"    height="450"/> -->
+| <img src="https://user-images.githubusercontent.com/52993882/219646153-56c13e70-dbfe-44b1-80ca-6428ce9e8b61.gif" width="200" height="450"/> | <img src="https://github.com/Anti9uA/ManToMan/assets/52993882/e1645842-8a6c-4b42-bcaa-61b9d295d164" width="200" height="450"/> |
+| :----: | :----: |
+|맨투맨 1.0|맨투맨 2.0 |
  </div>
 
 &ensp;&ensp;**상대방 음성인식**
-- 마이크를 건네주는 메타포를 사용해 상대방 언어에 따른 음성인식 또한 지원합니다.
+- 맨투맨 1.0: 마이크를 건네주는 메타포를 사용해 상대방 언어에 따른 음성인식 또한 지원합니다.  
+- 맨투맨 2.0: 기존 버튼 사용성에 대한 피드백을 바탕으로 기능을 분리했습니다.
 - 상대방 언어의 인식된 문장을 한글로 실시간으로 보여줍니다.
-<img src="https://user-images.githubusercontent.com/52993882/219642283-cb5c9808-1382-43ce-8d94-0eee56d98c21.gif" width="200" height="450"/>
+<!-- <img src="https://user-images.githubusercontent.com/52993882/219642283-cb5c9808-1382-43ce-8d94-0eee56d98c21.gif" width="200" height="450"/> -->
+| <img src="https://user-images.githubusercontent.com/52993882/219642283-cb5c9808-1382-43ce-8d94-0eee56d98c21.gif" width="200" height="450"/> | <img src="https://github.com/Anti9uA/ManToMan/assets/52993882/6abe260b-b837-4a4b-a196-e34144af63d7" width="200" height="450"/> |
+| :----: | :----: |
+|맨투맨 1.0|맨투맨 2.0 |
 </div>
 
 <br>
@@ -121,7 +138,7 @@
 
 또한 앞으로 내가 생각한 아이디어나 문제점들이 실제로 솔루션으로 이어질수 있는걸 눈으로 확인했고, 자신감을 가질 수 있었습니다.  
 
-'우리의 문제점 해결' 라는 사명감을 가지면서 공부라는 생각이 들지 않으면서 제 자신을 프로젝트 안에 몰입시켜나갈수 있었던 프로젝트였습니다. 마지막으로 함께했던 팀원 [@Anna](https://github.com/Eunbi-Cho)에게 정말 수고했고 감사하다는 말을 전하고 싶습니다.
+'우리의 문제점 해결' 라는 사명감을 가지면서 제 자신을 프로젝트 안에 몰입시켜나갈수 있었던 프로젝트였습니다. 마지막으로 함께했던 팀원 [@Anna](https://github.com/Eunbi-Cho)에게 정말 수고했고 감사하다는 말을 전하고 싶습니다.
 
 <br>
  
